@@ -5,13 +5,8 @@ import Index from './Index'
 import router from './router'
 
 Vue.config.productionTip = false
-import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import '@/assets/reset.css'
-// require styles
-import 'swiper/css/swiper.min.css'
-
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 
 /* eslint-disable no-new */
