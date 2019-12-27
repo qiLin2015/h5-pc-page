@@ -1,5 +1,5 @@
 <template>
-  <div class="menuWrap">
+  <div class="menuSwiper">
     <div class="swiper-container" id="menuSwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
@@ -20,15 +20,21 @@ export default {
     return {
       menuSwiper: null,
       homeSwiperList: [{
-        imgSrc: require('@/img/home.png'),
+        imgSrc: require('@/img/demo1.png'),
         title: 'Commercial'
       }, {
-        imgSrc: require('@/img/home.png'),
+        imgSrc: require('@/img/demo2.png'),
         title: 'Residential'
       }, {
-        imgSrc: require('@/img/home.png'),
+        imgSrc: require('@/img/demo3.png'),
         title: 'Deluxe'
-      }]
+      }, {
+        imgSrc: require('@/img/demo1.png'),
+        title: 'Commercial'
+      }, {
+        imgSrc: require('@/img/demo2.png'),
+        title: 'Residential'
+      },]
     }
   },
   mounted() {
@@ -39,12 +45,12 @@ export default {
       this.menuSwiper = new Swiper ('#menuSwiper', {
         loop: true, // 循环模式选项
         effect : 'coverflow',
-        slidesPerView: 3,
+        slidesPerView: 'auto',
         centeredSlides: true,
         coverflowEffect: {
-          rotate: 30,
-          stretch: 10,
-          depth: 60,
+          rotate: 0,  // y轴旋转角度
+          stretch: 50, //
+          depth: 200,
           modifier: 2,
           slideShadows : true
         },
@@ -56,26 +62,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.menuWrap{
+.menuSwiper{
   width: 100%;
+  height: 100%;
   .swiper-container {
-    width: 50%;
-    height: 100vh;
+    width: 100%;
+    height: 50%;
     .swiper-wrapper{
       .swiper-slide{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        width: 50%;
         .imgWrap{
-          width: 50%;
-          max-height: 80vh;
-          overflow: hidden;
-          .img{
+          width:100%;
+          img{
             width: 100%;
-            max-height: 80vh;
-            // border: 1px solid yellow;
+            height: auto;
           }
         }
       }

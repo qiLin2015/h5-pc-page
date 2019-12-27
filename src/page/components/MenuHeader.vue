@@ -5,11 +5,11 @@
       <div>标题logo</div>
     </div>
 
-    <div v-if="menuStatus === 'open'" class="menuContent">
-      <transition name="fade-menu-content" mode="out-in" :appear="true">
+    <div :class="menuStatus === 'open' ? 'menuContent' : 'noMenuContent'">
+      <transition v-if="menuStatus === 'open'" name="fade-menu-content" :appear="true">
         <div class="contentWrap">
           <div class="menuHeader">
-            <div class="menuLogo">menu</div>
+            <div class="menuLogo" @click="handelCloseMenu">close</div>
             <div>标题logo</div>
           </div>
           <div class="swiperWrap">
@@ -71,28 +71,38 @@ export default {
   .menuContent{
     width: 100%;
     height: 100vh;
-    background: rgba(153, 153, 153, .6);
+    background: rgba(153, 153, 153, .8);
     color: #FFFFFF;
     .contentWrap{
       background: #000000;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
       .swiperWrap{
-
+        flex:1;
       }
     }
   }
+  .noMenuContent{
+    width: 100%;
+    animation: closeMenu 0.8s;
+  }
 }
 /*--通用--*/
-.fade-app-main-leave-active,
-.fade-app-main-enter-active {
-  transition: all 0.5s;
+.fade-menu-content-leave-active,
+.fade-menu-content-enter-active {
+  transition: all 1s;
 }
-.fade-app-main-enter {
-  opacity: 0;
-  transform: translateX(-30px);
+.fade-menu-content-enter {
+  transform: translateY(-1200px);
 }
-.fade-app-main-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+.fade-menu-content-leave-to {
+  transform: translateY(-1200px);
+}
+
+@keyframes closeMenu
+{
+  from {height: 100vh; background: rgba(255, 255, 255, 0.5);}
+  to {disaply: none; height: 0vh;}
 }
 </style>
