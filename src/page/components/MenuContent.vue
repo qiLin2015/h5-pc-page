@@ -58,12 +58,9 @@ export default {
 <style scoped lang="scss" rel="stylesheet/scss">
 .menuWrap{
   width: 100%;
-  height: 100vh;
-  background: #000000;
   .swiper-container {
     width: 50%;
     height: 100vh;
-    border: 1px solid red;
     .swiper-wrapper{
       .swiper-slide{
         display: flex;
