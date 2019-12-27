@@ -11,14 +11,14 @@
         </div>
       </div>
 
-      <div class="preNextBtn">
+      <!-- <div class="preNextBtn">
         <div class="pre item" @click="handelNav('pre')">pre</div>
         <div class="item line">/</div>
         <div class="next item" @click="handelNav('next')">next</div>
-      </div>
+      </div> -->
 
       <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
     </div>
   </div>
 </template>
