@@ -1,8 +1,8 @@
 <template>
   <div class="menuWrap">
     <div v-if="menuStatus === 'close'" class="menuHeader">
-      <div class="menuLogo" @click="handelOpenMenu">menu</div>
-      <div>标题logo</div>
+      <div class="menuLogo" @click="handelOpenMenu" :style="{'color': `${colorType}`}">menu</div>
+      <div :style="{'color': `${colorType}`}">标题logo</div>
     </div>
 
     <div :class="menuStatus === 'open' ? 'menuContent' : 'noMenuContent'">
@@ -25,6 +25,9 @@
 import MenuContent from './MenuContent'
 
 export default {
+  props: {
+    colorType: 'white'
+  },
   components: {
     MenuContent
   },
@@ -54,6 +57,7 @@ export default {
   right: 0;
   left: 0;
   z-index: 1000;
+  // background: #000000;
   .menuHeader{
     width: 100%;
     padding: 30px;
