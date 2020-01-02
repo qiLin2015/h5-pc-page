@@ -15,7 +15,6 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       menuSwiper: null,

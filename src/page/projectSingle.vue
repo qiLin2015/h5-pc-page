@@ -1,5 +1,5 @@
 <template>
-  <div class="projectWrap">
+  <div class="projectSingleWrap">
     <MenuHeader></MenuHeader>
     <div class="preNextWrap">
       <div class="preNext">
@@ -8,8 +8,8 @@
         <div class="next" @click="handelNav('next')">NEXT<div class="textLine"></div></div>
       </div>
     </div>
-    <div class="productSwiper">
-      <div class="swiper-container" id="productSwiper">
+    <div class="productSingleSwiper">
+      <div class="swiper-container" id="productSingleSwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
             <div class="imgWrap">
@@ -33,7 +33,7 @@ export default {
   },
     data () {
     return {
-      productSwiper: null,
+      productSingleSwiper: null,
       homeSwiperList: [{
         imgSrc: require('@/img/project1.png'),
         title: 'Commercial'
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     render() {
-      this.productSwiper = new Swiper ('#productSwiper', {
+      this.productSingleSwiper = new Swiper ('#productSingleSwiper', {
         loop: true, // 循环模式选项
         autoplay: {
           delay: 3000,//1秒切换一次
@@ -95,7 +95,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.projectWrap{
+.projectSingleWrap{
   width: 100%;
   height: 100vh;
   display: flex;

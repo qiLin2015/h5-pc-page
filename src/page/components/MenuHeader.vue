@@ -2,7 +2,7 @@
   <div class="menuWrap">
     <div v-if="menuStatus === 'close'" class="menuHeader">
       <div class="menuLogo" @click="handelOpenMenu" :style="{'color': `${colorType}`}">menu</div>
-      <div :style="{'color': `${colorType}`}">标题logo</div>
+      <div :style="{'color': 'white'}">标题logo</div>
     </div>
 
     <div :class="menuStatus === 'open' ? 'menuContent' : 'noMenuContent'">

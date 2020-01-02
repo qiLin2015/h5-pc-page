@@ -1,24 +1,23 @@
 <template>
   <div class="main-wrap">
-    <MenuHeader></MenuHeader>
+    <MenuHeader ></MenuHeader>
     <div class="swiper-container" id="mainSwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
-          <p class="ani slideTitle" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0.1s">{{item.title}}</p>
+          <div class="ani slideTitle" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+            {{item.title}}
+          </div>
           <div class="imgWrap">
             <img class="img" :src="item.imgSrc" alt="">
           </div>
         </div>
       </div>
-
-      <!-- <div class="preNextBtn">
-        <div class="pre item" @click="handelNav('pre')">pre</div>
-        <div class="item line">/</div>
-        <div class="next item" @click="handelNav('next')">next</div>
-      </div> -->
-
-      <!-- 如果需要分页器 -->
-      <!-- <div class="swiper-pagination"></div> -->
+      <div class="allProject" @click="goToProject">View all projects<div class="textLine"></div></div>
+      <div class="preNext">
+        <div class="pre" @click="handelNav('pre')">pre <div class="textLine"></div></div>
+        <div class="line">/</div>
+        <div class="next" @click="handelNav('next')">next <div class="textLine"></div></div>
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +60,7 @@ export default {
         zoom : {
           maxRatio: 1.5,
         },
+
         on:{
           init: function(){
             swiperAnimateCache(this); //隐藏动画元素
@@ -73,12 +73,16 @@ export default {
         }
       })
     },
+    goToProject() {
+      this.$router.push({
+        name: 'Project'
+      })
+    },
     handelNav(type) {
-      alert(val)
       if(type === 'next') {
-        this.mySwiper.slideNext();
+        this.mainSwiper.slideNext();
       }else {
-        this.mySwiper.slidePrev();
+        this.mainSwiper.slidePrev();
       }
     }
   },
@@ -90,59 +94,47 @@ export default {
 .main-wrap{
   width: 100%;
   height: 100vh;
-  // background: #000000;
+  background: #000000;
   .swiper-container {
-    width: 50%;
+    width: 30%;
     height: 100vh;
-    border: 1px solid red;
+    overflow: unset;
+    position: relative;
     .swiper-wrapper{
       .swiper-slide{
+        padding: 0 10%;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         position: relative;
         .imgWrap{
-          width: 50%;
-          max-height: 80vh;
-          overflow: hidden;
+          width: 100%;
           .img{
             width: 100%;
             max-height: 80vh;
-            // border: 1px solid yellow;
-          }
-          &:hover{
-            .img{
-              width: 120%;
-              transform: scale(1.1);
-              transition: all 0.5s ease-in;
-            }
-            .slideTitle{
-              font-size: 70px;
-              transform: scale(1.1);
-              transition: all 0.5s ease-in;
-            }
           }
         }
         .slideTitle{
-          color: #FFFFFF;
           position: absolute;
           top: 50%;
-          left: 0;
-          right: 0;
+          left: -50%;
+          right: -50%;
           margin-top: -50px;
+          width: 200%;
+          height: auto;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 65px;
+          font-size: 100px;
           letter-spacing: 3px;
-          z-index: 1000;
-          // -webkit-background-clip: text;
-          // -webkit-text-fill-color: transparent;
-          // background-image: url(../img/home.png);
-          // background-repeat: no-repeat;
-          width: 100%;
-          border: 1px solid red;
+          color: #FFFFFF;
+          -webkit-background-clip: text;
+	        -webkit-text-fill-color: transparent;
+          background-image: url(../img/home.png);
+          background-size: 100% 100px;
+          background-position: center;
         }
       }
     }
@@ -151,37 +143,71 @@ export default {
         background: red;
       }
     }
-    .preNextBtn{
+    .allProject{
+      position: absolute;
+      top: 20%;
+      left: -70px;
+      padding:10px 10px;
+      color: #898989;
       font-size: 15px;
-      color: #FFFFFF;
-      position: fixed;
-      right: 0;
-      bottom: 20%;
-      padding: 10px;
+      cursor: pointer;
+      transform: rotate(-90deg);
       &:hover{
-        cursor: pointer;
+        color: #fff;
+        .textLine{
+          width: 128px;
+          height: 2px;
+          background: #898989;;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          animation: allProjectLine 0.8s;
+        }
       }
-      .item{
-        transform:rotate(90deg);
-        padding: 5px;
-        text-align: center;
+    }
+
+    .preNext{
+      position: absolute;
+      right: -70px;
+      bottom: 20%;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-around;
+      transform: rotate(90deg);
+      .pre, .next{
+        padding:10px 10px;
+        color: #898989;
+        cursor: pointer;
+        position: relative;
+        &:hover{
+          color: #fff;
+          .textLine{
+            width: 45px;
+            height: 2px;
+            background: #898989;;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            animation: preNextLine 0.8s;
+          }
+        }
+      }
+      .line{
+        padding: 10px 0;
+        color: #FFFFFF;
       }
     }
   }
 }
 
-// @media screen and (min-width: 480px) {
-//   .main-wrap{
-//     .swiper-container{
-//       width: 50%;
-//     }
-//   }
-// }
-// @media screen and (max-width: 480px) {
-//   .main-wrap{
-//     .swiper-container{
-//       width: 60%;
-//     }
-//   }
-// }
+@keyframes allProjectLine
+{
+  from {width: 0px;}
+  to {width: 128px;}
+}
+@keyframes preNextLine
+{
+  from {width: 0px;}
+  to {width: 45px;}
+}
 </style>
