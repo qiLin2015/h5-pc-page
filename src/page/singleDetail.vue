@@ -125,6 +125,7 @@ export default {
         .oneText{
           left: -5%;
           top: 20%;
+          animation: oneTextAni 3s 0.8s linear infinite;
         }
         .severnText{
           right: -5%;
@@ -181,6 +182,28 @@ export default {
       color: #333333;
       // -webkit-box-reflect: below 10px -webkit-gradient(liner, 0, 0, 0, 100%, from(transparent), color-stop(.5, transparent), to(rgba(3,3,3,.2)));
     }
+  }
+}
+@keyframes oneTextAni{
+  0%{
+    left: -5%;
+    top: 20%;
+  }
+  25%{
+    left: -8%;
+    top: 15%;
+  }
+  50%{
+    left: -5%;
+    top: 20%;
+  }
+  75%{
+    left: -2%;
+    top: 25%;
+  }
+  100%{
+    left: -5%;
+    top: 20%;
   }
 }
 </style>

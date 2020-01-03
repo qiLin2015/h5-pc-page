@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     render() {
+
       this.menuSwiper = new Swiper ('#menuSwiper', {
         loop: true, // 循环模式选项
         autoplay: {
