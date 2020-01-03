@@ -5,6 +5,8 @@ import Index from '@/page/index'
 import Contact from '@/page/contact'
 import Project from '@/page/project'
 import ProjectSingle from '@/page/projectSingle'
+import SingleDetail from '@/page/singleDetail'
+
 
 Vue.use(Router)
 
@@ -38,6 +40,11 @@ export default new Router({
       path: '/projectSingle',
       name: 'ProjectSingle',
       component: ProjectSingle
+    },
+    {
+      path: '/singleDetail',
+      name: 'SingleDetail',
+      component: SingleDetail
     },
   ]
 })
