@@ -11,8 +11,10 @@ export default {
 </script>
 
 <style>
+@import './common/font/font.css';
+
 #app {
-  font-family: 'GabrielaStencil', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Didot, DidotBold, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;

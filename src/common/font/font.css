@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Didot';
+  src: url('Didot.ttf');
+  font-weight: normal;
+  font-style: normal;
+ }
+ @font-face {
+  font-family: 'DidotBold';
+  src: url('DidotBold.ttf');
+  font-weight: normal;
+  font-style: normal;
+ }
