@@ -39,7 +39,7 @@
 
                 <div v-for="(child, childIndex) in item.childrens" :key="childIndex" class="singleItem">
                   <el-row>
-                    <el-col :span="10">
+                    <el-col :span="8">
                       <el-form-item :label="item.title + ' single'">
                         <el-input  v-model="child.title"></el-input>
                       </el-form-item>
@@ -47,18 +47,13 @@
                     <el-col :span="10">
                       <UploadFile></UploadFile>
                     </el-col>
+                    <el-col :span="4" v-if="child.title">
+                      <el-button @click="handelProductDetail(item, child)" size="small">点击上传详情图片</el-button>
+                    </el-col>
                     <el-col :span="2" v-if="ruleForm.projects && ruleForm.projects.length > 2">
                       <div class="addProject">
                         <el-button @click="handelDelete(item, child)" type="danger" size="small" icon="el-icon-delete">删除</el-button>
                       </div>
-                    </el-col>
-                  </el-row>
-
-                  <el-row v-if="child.title" style="background: #eeeeee; padding-left: 20px; margin-bottom: 20px;">{{`${child.title}-详情`}}</el-row>
-
-                  <el-row v-if="child.title">
-                    <el-col :span="10">
-                      <UploadFile btnText="点击上传详情图片"></UploadFile>
                     </el-col>
                   </el-row>
                 </div>
@@ -69,6 +64,20 @@
               </div>
             </el-main>
           </el-container>
+
+          <div>
+            <el-dialog
+              :title="productDialogTitle"
+              :visible.sync="productDialogVisible"
+              width="50%">
+              <span slot="footer" class="dialog-footer">
+                <AdminSingleDetail
+                  v-if="productDialogVisible"
+                  @cancelProductDiago="handelcancelProductDiago"
+                ></AdminSingleDetail>
+              </span>
+            </el-dialog>
+          </div>
         </el-collapse-item>
 
         <el-collapse-item title="三、Awards奖项图片配置" name="menus">
@@ -118,14 +127,18 @@
 
 <script>
 import UploadFile from '@/page/components/UploadFile'
+import AdminSingleDetail from '@/page/components/AdminSingleDetail'
 
 export default {
   components: {
-    UploadFile
+    UploadFile,
+    AdminSingleDetail
   },
   data () {
     return {
       activeCollapse: ['menus'],
+      productDialogVisible: false,
+      productDialogTitle: '详情页图片配置',
       ruleForm: {
         menus: [{
           title: 'Home',
@@ -228,6 +241,13 @@ export default {
           }
         }
       })
+    },
+    handelProductDetail(item, child) {
+      this.productDialogVisible = true;
+      this.productDialogTitle = `${child.title}一详情页图片配置`;
+    },
+    handelcancelProductDiago(val) {
+      this.productDialogVisible = false;
     }
   },
 }

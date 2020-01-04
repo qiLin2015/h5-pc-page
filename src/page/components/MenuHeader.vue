@@ -12,9 +12,7 @@
             <div class="menuLogo" @click="handelCloseMenu">close</div>
             <div>标题logo</div>
           </div>
-          <div class="swiperWrap">
-            <menu-content></menu-content>
-          </div>
+          <menu-content></menu-content>
         </div>
       </transition>
     </div>
@@ -56,7 +54,7 @@ export default {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 100;
   // background: #000000;
   .menuHeader{
     width: 100%;
@@ -82,9 +80,7 @@ export default {
       height: 100vh;
       display: flex;
       flex-direction: column;
-      .swiperWrap{
-        flex:1;
-      }
+      position: relative;
     }
   }
   .noMenuContent{
