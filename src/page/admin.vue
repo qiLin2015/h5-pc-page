@@ -7,13 +7,16 @@
           <el-container>
             <el-main>
               <el-row v-for="(item, index) in ruleForm.menus" :key="index">
-                <el-col :span="8">
+                <el-col :span="6">
                   <el-form-item :label="(index+1).toString()">
                     <el-input  v-model="item.title" disabled></el-input>
                   </el-form-item>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="8">
                   <UploadFile></UploadFile>
+                </el-col>
+                <el-col :span="8">
+                  <AdminImageSizeTip width="220" height="320"></AdminImageSizeTip>
                 </el-col>
               </el-row>
             </el-main>
@@ -25,17 +28,26 @@
             <el-main>
               <div v-for="(item, index) in ruleForm.projects" :key="index" class="projectItem">
                 <el-row>
-                  <el-col :span="8">
+                  <el-col :span="6">
                     <el-form-item :label="(index+1) + '.project'">
                       <el-input  v-model="item.title" disabled></el-input>
                     </el-form-item>
                   </el-col>
-                  <el-col :span="12">
+                  <el-col :span="10">
                     <UploadFile></UploadFile>
+                  </el-col>
+                  <el-col :span="6">
+                    <AdminImageSizeTip width="165" height="245"></AdminImageSizeTip>
                   </el-col>
                 </el-row>
 
-                <el-row style="background: #eeeeee; padding-left: 20px; margin-bottom: 20px;">project-single</el-row>
+                <el-row style="background: #eeeeee; padding-left: 20px; margin-bottom: 20px;">
+                  project-single
+                </el-row>
+
+                <el-row style="margin-bottom: 20px;">
+                  <AdminImageSizeTip width="140" height="205"></AdminImageSizeTip>
+                </el-row>
 
                 <div v-for="(child, childIndex) in item.childrens" :key="childIndex" class="singleItem">
                   <el-row>
@@ -85,11 +97,24 @@
             <el-main>
               <el-row>
                 <el-col :span="12">
-                  <UploadFile btnText="点击上传奖项图片"></UploadFile>
+                  <el-button type="primary" @click="awardDialogVisible = true" size="small">点击上传奖项图片</el-button>
                 </el-col>
               </el-row>
             </el-main>
           </el-container>
+          <div>
+            <el-dialog
+              title="Awards奖项图片配置"
+              :visible.sync="awardDialogVisible"
+              width="50%">
+              <span slot="footer" class="dialog-footer">
+                <AdminAwardsDetail
+                  v-if="awardDialogVisible"
+                  @cancelAwardDiago="handelcancelAwardDiago"
+                ></AdminAwardsDetail>
+              </span>
+            </el-dialog>
+          </div>
         </el-collapse-item>
 
         <el-collapse-item title="三、Contact配置" name="menus">
@@ -128,17 +153,22 @@
 <script>
 import UploadFile from '@/page/components/UploadFile'
 import AdminSingleDetail from '@/page/components/AdminSingleDetail'
+import AdminAwardsDetail from '@/page/components/AdminAwardsDetail'
+import AdminImageSizeTip from '@/page/components/AdminImageSizeTip'
 
 export default {
   components: {
     UploadFile,
-    AdminSingleDetail
+    AdminImageSizeTip,
+    AdminSingleDetail,
+    AdminAwardsDetail
   },
   data () {
     return {
       activeCollapse: ['menus'],
       productDialogVisible: false,
       productDialogTitle: '详情页图片配置',
+      awardDialogVisible: false,
       ruleForm: {
         menus: [{
           title: 'Home',
@@ -248,6 +278,9 @@ export default {
     },
     handelcancelProductDiago(val) {
       this.productDialogVisible = false;
+    },
+    handelcancelAwardDiago(val) {
+      this.awardDialogVisible = false;
     }
   },
 }

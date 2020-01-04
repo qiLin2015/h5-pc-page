@@ -28,6 +28,7 @@
               <el-col :span="18" :offset="4" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="785" height="485"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -35,6 +36,7 @@
               <el-col :span="8" :offset="4" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="250" height="310"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -42,6 +44,7 @@
               <el-col :span="8" :offset="12" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="250" height="310"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -49,6 +52,7 @@
               <el-col :span="24" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="960" height="540"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -56,6 +60,7 @@
               <el-col :span="8" :offset="4" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="250" height="310"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -63,6 +68,7 @@
               <el-col :span="8" :offset="12" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="250" height="310"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -70,6 +76,7 @@
               <el-col :span="18" class="borderImg">
                 <el-form-item label="">
                   <UploadFile></UploadFile>
+                  <AdminImageSizeTip width="785" height="485"></AdminImageSizeTip>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -86,9 +93,11 @@
 
 <script>
 import UploadFile from '@/page/components/UploadFile'
+import AdminImageSizeTip from '@/page/components/AdminImageSizeTip'
 export default {
   components: {
-    UploadFile
+    UploadFile,
+    AdminImageSizeTip
   },
   data () {
     return {
@@ -138,7 +147,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    min-height: 100px;
     .el-form-item__content{
       margin-left: 0 !important;
     }

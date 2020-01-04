@@ -8,7 +8,8 @@
   multiple
   :limit="1"
   :on-exceed="handleExceed"
-  :file-list="fileList">
+  :file-list="fileList"
+  list-type="picture">
   <el-button size="small" type="primary" v-if="!(fileList && fileList.length)">{{btnText}}</el-button>
 </el-upload>
 </template>
