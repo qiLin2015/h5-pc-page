@@ -9,6 +9,8 @@
         <img class="img" src="@/img/about.png" alt="">
       </div>
       <div class="centerText">Wally Mau</div>
+      <div class="leftAbsolute" @click="handelGoTo('Project')">All Projects</div>
+      <div class="rightAbsolute" @click="handelGoTo('Contact')">Contact Us</div>
     </div>
   </div>
 </template>
@@ -28,6 +30,11 @@ export default {
 
   },
   methods: {
+    handelGoTo(name) {
+      this.$router.push({
+        name: name
+      })
+    }
   },
 }
 </script>
@@ -53,7 +60,7 @@ export default {
         font-family:Didot;
         font-size: 12px;
         line-height: 20px;
-        color: #666666;
+        color: #D3D3D3;
       }
     }
     .rightWrap{
@@ -83,6 +90,38 @@ export default {
       align-items: center;
       justify-content: center;
     }
+    .leftAbsolute{
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: rotateZ(-90deg);
+      padding: 10px;
+      color: #D3D3D3;
+      margin-top: -25px;
+      cursor: pointer;
+    }
+    .rightAbsolute{
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      transform: rotateZ(90deg);
+      padding: 10px;
+      color: #D3D3D3;
+      margin-top: -25px;
+      cursor: pointer;
+    }
   }
 }
+@media screen and (min-width: 480px) {
+
+}
+@media screen and (max-width: 480px) {
+  .main-wrap{
+    .swiper-container{
+      width: 60%;
+    }
+  }
+}
+
+
 </style>

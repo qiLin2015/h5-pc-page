@@ -1,16 +1,28 @@
 <template>
   <div class="menuWrap">
     <div v-if="menuStatus === 'close'" class="menuHeader">
-      <div class="menuLogo" @click="handelOpenMenu" :style="{'color': `${colorType}`}">MENU</div>
-      <div :style="{'color': 'white'}">标题logo</div>
+      <div class="menuLogoText" @click="handelOpenMenu">
+        <div class="leftLine">
+          <div class="topLine line"></div>
+          <div class="bottomLine line"></div>
+        </div>
+        MENU
+      </div>
+      <div v-if="colorType === 'white'" class="logoWrap"><img class="logo" src="@/img/logoBgWhite.png" alt=""></div>
+      <div v-if="colorType === 'black'" class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
     </div>
 
     <div :class="menuStatus === 'open' ? 'menuContent' : 'noMenuContent'">
       <transition v-if="menuStatus === 'open'" name="fade-menu-content" :appear="true">
         <div class="contentWrap">
           <div class="menuHeader">
-            <div class="menuLogo" @click="handelCloseMenu">close</div>
-            <div>标题logo</div>
+            <div class="menuLogoText" @click="handelCloseMenu">
+              <div class="leftLine">
+                <img class="leftClose" src="@/img/close.png" alt="">
+              </div>
+              MENU
+            </div>
+            <div class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
           </div>
           <menu-content></menu-content>
         </div>
@@ -24,7 +36,10 @@ import MenuContent from './MenuContent'
 
 export default {
   props: {
-    colorType: 'white'
+    colorType: {
+      type: String,
+      default: 'white'
+    }
   },
   components: {
     MenuContent
@@ -55,19 +70,65 @@ export default {
   right: 0;
   left: 0;
   z-index: 100;
-  // background: #000000;
   .menuHeader{
-    width: 100%;
-    padding: 30px;
-    position: relative;
+    height: 80px;
     display: flex;
     justify-content: center;
-    box-sizing: border-box;
-    .menuLogo{
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 30px;
+    position: relative;
+    .logoWrap{
+      display: flex;
+      align-items: center;
+      .logo{
+        width: 80px;
+        height: 20px;
+      }
+    }
+  }
+  .menuLogoText{
+    position: absolute;
+    left: 40px;
+    top: 0;
+    height: 80px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 1s linear;
+    .leftLine{
+      height: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0 10px;
+      width: 30px;
+      .line {
+        height: 2px;
+        border-radius: 5px;
+        background: #000000;
+        opacity: 0.8;
+      }
+      .topLine {
+        width: 24px;
+      }
+      .bottomLine{
+        width: 14px;
+      }
+      .leftClose{
+        width: 10px;
+        height: 10px;
+      }
+    }
+    &:hover{
+      .leftLine{
+        .topLine{
+          width: 14px;
+        }
+        .bottomLine{
+          width: 20px;
+        }
+      }
     }
   }
   .menuContent{
@@ -104,5 +165,16 @@ export default {
 {
   from {height: 100vh; background: rgba(255, 255, 255, 0.5);}
   to {disaply: none; height: 0vh;}
+}
+
+@media screen and (min-width: 480px) {
+
+}
+@media screen and (max-width: 480px) {
+  .main-wrap{
+    .swiper-container{
+      width: 60%;
+    }
+  }
 }
 </style>
