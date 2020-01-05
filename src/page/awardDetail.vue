@@ -265,7 +265,28 @@ export default {
     transform: translateY(0);
   }
 }
-
+@keyframes mobileText{
+  0%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
+  }
+  25%{
+    -webkit-transform: translateY(-50px) scale(0.5);
+    transform: translateY(-50px) scale(0.5);
+  }
+  50%{
+    -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
+    transform: translateY(0px) scale(0) rotateZ(180deg);
+  }
+  75%{
+    -webkit-transform: translateY(50px) scale(1.5);
+    transform: translateY(50px) scale(1.5);
+  }
+  100%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
+  }
+}
 
 @media screen and (min-width: 480px) {
   .mobileList{
@@ -327,28 +348,6 @@ export default {
         cursor: pointer;
       }
     }
-  }
-}
-@keyframes mobileText{
-  0%{
-    -webkit-transform: translateY(0) scale(0);
-    transform: translateY(0) scale(0);
-  }
-  25%{
-    -webkit-transform: translateY(-50px) scale(0.5);
-    transform: translateY(-50px) scale(0.5);
-  }
-  50%{
-    -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
-    transform: translateY(0px) scale(0) rotateZ(180deg);
-  }
-  75%{
-    -webkit-transform: translateY(50px) scale(1.5);
-    transform: translateY(50px) scale(1.5);
-  }
-  100%{
-    -webkit-transform: translateY(0) scale(0);
-    transform: translateY(0) scale(0);
   }
 }
 </style>

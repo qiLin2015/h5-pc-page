@@ -2,7 +2,9 @@
   <div class="singleDetailWrap">
     <MenuHeader></MenuHeader>
     <div class="detailWrap">
-      <div class="headerTitle fullWidth">Commercial</div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'com'"><div class="aniTitle">Commercial</div></div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'res'"><div class="aniTitle">Residential</div></div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'del'"><div class="aniTitle">Deluxe</div></div>
       <div class="detailText fullWidth">
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。</div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。</div>
@@ -11,21 +13,27 @@
 
       <div class="oneWrap fullWidth">
         <div class="oneImgWrap">
-          <div class="animText oneText">C</div>
+          <div class="animText oneText" v-if="detailType === 'com'">C</div>
+          <div class="animText oneText" v-if="detailType === 'res'">R</div>
+          <div class="animText oneText" v-if="detailType === 'del'">D</div>
           <img class="img" src="@/img/singleDetail1.png" alt="">
         </div>
       </div>
 
       <div class="twoWrap fullWidth">
         <div class="twoImgWrap">
-          <div class="animText twoText">O</div>
+          <div class="animText twoText" v-if="detailType === 'com'">O</div>
+          <div class="animText oneText" v-if="detailType === 'res'">E</div>
+          <div class="animText oneText" v-if="detailType === 'del'">E</div>
           <img class="img" src="@/img/singleDetail2.png" alt="">
         </div>
       </div>
 
       <div class="threeWrap fullWidth">
         <div class="threeImgWrap">
-          <div class="animText threeText">M</div>
+          <div class="animText threeText" v-if="detailType === 'com'">M</div>
+          <div class="animText oneText" v-if="detailType === 'res'">S</div>
+          <div class="animText oneText" v-if="detailType === 'del'">L</div>
           <img class="img" src="@/img/singleDetail3.png" alt="">
         </div>
       </div>
@@ -44,19 +52,25 @@
 
       <div class="sixWrap fullWidth">
         <div class="sixImgWrap">
-          <div class="animText sixText">M</div>
+          <div class="animText sixText" v-if="detailType === 'com'">M</div>
+          <div class="animText oneText" v-if="detailType === 'res'">I</div>
+          <div class="animText oneText" v-if="detailType === 'del'">U</div>
           <img class="img" src="@/img/singleDetail6.png" alt="">
         </div>
       </div>
 
       <div class="severnWrap fullWidth flexStart">
         <div class="severnImgWrap" style="margin-top: 100px;">
-          <div class="animText severnText">E</div>
+          <div class="animText severnText" v-if="detailType === 'com'">E</div>
+          <div class="animText oneText" v-if="detailType === 'res'">D</div>
+          <div class="animText oneText" v-if="detailType === 'del'">X</div>
           <img class="img" src="@/img/singleDetail6.png" alt="">
         </div>
       </div>
 
-      <div class="moretext fullWidth">RIAL</div>
+      <div class="moretext fullWidth" v-if="detailType === 'com'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="detailType === 'res'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="detailType === 'del'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
     </div>
   </div>
 </template>
@@ -68,9 +82,9 @@ export default {
     MenuHeader
   },
     data () {
-    return {
-
-    }
+      return {
+        detailType: this.$route.query.detailType || 'com', // 'com', 'res' , 'del'
+      }
   },
   mounted() {
 
@@ -101,12 +115,18 @@ export default {
       width: 100%;
     }
     .headerTitle{
-      width: 100%;
       padding: 2% 0 2% 20%;
       font-size: 60px;
       color: #333333;
+      font-family: DidotBold;
+      .aniTitle{
+        display: inline-block;
+        animation: scaleRotateTitle 1s 0.8s linear;
+      }
+
     }
     .detailText{
+      font-family: PingFangRegular;
       padding: 0 22% 2%;
       box-sizing: border-box;
       font-size: 12px;
@@ -125,11 +145,12 @@ export default {
         .oneText{
           left: -5%;
           top: 20%;
-          animation: oneTextAni 3s 0.8s linear infinite;
+          animation: LeftTopText 3s 0.8s linear infinite;
         }
         .severnText{
           right: -5%;
           top: -7%;
+          animation: upDownFloat 3s 0.8s linear infinite;
         }
       }
     }
@@ -144,6 +165,7 @@ export default {
         .twoText{
           right: -20%;
           top: -25%;
+          animation: upDownFloat 3s 0.8s linear infinite;
         }
       }
     }
@@ -159,10 +181,12 @@ export default {
         .threeText{
           left: -60%;
           bottom: -25%;
+          animation: scaleRotateText 3s 0.8s linear infinite;
         }
         .sixText{
           left: -30%;
           top: -30%;
+           animation: LeftTopText 3s 0.8s linear infinite;
         }
       }
     }
@@ -176,15 +200,27 @@ export default {
     }
 
     .moretext{
-      padding: 100px 0;
-      text-align: center;
       font-size: 60px;
       color: #333333;
-      // -webkit-box-reflect: below 10px -webkit-gradient(liner, 0, 0, 0, 100%, from(transparent), color-stop(.5, transparent), to(rgba(3,3,3,.2)));
+      position: relative;
+      height: 200px;
+      .moreTextAbsolute{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .animMoreText{
+        animation: scaleRotateText 5s 0.5s linear infinite;
+      }
     }
   }
 }
-@keyframes oneTextAni{
+@keyframes LeftTopText{
   0%{
     left: -5%;
     top: 20%;
@@ -204,6 +240,114 @@ export default {
   100%{
     left: -5%;
     top: 20%;
+  }
+}
+@keyframes scaleRotateText{
+  0%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
+  }
+  25%{
+    -webkit-transform: translateY(-50px) scale(0.5);
+    transform: translateY(-50px) scale(0.5);
+  }
+  50%{
+    -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
+    transform: translateY(0px) scale(0) rotateZ(180deg);
+  }
+  75%{
+    -webkit-transform: translateY(50px) scale(1.5);
+    transform: translateY(50px) scale(1.5);
+  }
+  100%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
+  }
+}
+
+@keyframes scaleRotateTitle{
+  0%{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+   50%{
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100%{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes upDownFloat{
+  0%{
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  25%{
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px);
+  }
+  50%{
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  75%{
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+  }
+  100%{
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .singleDetailWrap{
+
+  }
+}
+@media screen and (max-width: 480px) {
+  .singleDetailWrap{
+    .detailWrap{
+      .headerTitle{
+        padding: 10px 30px 20px;
+        font-size: 30px;
+        font-family: DidotBold;
+      }
+      .detailText{
+        font-family: PingFangRegular;
+        padding: 0 30px 40px;
+        line-height: 24px;
+        font-size: 10px;
+      }
+      .animText{
+        font-size: 100px;
+      }
+      .moretext{
+        padding: 0;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .twoWrap, .fiveWrap{
+        .twoImgWrap, .fiveImgWrap{
+          width: 60%;
+          position: relative;
+        }
+      }
+      .threeWrap, .sixWrap{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 80px;
+        padding-right: 20%;
+        .threeImgWrap, .sixImgWrap{
+          width: 60%;
+        }
+      }
+    }
   }
 }
 </style>
