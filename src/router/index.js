@@ -6,6 +6,7 @@ import Contact from '@/page/contact'
 import Project from '@/page/project'
 import ProjectSingle from '@/page/projectSingle'
 import SingleDetail from '@/page/singleDetail'
+import About from '@/page/about'
 import AwardDetail from '@/page/awardDetail'
 
 
@@ -28,11 +29,6 @@ export default new Router({
       component: Index
     },
     {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
-    },
-    {
       path: '/project',
       name: 'Project',
       component: Project
@@ -48,9 +44,19 @@ export default new Router({
       component: SingleDetail
     },
     {
+      path: '/about',
+      name: 'About',
+      component: About
+    },
+    {
       path: '/awardDetail',
-      name: 'awardDetail',
+      name: 'Award',
       component: AwardDetail
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: Contact
     },
   ]
 })

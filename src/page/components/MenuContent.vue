@@ -2,11 +2,11 @@
   <div class="titleWrap">
     <div class="menuTitleWrap">
       <div class="contentAbsolute">
-        <div class="home title">Home<div class="homeBg itemBg"><img src="@/img/menu1.png" alt="" class="image"></div></div>
-        <div class="project title">Projects<div class="projectBg itemBg"><img src="@/img/demo1.png" alt="" class="image"></div></div>
-        <div class="about title">About<div class="aboutBg itemBg"><img src="@/img/demo2.png" alt="" class="image"></div></div>
-        <div class="award title">Awards<div class="awardBg itemBg"><img src="@/img/demo3.png" alt="" class="image"></div></div>
-        <div class="contact title">Contact<div class="contactBg itemBg"><img src="@/img/demo4.png" alt="" class="image"></div></div>
+        <div class="home title" @click="handelGoDetail('Index')">Home<div class="homeBg itemBg"><img src="@/img/menu1.png" alt="" class="image"></div></div>
+        <div class="project title" @click="handelGoDetail('Project')">Projects<div class="projectBg itemBg"><img src="@/img/demo1.png" alt="" class="image"></div></div>
+        <div class="about title" @click="handelGoDetail('About')">About<div class="aboutBg itemBg"><img src="@/img/demo2.png" alt="" class="image"></div></div>
+        <div class="award title" @click="handelGoDetail('Award')">Awards<div class="awardBg itemBg"><img src="@/img/demo3.png" alt="" class="image"></div></div>
+        <div class="contact title" @click="handelGoDetail('Contact')">Contact<div class="contactBg itemBg"><img src="@/img/demo4.png" alt="" class="image"></div></div>
       </div>
     </div>
   </div>

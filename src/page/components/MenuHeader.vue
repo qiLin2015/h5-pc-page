@@ -1,7 +1,7 @@
 <template>
   <div class="menuWrap">
     <div v-if="menuStatus === 'close'" class="menuHeader">
-      <div class="menuLogo" @click="handelOpenMenu" :style="{'color': `${colorType}`}">menu</div>
+      <div class="menuLogo" @click="handelOpenMenu" :style="{'color': `${colorType}`}">MENU</div>
       <div :style="{'color': 'white'}">标题logo</div>
     </div>
 
