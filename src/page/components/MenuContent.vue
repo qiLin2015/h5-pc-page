@@ -9,6 +9,14 @@
         <div class="contact title" @click="handelGoDetail('Contact')">Contact<div class="contactBg itemBg"><img src="@/img/demo4.png" alt="" class="image"></div></div>
       </div>
     </div>
+
+    <div class="menuTitleWrapMobile">
+      <div class="title home" @click="handelGoDetail('Index')"><span class="small">01</span>Home</div>
+      <div class="title project" @click="handelGoDetail('Project')"><span class="small">02</span>Projects</div>
+      <div class="title about" @click="handelGoDetail('About')"><span class="small">03</span>About</div>
+      <div class="title award" @click="handelGoDetail('Award')"><span class="small">04</span>Awards</div>
+      <div class="title contact" @click="handelGoDetail('Contact')"><span class="small">05</span>Contact</div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +30,9 @@ export default {
   mounted() {
   },
   methods: {
+    handelGoDetail(name) {
+      this.$router.push({name: name})
+    }
   },
 }
 </script>
@@ -107,6 +118,113 @@ export default {
   100%{
     transform: rotateZ(0deg) scale(1);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .titleWrap{
+    .menuTitleWrapMobile{
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .titleWrap{
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    width: 100%;
+    padding: 0 8%;
+    box-sizing: border-box;
+    .menuTitleWrap{
+      display: none;
+    }
+    .menuTitleWrapMobile{
+      padding-top: 30%;
+      .title{
+        font-size: 30px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        .small{
+          font-size: 12px;
+          transform: scale(0.8);
+          color: #999999;
+          margin-right: 10px;
+          font-family: PingFangRegular;
+        }
+        &:hover{
+          opacity: 0.7;
+          transform: scale(1.5);
+        }
+        &.home{
+          animation: opacityHome 0.5s;
+        }
+        &.project{
+          animation: opacityProject 0.8s;
+        }
+        &.about{
+          animation: opacityAbout 1.1s;
+        }
+        &.award{
+          animation: opacityAward 1.4s;
+        }
+        &.contact{
+          animation: opacityContact 1.7s;
+        }
+      }
+    }
+  }
+}
+@keyframes opacityHome{
+  0%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes opacityProject{
+  0%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes opacityAbout{
+  0%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes opacityAward{
+  0%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes opacityContact{
+  0%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
 </style>
