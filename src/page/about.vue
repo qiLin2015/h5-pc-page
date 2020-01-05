@@ -7,6 +7,7 @@
       </div>
       <div class="rightWrap">
         <img class="img" src="@/img/about.png" alt="">
+        <div class="middleText">Wally Mau</div>
       </div>
       <div class="centerText">Wally Mau</div>
       <div class="leftAbsolute" @click="handelGoTo('Project')">All Projects</div>
@@ -49,6 +50,7 @@ export default {
     display: flex;
     height: 100vh;
     position: relative;
+    box-sizing: border-box;
     .leftWrap{
       display: flex;
       width: 50%;
@@ -113,12 +115,63 @@ export default {
   }
 }
 @media screen and (min-width: 480px) {
-
+  .middleText{
+    display: none;
+  }
 }
 @media screen and (max-width: 480px) {
-  .main-wrap{
-    .swiper-container{
-      width: 60%;
+  .aboutWrap{
+    .contentWrap{
+      padding-top: 80px;
+      flex-direction: column;
+      .leftWrap{
+        width: 100%;
+        padding: 30px 40px;
+      }
+      .rightWrap{
+        width: 100%;
+        position: relative;
+        margin-top: 30px;
+        box-sizing: border-box;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        background: rgba(250,250,250, 1);
+        .middleText{
+          position: absolute;
+          top: 0;
+          left: 50%;
+          margin-left: -100px;
+          margin-top: -25px;
+          text-transform: capitalize;
+          width: 200px;
+          height: 50px;
+          font-size: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .img{
+          width: 60%;
+          height: auto;
+        }
+      }
+      .centerText{
+        display: none;
+      }
+      .leftAbsolute{
+        font-size: 12px;
+        left: -8%;
+        margin-top: -50px;
+        text-transform: uppercase;
+      }
+      .rightAbsolute{
+        font-size: 12px;
+        right: -8%;
+        margin-top: -50px;
+        text-transform: uppercase;
+      }
     }
   }
 }

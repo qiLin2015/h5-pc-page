@@ -6,7 +6,7 @@
           <div class="topLine line"></div>
           <div class="bottomLine line"></div>
         </div>
-        MENU
+        <span class="mobileHidden">MENU</span>
       </div>
       <div v-if="colorType === 'white'" class="logoWrap"><img class="logo" src="@/img/logoBgWhite.png" alt=""></div>
       <div v-if="colorType === 'black'" class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
@@ -20,7 +20,7 @@
               <div class="leftLine">
                 <img class="leftClose" src="@/img/close.png" alt="">
               </div>
-              MENU
+            <span class="mobileHidden">MENU</span>
             </div>
             <div class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
           </div>
@@ -171,9 +171,12 @@ export default {
 
 }
 @media screen and (max-width: 480px) {
-  .main-wrap{
-    .swiper-container{
-      width: 60%;
+  .menuHeader{
+    .mobileHidden{
+      display: none;
+    }
+    .menuLogoText{
+      left: 0;
     }
   }
 }
