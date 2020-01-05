@@ -24,7 +24,7 @@
             </div>
             <div class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
           </div>
-          <menu-content></menu-content>
+          <menu-content @closeMenu="handelCloseMenu"></menu-content>
         </div>
       </transition>
     </div>

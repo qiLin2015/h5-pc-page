@@ -11,7 +11,7 @@
 
         <div class="leftTwoWrap">
           <div class="leftTwoImgWrap">
-            <div class="animText leftOneText">W</div>
+            <div class="animText leftOneText animRotate" style="top: -40%; right: -30%">W</div>
             <img class="img" src="@/img/leftTwo.png" alt="">
           </div>
         </div>
@@ -25,7 +25,7 @@
 
         <div class="leftFourWrap">
           <div class="leftFourImgWrap">
-            <div class="animText leftThreeText">S</div>
+            <div class="animText leftThreeText animRotate">S</div>
             <img class="img" src="@/img/leftFour.png" alt="">
           </div>
         </div>
@@ -35,13 +35,13 @@
       <div class="rightWrap">
         <div class="rightOneWrap">
           <div class="rightOneImgWrap">
-            <div class="animText rightOneText">A</div>
+            <div class="animText rightOneText" style="top: -16%">A</div>
             <img class="img" src="@/img/rightOne.png" alt="">
           </div>
         </div>
         <div class="rightTwoWrap">
           <div class="rightTwoImgWrap">
-            <div class="animText rightTwoText">R</div>
+            <div class="animText rightTwoText animRotate" style="right: -40%; bottom: -25%">R</div>
             <img class="img" src="@/img/rightTwo.png" alt="">
           </div>
         </div>
@@ -52,6 +52,20 @@
           </div>
         </div>
       </div>
+
+      <div class="mobileList">
+        <div class="mobileItem"><img  class="image" src="@/img/leftOne.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/rightOne.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/leftTwo.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/rightTwo.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/leftThree.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/rightThree.png" alt=""></div>
+        <div class="mobileItem"><img  class="image" src="@/img/leftFour.png" alt=""></div>
+        <div class="mobileFixedtext">Awards</div>
+      </div>
+
+      <div class="leftFixed" @click="handelGoTo('Project')">All Projects</div>
+      <div class="rightFixed"  @click="handelGoTo('Contact')">Contact Us</div>
     </div>
   </div>
 </template>
@@ -71,6 +85,11 @@ export default {
 
   },
   methods: {
+    handelGoTo(name) {
+      this.$router.push({
+        name: name
+      })
+    }
   },
 }
 </script>
@@ -80,13 +99,15 @@ export default {
 .awardDetailWrap{
   padding-top: 150px;
   .animText{
-    font-size: 70px;
-    color: #cccccc;
+    font-family: DidotBold;
+    font-size: 120px;
+    color: #D3D3D3;
     position: absolute;
     z-index: 10;
-  //     -webkit-background-clip:text;
-  // -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:1px #CCCCCC;color: transparent;
+    animation: upDownFloat 3s 0.8s linear infinite;
+  }
+  .animRotate{
+    animation: mobileText 5s 0.5s linear infinite;
   }
   img{
     display: block;
@@ -199,6 +220,135 @@ export default {
         }
       }
     }
+  }
+  .leftFixed{
+    position: fixed;
+    top: 50%;
+    left: 0%;
+    transform: rotateZ(-90deg);
+    padding: 10px;
+    color: #D3D3D3;
+    margin-top: -25px;
+    cursor: pointer;
+  }
+  .rightFixed{
+    position: fixed;
+    top: 50%;
+    right: 0%;
+    transform: rotateZ(90deg);
+    padding: 10px;
+    color: #D3D3D3;
+    margin-top: -25px;
+    cursor: pointer;
+  }
+}
+
+@keyframes upDownFloat{
+  0%{
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  25%{
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+  50%{
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  75%{
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+  100%{
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+
+@media screen and (min-width: 480px) {
+  .mobileList{
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .awardDetailWrap{
+    padding-top: 80px;
+    .detailWrap{
+      padding: 30px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      .mobileList{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .mobileFixedtext{
+          font-family: Didot;
+          position: fixed;
+          font-size: 45px;
+          top: 50%;
+          margin-top: -30px;
+          animation: mobileText 5s 0.5s linear infinite;
+          -webkit-text-fill-color: #FFFFFF;
+          -webkit-text-stroke:1px #D3D3D3;
+        }
+      }
+      .mobileItem{
+        width: 85%;
+        margin-bottom: 40px;
+        .image{
+          width: 100%;
+          height:auto;
+        }
+      }
+      .animText{
+        display: none;
+      }
+      .leftWrap{
+        display: none;
+      }
+      .rightWrap{
+        display: none;
+      }
+      .leftFixed{
+        font-size: 12px;
+        left: -8%;
+        margin-top: -50px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .rightFixed{
+        font-size: 12px;
+        right: -8%;
+        margin-top: -50px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    }
+  }
+}
+@keyframes mobileText{
+  0%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
+  }
+  25%{
+    -webkit-transform: translateY(-50px) scale(0.5);
+    transform: translateY(-50px) scale(0.5);
+  }
+  50%{
+    -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
+    transform: translateY(0px) scale(0) rotateZ(180deg);
+  }
+  75%{
+    -webkit-transform: translateY(50px) scale(1.5);
+    transform: translateY(50px) scale(1.5);
+  }
+  100%{
+    -webkit-transform: translateY(0) scale(0);
+    transform: translateY(0) scale(0);
   }
 }
 </style>

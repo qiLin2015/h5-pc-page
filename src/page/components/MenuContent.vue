@@ -31,7 +31,11 @@ export default {
   },
   methods: {
     handelGoDetail(name) {
-      this.$router.push({name: name})
+      if(this.$router.history.current.name === name) {
+        this.$emit('closeMenu');
+      }else {
+        this.$router.push({name: name})
+      }
     }
   },
 }
@@ -156,7 +160,6 @@ export default {
         }
         &:hover{
           opacity: 0.7;
-          transform: scale(1.5);
         }
         &.home{
           animation: opacityHome 0.5s;
