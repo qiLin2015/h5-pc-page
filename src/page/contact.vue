@@ -1,16 +1,16 @@
 <template>
   <div class="contactWrap">
-    <MenuHeader></MenuHeader>
+    <MenuHeader colorType="black"></MenuHeader>
     <div class="contentWrap">
       <div class="leftWrap">
-        <p class="text">contact</p>
+        <img class="imageCode" src="@/img/code.png" alt="">
       </div>
       <div class="rightWrap">
         <div class="text">
-          <div class="address">地址</div>
-          <div class="tel">联系方式</div>
-          <div class="http">www.https://</div>
-          <div class="imgCode"></div>
+          <div class="contact">Contact</div>
+          <div class="address">20 / F, Block 17, 1333 Xinlong Road minhang District, Shanghai</div>
+          <div class="tel">TEL / 086- 13524446243</div>
+          <div class="web">WEB / www.modee- sh.com</div>
         </div>
       </div>
     </div>
@@ -42,10 +42,9 @@ export default {
       align-items: center;
       height: 100vh;
       flex: 1;
-      font-size: 50px;
-      .text{
-        -webkit-box-reflect: below 10px -webkit-gradient(liner, 0, 0, 0, 100%, from(transparent), color-stop(.5, transparent), to(rgba(3,3,3,.2)));
-        animation: leftWrapScale 5s 0.8s linear infinite;
+      .imageCode{
+        width: 160px;
+        height: 160px;
       }
     }
     .rightWrap{
@@ -54,6 +53,7 @@ export default {
       justify-content: center;
       height: 100vh;
       flex: 1;
+      font-family: PingFangRegular;
       .text{
         animation: rightWrapFloat 3s 0.8s linear infinite;
         height: 100px;
@@ -61,41 +61,27 @@ export default {
         flex-direction: column;
         justify-content: space-around;
         position: relative;
-        cursor: pointer;
-        &:hover{
-          .imgCode{
-            position: absolute;
-            top: -25px;
-            left: -180px;
-            width: 150px;
-            height: 150px;
-            background: red;
-          }
-        }
+        color: #999999;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .contact{
+        color: #FFFFFF;
+        font-size: 40px;
+        font-family: DidotBold;
+        margin-bottom: 30px;
+      }
+      .address{
+        color: #FFFFFF;
+        margin-bottom: 20px;
+      }
+      .tel{
+        margin-bottom: 20px;
+      }
+      .web{
+        margin-bottom: 20px;
       }
     }
-  }
-}
-@keyframes leftWrapScale{
-  0%{
-    // transform: scale(1);
-    transform: rotateY(0deg);
-  }
-  25%{
-    transform: rotateY(90deg);
-    // transform: scale(1.2);
-  }
-  50%{
-    transform: rotateY(0deg);
-    // transform: scale(1);
-  }
-  75%{
-    transform: rotateY(-90deg);
-    // transform: scale(0.8);
-  }
-  100%{
-    transform: rotateY(0deg);
-    // transform: scale(1);
   }
 }
 
@@ -119,6 +105,27 @@ export default {
   100%{
     -webkit-transform: translateY(0);
     transform: translateY(0);
+  }
+}
+@media screen and (min-width: 480px) {
+
+}
+@media screen and (max-width: 480px) {
+  .contactWrap{
+    min-height: 100vh;
+    padding-top: 80px;
+    box-sizing: border-box;
+    .contentWrap{
+      flex-direction: column;
+      .leftWrap{
+        width: 100%;
+        height: auto;
+        padding: 30px 80px;
+      }
+      .rightWrap{
+        padding: 100px 30px 50px;
+      }
+    }
   }
 }
 </style>

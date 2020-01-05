@@ -3,8 +3,8 @@
     <div v-if="menuStatus === 'close'" class="menuHeader">
       <div class="menuLogoText" @click="handelOpenMenu">
         <div class="leftLine">
-          <div class="topLine line"></div>
-          <div class="bottomLine line"></div>
+          <div :class="colorType === 'white' ? 'topLine line' : 'topLine line whiteLine'"></div>
+          <div :class="colorType === 'white' ? 'bottomLine line' : 'bottomLine line whiteLine'"></div>
         </div>
         <span class="mobileHidden">MENU</span>
       </div>
@@ -108,6 +108,9 @@ export default {
         border-radius: 5px;
         background: #000000;
         opacity: 0.8;
+        &.whiteLine{
+          background: #FFFFFF;
+        }
       }
       .topLine {
         width: 24px;
