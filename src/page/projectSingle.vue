@@ -1,24 +1,63 @@
 <template>
-  <div class="projectSingleWrap">
-    <MenuHeader></MenuHeader>
-    <div class="leftWrap">
-      <div class="project">Project <div class="textLine"></div></div>
-      <div class="title">Commercial</div>
-      <div><img class="closeImg" src="@/img/closeLine.png" alt=""></div>
-    </div>
+  <div>
+    <div class="projectSingleWrap pcBlock">
+      <MenuHeader></MenuHeader>
+      <div class="leftWrap">
+        <div class="project">Project<div class="textLine"></div></div>
+        <div class="title">{{projectType}}</div>
+        <div><img class="closeImg" src="@/img/closeLine.png" alt=""></div>
+      </div>
 
-    <div class="singleSwiper">
-      <div class="swiper-container" id="singleSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
-            <div class="imgWrap">
-              <img class="img" :src="item.imgSrc" alt="">
+      <div class="singleSwiper">
+        <div class="swiper-container" id="singleSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
+              <div class="imgWrap">
+                <img class="img" :src="item.imgSrc" alt="">
+                <div class="imgBottom">
+                  <div class="title">{{item.title}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="prebtn btn" @click="handelNav('pre')"><i class="el-icon-d-arrow-left"></i></div>
+        <div class="nextBtn btn" @click="handelNav('next')"><i class="el-icon-d-arrow-right"></i></div>
       </div>
-      <div class="prebtn btn" @click="handelNav('pre')"><i class="el-icon-d-arrow-left"></i></div>
-      <div class="nextBtn btn" @click="handelNav('next')"><i class="el-icon-d-arrow-right"></i></div>
+    </div>
+
+    <div class="mobileBlock">
+      <MenuHeader></MenuHeader>
+      <div class="mobileSwiper">
+        <div class="leftMobileWrap preNext">
+          <div class="preNextContent" @click="handelNavMobile('pre')">
+            <span class="marginRight">pre</span>
+            <i class="el-icon-right"></i>
+          </div>
+        </div>
+
+        <div class="swiper-container" id="mobileSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
+              <div class="imgWrap">
+                <div class="imgTop">{{projectType}}</div>
+                <img class="img" :src="item.imgSrc" alt="">
+                <div class="imgBottom">
+                  <div class="title">{{item.title}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rightMobileWrap preNext">
+          <div class="preNextContent nextContent" @click="handelNavMobile('next')">
+            <span class="marginRight">next</span>
+            <i class="el-icon-right"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +71,7 @@ export default {
     data () {
     return {
       singleSwiper: null,
+      mobileSwiper: null,
       homeSwiperList: [{
         imgSrc: require('@/img/project1.png'),
         title: 'Commercial'
@@ -41,7 +81,8 @@ export default {
       }, {
         imgSrc: require('@/img/project3.png'),
         title: 'Deluxe'
-      }]
+      }],
+      projectType: this.$route.query.projectType || ''
     }
   },
   mounted() {
@@ -60,7 +101,14 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-      })
+      });
+
+      this.mobileSwiper = new Swiper ('#mobileSwiper', {
+        loop: true, // 循环模式选项
+        autoplay: {
+          delay: 3000,//1秒切换一次
+        },
+      });
     },
     goToContact() {
       this.$router.push({
@@ -73,6 +121,19 @@ export default {
       }else {
         this.singleSwiper.slidePrev();
       }
+    },
+    handelNavMobile(type) {
+      if(type === 'next') {
+        this.mobileSwiper.slideNext();
+      }else {
+        this.mobileSwiper.slidePrev();
+      }
+    },
+    handelNum(val) {
+      if(val < 10) {
+        return `0${val}`
+      }
+      return `${val}`
     }
   },
 }
@@ -92,16 +153,19 @@ export default {
     align-items: center;
     .project{
       color: #999999;
-      font-size: 24px;
+      font-size: 16px;
       cursor: pointer;
       transform: rotate(-90deg);
       position: relative;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+      padding-bottom: 5px;
       &:hover{
         color: #666666;
         .textLine{
-          width: 80px;
+          width: 65px;
           height: 2px;
-          background: #666666;
+          background: #999999;
           position: absolute;
           left: 0;
           bottom: 0;
@@ -111,6 +175,7 @@ export default {
     }
     .title{
       font-size: 50px;
+      text-transform: uppercase;
     }
     .closeImg{
       padding-right: 100px;
@@ -169,75 +234,116 @@ export default {
               width: 100%;
               height: auto;
             }
+            .imgBottom{
+              .title{
+                font-family: CenturyGothic;
+                font-size: 28px;
+                color: #999999;
+                padding: 5px 0;
+                text-align: center;
+                text-transform: capitalize;
+              }
+              .index{
+                font-family: PingFangRegular;
+                font-size: 16px;
+                color: #999999;
+                text-align: center
+              }
+            }
           }
         }
       }
     }
   }
-  // .preNextWrap{
-  //   display: flex;
-  //   align-items: center;
-  //   padding-left: 100px;
-  //   .preNext{
-  //     position: relative;
-  //     font-size: 24px;
-  //     display: flex;
-  //     justify-content: space-around;
-  //     transform: rotate(90deg);
-  //     .pre, .next{
-  //       padding:10px 10px;
-  //       color: #999999;
-  //       cursor: pointer;
-  //       position: relative;
-  //       &:hover{
-  //         color: #666666;
-  //         .textLine{
-  //           width: 55px;
-  //           height: 2px;
-  //           background: #898989;;
-  //           position: absolute;
-  //           left: 0;
-  //           bottom: 0;
-  //           animation: preNextLine 0.8s;
-  //         }
-  //       }
-  //     }
-  //     .line{
-  //       padding: 10px 0;
-  //       color: #999999;
-  //     }
-  //   }
-  // }
-  // .contactWrap{
-  //   display: flex;
-  //   align-items: center;
-  //   padding-right: 100px;
-  //   .text{
-  //     position: relative;
-  //     width: 120px;
-  //     text-align: center;
-  //     color: #999999;
-  //     font-size: 24px;
-  //     cursor: pointer;
-  //     transform: rotate(90deg);
-  //     &:hover{
-  //       color: #666666;
-  //       .textLine{
-  //         width: 120px;
-  //         height: 2px;
-  //         background: #666666;
-  //         position: absolute;
-  //         left: 0;
-  //         bottom: 0;
-  //         animation: contactLine 0.8s;
-  //       }
-  //     }
-  //   }
-  // }
 }
 @keyframes projectLine
 {
   from {width: 0px;}
-  to {width: 80px;}
+  to {width: 65px;}
+}
+@media screen and (min-width: 480px) {
+  .mobileBlock{
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .pcBlock{
+    display: none;
+  }
+  .mobileBlock{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    .mobileSwiper{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .swiper-slide{
+        width: 100%;
+        padding: 0 5px;
+        box-sizing: border-box;
+        .imgWrap{
+          width: 100%;
+          .imgTop{
+            font-size: 20px;
+            color: #000000;
+            padding: 15px 0 5px;
+            text-align: center;
+            text-transform: capitalize;
+          }
+          .img{
+            width: 100%;
+            display: block;
+          }
+          .imgBottom{
+            .title{
+              font-family: PingFangRegular;
+              font-size: 18px;
+              color: #000000;
+              padding: 15px 0 5px;
+              text-align: center;
+              text-transform: capitalize;
+            }
+            .index{
+              font-family: PingFangRegular;
+              font-size: 12px;
+              color: #999999;
+              text-align: center
+            }
+          }
+        }
+      }
+      .preNext{
+        width: 50px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .preNextContent{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 40px;
+          width: 80px;
+          transform: rotateZ(-90deg);
+          font-size: 12px;
+          color: #999999;
+          &:hover{
+            cursor: pointer;
+            color: #666666;
+          }
+          &.nextContent{
+            transform: rotateZ(90deg);
+          }
+          .marginRight{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -14,7 +14,7 @@ export default {
 @import './common/font/font.css';
 
 #app {
-  font-family: Didot, DidotBold, PingFangRegular, Helvetica, Arial, sans-serif;
+  font-family: Didot, DidotBold, PingFangRegular, CenturyGothic, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;

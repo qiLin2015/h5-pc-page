@@ -1,26 +1,67 @@
 <template>
-  <div class="projectWrap">
-    <MenuHeader></MenuHeader>
-    <div class="preNextWrap">
-      <div class="preNext">
-        <div class="pre" @click="handelNav('pre')">PRE<div class="textLine"></div></div>
-        <div class="line">/</div>
-        <div class="next" @click="handelNav('next')">NEXT<div class="textLine"></div></div>
+  <div>
+    <div class="projectWrap pcBlock">
+      <MenuHeader></MenuHeader>
+      <div class="preNextWrap">
+        <div class="preNext">
+          <div class="pre" @click="handelNav('pre')">pre<div class="textLine"></div></div>
+          <div class="line">/</div>
+          <div class="next" @click="handelNav('next')">next<div class="textLine"></div></div>
+        </div>
       </div>
-    </div>
-    <div class="productSwiper">
-      <div class="swiper-container" id="productSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
-            <div class="imgWrap">
-              <img class="img" :src="item.imgSrc" alt="">
+      <div class="productSwiper">
+        <div class="swiper-container" id="productSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+              <div class="imgWrap">
+                <div class="imgTop">{{handelNum(index + 1)}}</div>
+                <img class="img" :src="item.imgSrc" alt="">
+                <div class="imgBottom">
+                  <div class="title">{{item.title}} space</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="contactWrap" @click="goToContact">
+        <div class="text">contact <div class="textLine"></div></div>
+      </div>
     </div>
-    <div class="contactWrap" @click="goToContact">
-      <div class="text">contact <div class="textLine"></div></div>
+
+    <div class="mobileBlock">
+      <MenuHeader></MenuHeader>
+      <div class="mobileSwiper">
+        <div class="leftMobileWrap preNext">
+          <div class="preNextContent" @click="handelNavMobile('pre')">
+            <span class="marginRight">pre</span>
+            <i class="el-icon-right"></i>
+          </div>
+        </div>
+
+        <div class="swiper-container" id="mobileSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+              <div class="imgWrap">
+                <div class="imgTop">{{handelNum(index + 1)}}</div>
+                <img class="img" :src="item.imgSrc" alt="">
+                <div class="imgBottom">
+                  <div class="title">{{item.title}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rightMobileWrap preNext">
+          <div class="preNextContent nextContent" @click="handelNavMobile('next')">
+            <span class="marginRight">next</span>
+            <i class="el-icon-right"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +75,7 @@ export default {
     data () {
     return {
       productSwiper: null,
+      mobileSwiper: null,
       homeSwiperList: [{
         imgSrc: require('@/img/project1.png'),
         title: 'Commercial'
@@ -60,22 +102,20 @@ export default {
         slidesPerView: 'auto',
         centeredSlides: true,
         coverflowEffect: {
-          rotate: 50,  // y轴旋转角度
+          rotate: 45,  // y轴旋转角度
           stretch: -200, //
-          depth: 100,
+          depth: 150,
           modifier: 1,
           slideShadows : false
         },
-        on:{
-          init: function(){
-            swiperAnimateCache(this); //隐藏动画元素
-            swiperAnimate(this); //初始化完成开始动画
-          },
-          slideChangeTransitionEnd: function(){
-            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-          }
-        }
-      })
+      });
+
+      this.mobileSwiper = new Swiper ('#mobileSwiper', {
+        loop: true, // 循环模式选项
+        autoplay: {
+          delay: 3000,//1秒切换一次
+        },
+      });
     },
     handelNav(type) {
       if(type === 'next') {
@@ -87,6 +127,27 @@ export default {
     goToContact() {
       this.$router.push({
         name: 'Contact'
+      })
+    },
+    handelNavMobile(type) {
+      if(type === 'next') {
+        this.mobileSwiper.slideNext();
+      }else {
+        this.mobileSwiper.slidePrev();
+      }
+    },
+    handelNum(val) {
+      if(val < 10) {
+        return `0${val}`
+      }
+      return `${val}`
+    },
+    handelGoTo(item) {
+      this.$router.push({
+        name: 'ProjectSingle',
+        query: {
+          projectType: item.title
+        }
       })
     }
   },
@@ -103,13 +164,14 @@ export default {
   .preNextWrap{
     display: flex;
     align-items: center;
-    padding-left: 100px;
+    padding-left: 30px;
+    font-family: CenturyGothic;
     .preNext{
       position: relative;
-      font-size: 24px;
+      font-size: 16px;
       display: flex;
       justify-content: space-around;
-      transform: rotate(90deg);
+      transform: rotate(-90deg);
       .pre, .next{
         padding:10px 10px;
         color: #999999;
@@ -118,7 +180,7 @@ export default {
         &:hover{
           color: #666666;
           .textLine{
-            width: 55px;
+            width: 45px;
             height: 2px;
             background: #898989;;
             position: absolute;
@@ -137,19 +199,20 @@ export default {
   .contactWrap{
     display: flex;
     align-items: center;
-    padding-right: 100px;
+    padding-right: 30px;
     .text{
       position: relative;
-      width: 120px;
+      width: 80px;
       text-align: center;
       color: #999999;
-      font-size: 24px;
+      font-family: CenturyGothic;
+      font-size: 16px;
       cursor: pointer;
       transform: rotate(90deg);
       &:hover{
         color: #666666;
         .textLine{
-          width: 120px;
+          width: 80px;
           height: 2px;
           background: #666666;
           position: absolute;
@@ -161,7 +224,7 @@ export default {
     }
   }
   .productSwiper{
-    width: 60%;
+    width: 75%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -171,16 +234,35 @@ export default {
       .swiper-wrapper{
         .swiper-slide{
           width: 200px;
-          .slideTitle{
-            text-align: center;
-            font-size: 65px;
-            letter-spacing: 3px;
-          }
           .imgWrap{
-            width: 320px;
+            width: 280px;
+            .imgTop{
+              font-family: PingFangRegular;
+              font-size: 16px;
+              color: #999999;
+              padding: 5px 0;
+              text-align: center
+            }
             img{
-              width: 320px;
+              width: 280px;
               height: auto;
+              display: block;
+            }
+            .imgBottom{
+              .title{
+                font-family: CenturyGothic;
+                font-size: 28px;
+                color: #999999;
+                padding: 5px 0;
+                text-align: center;
+                text-transform: capitalize;
+              }
+              .index{
+                font-family: PingFangRegular;
+                font-size: 16px;
+                color: #999999;
+                text-align: center
+              }
             }
           }
         }
@@ -191,11 +273,95 @@ export default {
 @keyframes contactLine
 {
   from {width: 0px;}
-  to {width: 120px;}
+  to {width: 80px;}
 }
 @keyframes preNextLine
 {
   from {width: 0px;}
-  to {width: 55px;}
+  to {width: 45px;}
+}
+@media screen and (min-width: 480px) {
+  .mobileBlock{
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .pcBlock{
+    display: none;
+  }
+  .mobileBlock{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    .mobileSwiper{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .swiper-slide{
+        width: 100%;
+        padding: 0 5px;
+        box-sizing: border-box;
+        .imgWrap{
+          width: 100%;
+          .imgTop{
+            font-family: PingFangRegular;
+            font-size: 12px;
+            color: #999999;
+            padding: 10px 0;
+            text-align: center
+          }
+          .img{
+            width: 100%;
+            display: block;
+          }
+          .imgBottom{
+            .title{
+              font-size: 18px;
+              color: #000000;
+              padding: 15px 0 5px;
+              text-align: center;
+              text-transform: capitalize;
+            }
+            .index{
+              font-family: PingFangRegular;
+              font-size: 12px;
+              color: #999999;
+              text-align: center
+            }
+          }
+        }
+      }
+      .preNext{
+        width: 50px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .preNextContent{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 40px;
+          width: 80px;
+          transform: rotateZ(-90deg);
+          font-size: 12px;
+          color: #999999;
+          &:hover{
+            cursor: pointer;
+            color: #666666;
+          }
+          &.nextContent{
+            transform: rotateZ(90deg);
+          }
+          .marginRight{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

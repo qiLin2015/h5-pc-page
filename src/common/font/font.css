@@ -11,9 +11,16 @@
   font-style: normal;
  }
  @font-face {
-  font-family: ' PingFangRegular';
-  src: url(' PingFangRegular.ttf');
+  font-family: 'PingFangRegular';
+  src: url('PingFangRegular.ttf');
   font-weight: normal;
   font-style: normal;
  }
+ @font-face {
+  font-family: 'CenturyGothic';
+  src: url('CenturyGothic.ttf');
+  font-weight: normal;
+  font-style: normal;
+ }
+
 

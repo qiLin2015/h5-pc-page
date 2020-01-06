@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrap">
-    <MenuHeader ></MenuHeader>
+    <MenuHeader colorType="black"></MenuHeader>
     <div class="swiper-container" id="mainSwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">

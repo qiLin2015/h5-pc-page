@@ -2,9 +2,9 @@
   <div class="titleWrap">
     <div class="menuTitleWrap">
       <div class="contentAbsolute">
-        <div class="home title" @click="handelGoDetail('Index')">Home<div class="homeBg itemBg"><img src="@/img/menu1.png" alt="" class="image"></div></div>
-        <div class="project title" @click="handelGoDetail('Project')">Projects<div class="projectBg itemBg"><img src="@/img/demo1.png" alt="" class="image"></div></div>
-        <div class="about title" @click="handelGoDetail('About')">About<div class="aboutBg itemBg"><img src="@/img/demo2.png" alt="" class="image"></div></div>
+        <div class="home title" @click="handelGoDetail('Index')" @mouseenter="handelEnter('Index')">Home<div class="homeBg itemBg"><img src="@/img/menu1.png" alt="" class="image"></div></div>
+        <div class="project title" @click="handelGoDetail('Project')" @mouseenter="handelEnter('Project')">Projects<div class="projectBg itemBg"><img src="@/img/demo1.png" alt="" class="image"></div></div>
+        <div class="about title" @click="handelGoDetail('About')" @mouseenter="handelEnter('Project')">About<div class="aboutBg itemBg"><img src="@/img/demo2.png" alt="" class="image"></div></div>
         <div class="award title" @click="handelGoDetail('Award')">Awards<div class="awardBg itemBg"><img src="@/img/demo3.png" alt="" class="image"></div></div>
         <div class="contact title" @click="handelGoDetail('Contact')">Contact<div class="contactBg itemBg"><img src="@/img/demo4.png" alt="" class="image"></div></div>
       </div>
@@ -36,6 +36,9 @@ export default {
       }else {
         this.$router.push({name: name})
       }
+    },
+    handelEnter(name) {
+      alert(name)
     }
   },
 }
