@@ -1,7 +1,7 @@
 <template>
   <div class="menuWrap">
     <div v-if="menuStatus === 'close'" class="menuHeader">
-      <div class="menuLogoText" @click="handelOpenMenu">
+      <div class="menuLogoText" @click="handelOpenMenu" >
         <div class="leftLine">
           <div :class="colorType === 'white' ? 'topLine line' : 'topLine line whiteLine'"></div>
           <div :class="colorType === 'white' ? 'bottomLine line' : 'bottomLine line whiteLine'"></div>
@@ -114,8 +114,10 @@ export default {
       }
       .topLine {
         width: 24px;
+        transition: all 0.8s;
       }
       .bottomLine{
+        transition: all 0.8s;
         width: 14px;
       }
       .leftClose{
@@ -127,9 +129,11 @@ export default {
       .leftLine{
         .topLine{
           width: 14px;
+          animation: widthLineTop 0.8s;
         }
         .bottomLine{
-          width: 20px;
+          animation: widthLineBottom 0.8s;
+          width: 24px;
         }
       }
     }
@@ -168,6 +172,16 @@ export default {
 {
   from {height: 100vh; background: rgba(255, 255, 255, 0.5);}
   to {disaply: none; height: 0vh;}
+}
+
+@keyframes widthLineTop{
+  from { width: 24px }
+  to{ width: 14px }
+}
+
+@keyframes widthLineBottom{
+  from { width: 14px }
+  to{ width: 24px }
 }
 
 @media screen and (min-width: 480px) {

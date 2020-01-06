@@ -1,12 +1,19 @@
 <template>
   <div class="titleWrap">
-    <div class="menuTitleWrap">
-      <div class="contentAbsolute">
-        <div class="home title" @click="handelGoDetail('Index')" @mouseenter="handelEnter('Index')">Home<div class="homeBg itemBg"><img src="@/img/menu1.png" alt="" class="image"></div></div>
-        <div class="project title" @click="handelGoDetail('Project')" @mouseenter="handelEnter('Project')">Projects<div class="projectBg itemBg"><img src="@/img/demo1.png" alt="" class="image"></div></div>
-        <div class="about title" @click="handelGoDetail('About')" @mouseenter="handelEnter('Project')">About<div class="aboutBg itemBg"><img src="@/img/demo2.png" alt="" class="image"></div></div>
-        <div class="award title" @click="handelGoDetail('Award')">Awards<div class="awardBg itemBg"><img src="@/img/demo3.png" alt="" class="image"></div></div>
-        <div class="contact title" @click="handelGoDetail('Contact')">Contact<div class="contactBg itemBg"><img src="@/img/demo4.png" alt="" class="image"></div></div>
+    <div class="contentWrap">
+      <div class="imgWrap">
+        <img v-show="mouseEnterTitle === 'Home' || mouseLeaveTitle === 'Home' " :class="mouseLeaveTitle === 'Home' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Index')">
+        <img v-show="mouseEnterTitle === 'Project' || mouseLeaveTitle === 'Project'" :class="mouseLeaveTitle === 'Project' ? 'image leave' : 'image'" src="@/img/demo1.png" alt="" @click="handelGoDetail('Project')">
+        <img v-show="mouseEnterTitle === 'About' || mouseLeaveTitle === 'About'" :class="mouseLeaveTitle === 'About' ? 'image leave' : 'image'" src="@/img/demo2.png" alt=""  @click="handelGoDetail('About')">
+        <img v-show="mouseEnterTitle === 'Award' || mouseLeaveTitle === 'Award'" :class="mouseLeaveTitle === 'Award' ? 'image leave' : 'image'" src="@/img/demo3.png" alt=""  @click="handelGoDetail('Award')">
+        <img v-show="mouseEnterTitle === 'Contact' || mouseLeaveTitle === 'Contact'" :class="mouseLeaveTitle === 'Contact' ? 'image leave' : 'image'" src="@/img/demo4.png" alt="" @click="handelGoDetail('Contact')">
+      </div>
+      <div class="titleList">
+        <div class="title home" @click="handelGoDetail('Index')" @mouseenter="handelMouseEnter('Home')" @mouseleave="handelMouseLeave('Home')">Home</div>
+        <div class="title project" @click="handelGoDetail('Project')" @mouseenter="handelMouseEnter('Project')" @mouseleave="handelMouseLeave('Project')">Projects</div>
+        <div class="title about" @click="handelGoDetail('About')" @mouseenter="handelMouseEnter('About')" @mouseleave="handelMouseLeave('About')">About</div>
+        <div class="title award" @click="handelGoDetail('Award')" @mouseenter="handelMouseEnter('Award')" @mouseleave="handelMouseLeave('Award')">Awards</div>
+        <div class="title contact" @click="handelGoDetail('Contact')" @mouseenter="handelMouseEnter('Contact')" @mouseleave="handelMouseLeave('Contact')">Contact</div>
       </div>
     </div>
 
@@ -24,7 +31,8 @@
 export default {
   data () {
     return {
-
+      mouseEnterTitle: '',
+      mouseLeaveTitle: '',
     }
   },
   mounted() {
@@ -37,8 +45,13 @@ export default {
         this.$router.push({name: name})
       }
     },
-    handelEnter(name) {
-      alert(name)
+    handelMouseEnter(name) {
+      this.mouseEnterTitle = name;
+      this.mouseLeaveTitle = '';
+    },
+    handelMouseLeave(name) {
+      this.mouseLeaveTitle = name;
+      this.mouseEnterTitle = ''
     }
   },
 }
@@ -48,11 +61,56 @@ export default {
 <style scoped lang="scss" rel="stylesheet/scss">
 .titleWrap{
   display: flex;
-  align-items: center;
   flex: 1;
   width: 100%;
-  padding: 0 10%;
   box-sizing: border-box;
+  .contentWrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .imgWrap{
+      width: 20%;
+      .image{
+        width: 100%;
+        height: auto;
+        display: block;
+        opacity: 1;
+        box-shadow: 0px 0px 30px #FFFFFF;
+        border-radius: 10px;
+        animation: imgRotateEnter 1s;
+        &.leave{
+          animation: imgRotateLeaver 1s;
+        }
+      }
+    }
+    .titleList{
+      position: absolute;
+      left: 0;
+      top: 50%;
+      right: 0;
+      height: 60px;
+      margin-top: -30px;
+      padding: 0 10%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 40px;
+      .title{
+        width: 150px;
+        text-align: center;
+        &:hover{
+          cursor: pointer;
+          -webkit-text-fill-color: #D3D3D3;
+          -webkit-text-stroke:1px #FFFFFF;
+        }
+      }
+    }
+  }
+
   .menuTitleWrap{
     width: 100%;
     height: 40px;
@@ -103,23 +161,12 @@ export default {
         display: block;
       }
     }
-    .home{
-      // &:hover{
-      //   .itemBg{
-      //     opacity: 1;
-      //     animation: imgRotate 1s;
-      //   }
-      // }
-    }
-    .projectBg{
-
-    }
   }
 }
 
-@keyframes imgRotate{
+@keyframes imgRotateEnter{
   0%{
-    transform: rotateZ(-45deg) scale(0.5);
+    transform: rotateZ(-45deg) scale(0.3);
     opacity: 0;
   }
   100%{
@@ -128,10 +175,41 @@ export default {
   }
 }
 
+@keyframes imgRotateLeaver{
+  0%{
+    transform: rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  100%{
+    transform: rotateZ(45deg) scale(0);
+    opacity: 0;
+  }
+}
+
+
 @media screen and (min-width: 480px) {
   .titleWrap{
     .menuTitleWrapMobile{
       display: none;
+    }
+    .titleList{
+      .title{
+        &.home{
+          animation: upDownHome 0.6s;
+        }
+        &.project{
+          animation: upDownProject 0.8s;
+        }
+        &.about{
+          animation: upDownAbout 1.1s;
+        }
+        &.award{
+          animation: upDownAward 1.4s;
+        }
+        &.contact{
+          animation: upDownContact 1.7s;
+        }
+      }
     }
   }
 }
@@ -143,7 +221,7 @@ export default {
     width: 100%;
     padding: 0 8%;
     box-sizing: border-box;
-    .menuTitleWrap{
+    .contentWrap{
       display: none;
     }
     .menuTitleWrapMobile{
@@ -233,4 +311,57 @@ export default {
     transform: translateX(0px);
   }
 }
+
+
+@keyframes upDownHome{
+  0%{
+    opacity: 0;
+    transform: translate(2000px, -2000px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes upDownProject{
+  0%{
+    opacity: 0;
+    transform: translate(2000px, -2000px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes upDownAbout{
+  0%{
+    opacity: 0;
+    transform: translate(2000px, -2000px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes upDownAward{
+  0%{
+    opacity: 0;
+    transform: translate(2000px, -2000px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+@keyframes upDownContact{
+  0%{
+    opacity: 0;
+    transform: translate(2000px, -2000px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+
 </style>
