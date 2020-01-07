@@ -16,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index'
+      redirect: '/home'
     },
     {
       path: '/admin',
@@ -24,8 +24,8 @@ export default new Router({
       component: Admin
     },
     {
-      path: '/index',
-      name: 'Index',
+      path: '/home',
+      name: 'Home',
       component: Index
     },
     {

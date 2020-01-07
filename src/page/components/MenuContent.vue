@@ -2,14 +2,14 @@
   <div class="titleWrap">
     <div class="contentWrap">
       <div class="imgWrap">
-        <img v-show="mouseEnterTitle === 'Home' || mouseLeaveTitle === 'Home' " :class="mouseLeaveTitle === 'Home' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Index')">
+        <img v-show="mouseEnterTitle === 'Home' || mouseLeaveTitle === 'Home' " :class="mouseLeaveTitle === 'Home' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Home')">
         <img v-show="mouseEnterTitle === 'Project' || mouseLeaveTitle === 'Project'" :class="mouseLeaveTitle === 'Project' ? 'image leave' : 'image'" src="@/img/demo1.png" alt="" @click="handelGoDetail('Project')">
         <img v-show="mouseEnterTitle === 'About' || mouseLeaveTitle === 'About'" :class="mouseLeaveTitle === 'About' ? 'image leave' : 'image'" src="@/img/demo2.png" alt=""  @click="handelGoDetail('About')">
         <img v-show="mouseEnterTitle === 'Award' || mouseLeaveTitle === 'Award'" :class="mouseLeaveTitle === 'Award' ? 'image leave' : 'image'" src="@/img/demo3.png" alt=""  @click="handelGoDetail('Award')">
         <img v-show="mouseEnterTitle === 'Contact' || mouseLeaveTitle === 'Contact'" :class="mouseLeaveTitle === 'Contact' ? 'image leave' : 'image'" src="@/img/demo4.png" alt="" @click="handelGoDetail('Contact')">
       </div>
       <div class="titleList">
-        <div class="title home" @click="handelGoDetail('Index')" @mouseenter="handelMouseEnter('Home')" @mouseleave="handelMouseLeave('Home')">Home</div>
+        <div class="title home" @click="handelGoDetail('Home')" @mouseenter="handelMouseEnter('Home')" @mouseleave="handelMouseLeave('Home')">Home</div>
         <div class="title project" @click="handelGoDetail('Project')" @mouseenter="handelMouseEnter('Project')" @mouseleave="handelMouseLeave('Project')">Projects</div>
         <div class="title about" @click="handelGoDetail('About')" @mouseenter="handelMouseEnter('About')" @mouseleave="handelMouseLeave('About')">About</div>
         <div class="title award" @click="handelGoDetail('Award')" @mouseenter="handelMouseEnter('Award')" @mouseleave="handelMouseLeave('Award')">Awards</div>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="menuTitleWrapMobile">
-      <div class="title home" @click="handelGoDetail('Index')"><span class="small">01</span>Home</div>
+      <div class="title home" @click="handelGoDetail('Home')"><span class="small">01</span>Home</div>
       <div class="title project" @click="handelGoDetail('Project')"><span class="small">02</span>Projects</div>
       <div class="title about" @click="handelGoDetail('About')"><span class="small">03</span>About</div>
       <div class="title award" @click="handelGoDetail('Award')"><span class="small">04</span>Awards</div>
