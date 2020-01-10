@@ -3,10 +3,10 @@
     <div class="contentWrap">
       <div class="imgWrap">
         <img v-show="mouseEnterTitle === 'Home' || mouseLeaveTitle === 'Home' " :class="mouseLeaveTitle === 'Home' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Home')">
-        <img v-show="mouseEnterTitle === 'Project' || mouseLeaveTitle === 'Project'" :class="mouseLeaveTitle === 'Project' ? 'image leave' : 'image'" src="@/img/demo1.png" alt="" @click="handelGoDetail('Project')">
-        <img v-show="mouseEnterTitle === 'About' || mouseLeaveTitle === 'About'" :class="mouseLeaveTitle === 'About' ? 'image leave' : 'image'" src="@/img/demo2.png" alt=""  @click="handelGoDetail('About')">
-        <img v-show="mouseEnterTitle === 'Award' || mouseLeaveTitle === 'Award'" :class="mouseLeaveTitle === 'Award' ? 'image leave' : 'image'" src="@/img/demo3.png" alt=""  @click="handelGoDetail('Award')">
-        <img v-show="mouseEnterTitle === 'Contact' || mouseLeaveTitle === 'Contact'" :class="mouseLeaveTitle === 'Contact' ? 'image leave' : 'image'" src="@/img/demo4.png" alt="" @click="handelGoDetail('Contact')">
+        <img v-show="mouseEnterTitle === 'Project' || mouseLeaveTitle === 'Project'" :class="mouseLeaveTitle === 'Project' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Project')">
+        <img v-show="mouseEnterTitle === 'About' || mouseLeaveTitle === 'About'" :class="mouseLeaveTitle === 'About' ? 'image leave' : 'image'" src="@/img/menu1.png" alt=""  @click="handelGoDetail('About')">
+        <img v-show="mouseEnterTitle === 'Award' || mouseLeaveTitle === 'Award'" :class="mouseLeaveTitle === 'Award' ? 'image leave' : 'image'" src="@/img/menu1.png" alt=""  @click="handelGoDetail('Award')">
+        <img v-show="mouseEnterTitle === 'Contact' || mouseLeaveTitle === 'Contact'" :class="mouseLeaveTitle === 'Contact' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Contact')">
       </div>
       <div class="titleList">
         <div class="title home" @click="handelGoDetail('Home')" @mouseenter="handelMouseEnter('Home')" @mouseleave="handelMouseLeave('Home')">Home</div>
@@ -18,11 +18,11 @@
     </div>
 
     <div class="menuTitleWrapMobile">
-      <div class="title home" @click="handelGoDetail('Home')"><span class="small">01</span>Home</div>
-      <div class="title project" @click="handelGoDetail('Project')"><span class="small">02</span>Projects</div>
-      <div class="title about" @click="handelGoDetail('About')"><span class="small">03</span>About</div>
-      <div class="title award" @click="handelGoDetail('Award')"><span class="small">04</span>Awards</div>
-      <div class="title contact" @click="handelGoDetail('Contact')"><span class="small">05</span>Contact</div>
+      <div class="title home" @click="handelGoDetail('Home')">Home</div>
+      <div class="title project" @click="handelGoDetail('Project')">Projects</div>
+      <div class="title about" @click="handelGoDetail('About')">About</div>
+      <div class="title award" @click="handelGoDetail('Award')">Awards</div>
+      <div class="title contact" @click="handelGoDetail('Contact')">Contact</div>
     </div>
   </div>
 </template>
@@ -78,8 +78,6 @@ export default {
         height: auto;
         display: block;
         opacity: 1;
-        box-shadow: 0px 0px 30px #FFFFFF;
-        border-radius: 10px;
         animation: imgRotateEnter 1s;
         &.leave{
           animation: imgRotateLeaver 1s;
@@ -102,10 +100,10 @@ export default {
       .title{
         width: 150px;
         text-align: center;
+        color: #4e4e4e;
         &:hover{
           cursor: pointer;
-          -webkit-text-fill-color: #D3D3D3;
-          -webkit-text-stroke:1px #FFFFFF;
+          color: #5c5348;
         }
       }
     }
@@ -226,6 +224,10 @@ export default {
     }
     .menuTitleWrapMobile{
       padding-top: 30%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .title{
         font-size: 30px;
         margin-bottom: 20px;

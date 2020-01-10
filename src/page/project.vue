@@ -35,8 +35,7 @@
       <div class="mobileSwiper">
         <div class="leftMobileWrap preNext">
           <div class="preNextContent" @click="handelNavMobile('pre')">
-            <span class="marginRight">pre</span>
-            <i class="el-icon-right"></i>
+            <span>pre</span>
           </div>
         </div>
 
@@ -44,7 +43,6 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
-                <div class="imgTop">{{handelNum(index + 1)}}</div>
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
@@ -57,8 +55,7 @@
 
         <div class="rightMobileWrap preNext">
           <div class="preNextContent nextContent" @click="handelNavMobile('next')">
-            <span class="marginRight">next</span>
-            <i class="el-icon-right"></i>
+            <span>next</span>
           </div>
         </div>
       </div>
@@ -234,6 +231,9 @@ export default {
       .swiper-wrapper{
         .swiper-slide{
           width: 200px;
+          &:hover{
+            cursor: pointer;
+          }
           .imgWrap{
             width: 280px;
             .imgTop{
@@ -349,15 +349,13 @@ export default {
           transform: rotateZ(-90deg);
           font-size: 12px;
           color: #999999;
+          font-family: CenturyGothic;
           &:hover{
             cursor: pointer;
             color: #666666;
           }
           &.nextContent{
             transform: rotateZ(90deg);
-          }
-          .marginRight{
-            margin-right: 10px;
           }
         }
       }

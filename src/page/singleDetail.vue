@@ -2,9 +2,9 @@
   <div class="singleDetailWrap">
     <MenuHeader></MenuHeader>
     <div class="detailWrap">
-      <div class="headerTitle fullWidth" v-if="detailType === 'com'"><div class="aniTitle">Commercial</div></div>
-      <div class="headerTitle fullWidth" v-if="detailType === 'res'"><div class="aniTitle">Residential</div></div>
-      <div class="headerTitle fullWidth" v-if="detailType === 'del'"><div class="aniTitle">Deluxe</div></div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'Commercial'"><div class="aniTitle">Commercial</div></div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'Residential'"><div class="aniTitle">Residential</div></div>
+      <div class="headerTitle fullWidth" v-if="detailType === 'Deluxe'"><div class="aniTitle">Deluxe</div></div>
       <div class="detailText fullWidth">
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。</div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。</div>
@@ -13,27 +13,27 @@
 
       <div class="oneWrap fullWidth">
         <div class="oneImgWrap">
-          <div class="animText oneText" v-if="detailType === 'com'">C</div>
-          <div class="animText oneText" v-if="detailType === 'res'">R</div>
-          <div class="animText oneText" v-if="detailType === 'del'">D</div>
+          <div class="animText oneText" v-if="detailType === 'Commercial'">C</div>
+          <div class="animText oneText" v-if="detailType === 'Residential'">R</div>
+          <div class="animText oneText" v-if="detailType === 'Deluxe'">D</div>
           <img class="img" src="@/img/singleDetail1.png" alt="">
         </div>
       </div>
 
       <div class="twoWrap fullWidth">
         <div class="twoImgWrap">
-          <div class="animText twoText" v-if="detailType === 'com'">O</div>
-          <div class="animText oneText" v-if="detailType === 'res'">E</div>
-          <div class="animText oneText" v-if="detailType === 'del'">E</div>
+          <div class="animText twoText" v-if="detailType === 'Commercial'">O</div>
+          <div class="animText oneText" v-if="detailType === 'Residential'">E</div>
+          <div class="animText oneText" v-if="detailType === 'Deluxe'">E</div>
           <img class="img" src="@/img/singleDetail2.png" alt="">
         </div>
       </div>
 
       <div class="threeWrap fullWidth">
         <div class="threeImgWrap">
-          <div class="animText threeText" v-if="detailType === 'com'">M</div>
-          <div class="animText oneText" v-if="detailType === 'res'">S</div>
-          <div class="animText oneText" v-if="detailType === 'del'">L</div>
+          <div class="animText threeText" v-if="detailType === 'Commercial'">M</div>
+          <div class="animText oneText" v-if="detailType === 'Residential'">S</div>
+          <div class="animText oneText" v-if="detailType === 'Deluxe'">L</div>
           <img class="img" src="@/img/singleDetail3.png" alt="">
         </div>
       </div>
@@ -52,25 +52,25 @@
 
       <div class="sixWrap fullWidth">
         <div class="sixImgWrap">
-          <div class="animText sixText" v-if="detailType === 'com'">M</div>
-          <div class="animText oneText" v-if="detailType === 'res'">I</div>
-          <div class="animText oneText" v-if="detailType === 'del'">U</div>
+          <div class="animText sixText" v-if="detailType === 'Commercial'">M</div>
+          <div class="animText oneText" v-if="detailType === 'Residential'">I</div>
+          <div class="animText oneText" v-if="detailType === 'Deluxe'">U</div>
           <img class="img" src="@/img/singleDetail6.png" alt="">
         </div>
       </div>
 
       <div class="severnWrap fullWidth flexStart">
         <div class="severnImgWrap" style="margin-top: 100px;">
-          <div class="animText severnText" v-if="detailType === 'com'">E</div>
-          <div class="animText oneText" v-if="detailType === 'res'">D</div>
-          <div class="animText oneText" v-if="detailType === 'del'">X</div>
+          <div class="animText severnText" v-if="detailType === 'Commercial'">E</div>
+          <div class="animText oneText" v-if="detailType === 'Residential'">D</div>
+          <div class="animText oneText" v-if="detailType === 'Deluxe'">X</div>
           <img class="img" src="@/img/singleDetail6.png" alt="">
         </div>
       </div>
 
-      <div class="moretext fullWidth" v-if="detailType === 'com'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="detailType === 'res'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="detailType === 'del'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
+      <div class="moretext fullWidth" v-if="detailType === 'Commercial'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="detailType === 'Residential'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="detailType === 'Deluxe'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
   },
     data () {
       return {
-        detailType: this.$route.query.detailType || 'com', // 'com', 'res' , 'del'
+        detailType: this.$route.query.projectType || 'Commercial', // 'com', 'res' , 'del'
       }
   },
   mounted() {

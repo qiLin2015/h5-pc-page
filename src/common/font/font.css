@@ -22,5 +22,12 @@
   font-weight: normal;
   font-style: normal;
  }
+ @font-face {
+  font-family: 'CenturyGothicBold';
+  src: url('CenturyGothicBold.ttf');
+  font-weight: normal;
+  font-style: normal;
+ }
+
 
 

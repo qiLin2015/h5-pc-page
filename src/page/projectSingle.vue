@@ -3,15 +3,15 @@
     <div class="projectSingleWrap pcBlock">
       <MenuHeader></MenuHeader>
       <div class="leftWrap">
-        <div class="project">Project<div class="textLine"></div></div>
+        <div class="project" @click="goToProject">All Project<div class="textLine"></div></div>
         <div class="title">{{projectType}}</div>
-        <div><img class="closeImg" src="@/img/closeLine.png" alt=""></div>
+        <div @click="goToProject"><img class="closeImg" src="@/img/closeLine.png" alt=""></div>
       </div>
 
       <div class="singleSwiper">
         <div class="swiper-container" id="singleSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
@@ -21,8 +21,8 @@
             </div>
           </div>
         </div>
-        <div class="prebtn btn" @click="handelNav('pre')"><i class="el-icon-d-arrow-left"></i></div>
-        <div class="nextBtn btn" @click="handelNav('next')"><i class="el-icon-d-arrow-right"></i></div>
+        <!-- <div class="prebtn btn" @click="handelNav('pre')"><i class="el-icon-d-arrow-left"></i></div> -->
+        <!-- <div class="nextBtn btn" @click="handelNav('next')"><i class="el-icon-d-arrow-right"></i></div> -->
       </div>
     </div>
 
@@ -32,13 +32,12 @@
         <div class="leftMobileWrap preNext">
           <div class="preNextContent" @click="handelNavMobile('pre')">
             <span class="marginRight">pre</span>
-            <i class="el-icon-right"></i>
           </div>
         </div>
 
         <div class="swiper-container" id="mobileSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index">
+            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <div class="imgTop">{{projectType}}</div>
                 <img class="img" :src="item.imgSrc" alt="">
@@ -54,7 +53,6 @@
         <div class="rightMobileWrap preNext">
           <div class="preNextContent nextContent" @click="handelNavMobile('next')">
             <span class="marginRight">next</span>
-            <i class="el-icon-right"></i>
           </div>
         </div>
       </div>
@@ -74,13 +72,13 @@ export default {
       mobileSwiper: null,
       homeSwiperList: [{
         imgSrc: require('@/img/project1.png'),
-        title: 'Commercial'
+        title: '山东开元置业会所'
       }, {
         imgSrc: require('@/img/project2.png'),
-        title: 'Residential'
+        title: '万科上海启宸销售中心'
       }, {
         imgSrc: require('@/img/project3.png'),
-        title: 'Deluxe'
+        title: '仁恒上海丰利大楼办公'
       }],
       projectType: this.$route.query.projectType || ''
     }
@@ -105,9 +103,9 @@ export default {
 
       this.mobileSwiper = new Swiper ('#mobileSwiper', {
         loop: true, // 循环模式选项
-        autoplay: {
-          delay: 3000,//1秒切换一次
-        },
+        // autoplay: {
+        //   delay: 3000,//1秒切换一次
+        // },
       });
     },
     goToContact() {
@@ -134,7 +132,21 @@ export default {
         return `0${val}`
       }
       return `${val}`
-    }
+    },
+    handelGoTo(item) {
+      this.$router.push({
+        name: 'SingleDetail',
+        query: {
+          projectType: this.$route.query.projectType,
+          productId: item.id || 'id'
+        }
+      })
+    },
+    goToProject() {
+      this.$router.push({
+        name: 'Project'
+      })
+    },
   },
 }
 </script>
@@ -153,17 +165,18 @@ export default {
     align-items: center;
     .project{
       color: #999999;
-      font-size: 16px;
+      font-size: 12px;
       cursor: pointer;
       transform: rotate(-90deg);
       position: relative;
-      text-transform: lowercase;
+      text-transform: capitalize;
       letter-spacing: 2px;
       padding-bottom: 5px;
+      font-family: CenturyGothic;
       &:hover{
         color: #666666;
         .textLine{
-          width: 65px;
+          width: 80px;
           height: 2px;
           background: #999999;
           position: absolute;
@@ -237,15 +250,16 @@ export default {
             .imgBottom{
               .title{
                 font-family: CenturyGothic;
-                font-size: 28px;
-                color: #999999;
+                font-size: 12px;
+                color: #333333;
                 padding: 5px 0;
                 text-align: center;
                 text-transform: capitalize;
               }
               .index{
                 font-family: PingFangRegular;
-                font-size: 16px;
+                transform: scale(0.8);
+                font-size: 12px;
                 color: #999999;
                 text-align: center
               }
@@ -259,7 +273,7 @@ export default {
 @keyframes projectLine
 {
   from {width: 0px;}
-  to {width: 65px;}
+  to {width: 80px;}
 }
 @media screen and (min-width: 480px) {
   .mobileBlock{
@@ -290,7 +304,7 @@ export default {
           .imgTop{
             font-size: 20px;
             color: #000000;
-            padding: 15px 0 5px;
+            padding: 25px 0 5px;
             text-align: center;
             text-transform: capitalize;
           }
@@ -331,15 +345,13 @@ export default {
           transform: rotateZ(-90deg);
           font-size: 12px;
           color: #999999;
+          font-family: CenturyGothic;
           &:hover{
             cursor: pointer;
             color: #666666;
           }
           &.nextContent{
             transform: rotateZ(90deg);
-          }
-          .marginRight{
-            margin-right: 10px;
           }
         }
       }

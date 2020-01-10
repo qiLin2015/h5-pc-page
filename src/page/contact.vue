@@ -30,7 +30,7 @@ export default {
 <style scoped lang="scss" rel="stylesheet/scss">
 .contactWrap{
   width: 100%;
-  background: #000000;
+  background: #1b1818;
   color: #FFFFFF;
   .contentWrap{
     display: flex;
@@ -53,9 +53,7 @@ export default {
       justify-content: center;
       height: 100vh;
       flex: 1;
-      font-family: PingFangRegular;
       .text{
-        animation: rightWrapFloat 3s 0.8s linear infinite;
         height: 100px;
         display: flex;
         flex-direction: column;
@@ -68,45 +66,25 @@ export default {
       .contact{
         color: #FFFFFF;
         font-size: 40px;
-        font-family: DidotBold;
         margin-bottom: 30px;
       }
       .address{
         color: #FFFFFF;
         margin-bottom: 20px;
+        font-family: PingFangRegular;
       }
       .tel{
         margin-bottom: 20px;
+        font-family: PingFangRegular;
       }
       .web{
         margin-bottom: 20px;
+        font-family: PingFangRegular;
       }
     }
   }
 }
 
-@keyframes rightWrapFloat{
-  0%{
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  25%{
-    -webkit-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-  50%{
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-  }
-  75%{
-    -webkit-transform: translateY(20px);
-    transform: translateY(20px);
-  }
-  100%{
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
 @media screen and (min-width: 480px) {
 
 }
@@ -124,6 +102,23 @@ export default {
       }
       .rightWrap{
         padding: 100px 30px 50px;
+        height: auto;
+        .contact{
+          font-size: 30px;
+          text-align: center;
+        }
+        .address{
+          font-size: 12px;
+          text-align: center;
+        }
+        .tel{
+          font-size: 12px;
+          text-align: center;
+        }
+        .web{
+          font-size: 12px;
+          text-align: center;
+        }
       }
     }
   }

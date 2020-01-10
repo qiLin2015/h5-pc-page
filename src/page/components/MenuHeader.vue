@@ -6,10 +6,10 @@
           <div :class="colorType === 'white' ? 'topLine line' : 'topLine line whiteLine'"></div>
           <div :class="colorType === 'white' ? 'bottomLine line' : 'bottomLine line whiteLine'"></div>
         </div>
-        <span class="mobileHidden">MENU</span>
+        <span class="mobileHidden"><span :class="colorType === 'white' ? 'darkText' : 'whiteText'">MENU</span></span>
       </div>
-      <div v-if="colorType === 'white'" class="logoWrap"><img class="logo" src="@/img/logoBgWhite.png" alt=""></div>
-      <div v-if="colorType === 'black'" class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
+      <div v-if="colorType === 'white'" class="logoWrap" @click="goToHome"><img class="logo" src="@/img/logoBgWhite.png" alt=""></div>
+      <div v-if="colorType === 'black'" class="logoWrap" @click="goToHome"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
     </div>
 
     <div :class="menuStatus === 'open' ? 'menuContent' : 'noMenuContent'">
@@ -20,9 +20,9 @@
               <div class="leftLine">
                 <img class="leftClose" src="@/img/close.png" alt="">
               </div>
-            <span class="mobileHidden">MENU</span>
+              <span class="mobileHidden closeText">MENU</span>
             </div>
-            <div class="logoWrap"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
+            <div class="logoWrap" @click="goToHome"><img class="logo" src="@/img/logoBgBlack.png" alt=""></div>
           </div>
           <menu-content @closeMenu="handelCloseMenu"></menu-content>
         </div>
@@ -57,6 +57,11 @@ export default {
     },
     handelCloseMenu() {
       this.menuStatus = 'close'
+    },
+    goToHome() {
+      this.$router.push({
+        name: 'Home'
+      })
     }
   },
 }
@@ -81,6 +86,9 @@ export default {
       .logo{
         width: 80px;
         height: 20px;
+        &:hover{
+          cursor: pointer;
+        }
       }
     }
   }
@@ -96,29 +104,40 @@ export default {
     font-size: 12px;
     cursor: pointer;
     transition: all 1s linear;
+    .darkText{
+      color: #000000;
+      font-family: CenturyGothicBold;
+    }
+    .whiteText{
+      color: #FFFFFF;
+      font-family: CenturyGothicBold;
+    }
+    .closeText{
+      font-family: CenturyGothicBold;
+    }
     .leftLine{
       height: 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       padding: 0 10px;
-      width: 30px;
+      width: 20px;
       .line {
         height: 2px;
         border-radius: 5px;
-        background: #000000;
+        background: #1b1818;
         opacity: 0.8;
         &.whiteLine{
           background: #FFFFFF;
         }
       }
       .topLine {
-        width: 24px;
+        width: 18px;
         transition: all 0.8s;
       }
       .bottomLine{
         transition: all 0.8s;
-        width: 14px;
+        width: 10px;
       }
       .leftClose{
         width: 10px;
@@ -128,12 +147,12 @@ export default {
     &:hover{
       .leftLine{
         .topLine{
-          width: 14px;
+          width: 10px;
           animation: widthLineTop 0.8s;
         }
         .bottomLine{
           animation: widthLineBottom 0.8s;
-          width: 24px;
+          width: 18px;
         }
       }
     }
@@ -144,7 +163,7 @@ export default {
     background: rgba(153, 153, 153, .8);
     color: #FFFFFF;
     .contentWrap{
-      background: #000000;
+      background: #1b1818;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -175,13 +194,13 @@ export default {
 }
 
 @keyframes widthLineTop{
-  from { width: 24px }
-  to{ width: 14px }
+  from { width: 18px }
+  to{ width: 10px }
 }
 
 @keyframes widthLineBottom{
-  from { width: 14px }
-  to{ width: 24px }
+  from { width: 10px }
+  to{ width: 18px }
 }
 
 @media screen and (min-width: 480px) {

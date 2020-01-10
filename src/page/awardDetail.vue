@@ -227,9 +227,15 @@ export default {
     left: 0%;
     transform: rotateZ(-90deg);
     padding: 10px;
-    color: #D3D3D3;
+    color: #999999;
     margin-top: -25px;
-    cursor: pointer;
+    letter-spacing: 2px;
+    font-family: CenturyGothic;
+    font-size: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #666666;
+    }
   }
   .rightFixed{
     position: fixed;
@@ -237,9 +243,15 @@ export default {
     right: 0%;
     transform: rotateZ(90deg);
     padding: 10px;
-    color: #D3D3D3;
+    color: #999999;
     margin-top: -25px;
-    cursor: pointer;
+    letter-spacing: 2px;
+    font-family: CenturyGothic;
+    font-size: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #666666;
+    }
   }
 }
 
@@ -337,15 +349,19 @@ export default {
         font-size: 12px;
         left: -8%;
         margin-top: -50px;
-        text-transform: uppercase;
-        cursor: pointer;
+        letter-spacing: 2px;
+        font-family: CenturyGothic;
+        font-size: 12px;
+        transform: scale(0.8) rotateZ(-90deg);
       }
       .rightFixed{
         font-size: 12px;
         right: -8%;
         margin-top: -50px;
-        text-transform: uppercase;
-        cursor: pointer;
+        letter-spacing: 2px;
+        font-family: CenturyGothic;
+        font-size: 12px;
+        transform: scale(0.8) rotateZ(90deg);
       }
     }
   }
