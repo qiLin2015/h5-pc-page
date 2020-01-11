@@ -1,28 +1,25 @@
 <template>
   <div class="titleWrap">
     <div class="contentWrap">
-      <div class="imgWrap">
-        <img v-show="mouseEnterTitle === 'Home' || mouseLeaveTitle === 'Home' " :class="mouseLeaveTitle === 'Home' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Home')">
-        <img v-show="mouseEnterTitle === 'Project' || mouseLeaveTitle === 'Project'" :class="mouseLeaveTitle === 'Project' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Project')">
-        <img v-show="mouseEnterTitle === 'About' || mouseLeaveTitle === 'About'" :class="mouseLeaveTitle === 'About' ? 'image leave' : 'image'" src="@/img/menu1.png" alt=""  @click="handelGoDetail('About')">
-        <img v-show="mouseEnterTitle === 'Award' || mouseLeaveTitle === 'Award'" :class="mouseLeaveTitle === 'Award' ? 'image leave' : 'image'" src="@/img/menu1.png" alt=""  @click="handelGoDetail('Award')">
-        <img v-show="mouseEnterTitle === 'Contact' || mouseLeaveTitle === 'Contact'" :class="mouseLeaveTitle === 'Contact' ? 'image leave' : 'image'" src="@/img/menu1.png" alt="" @click="handelGoDetail('Contact')">
+      <div class="imgWrap" v-if="menusList && menusList.length">
+        <img v-for="(item, index) in menusList" :key="index" v-show="mouseEnterTitle === item.title || mouseLeaveTitle === item.title "
+          :class="mouseLeaveTitle === item.title ? 'image leave' : 'image'"
+          :src="item.imgSrc" alt=""
+          @click="handelGoDetail(item.title)">
       </div>
+
       <div class="titleList">
-        <div class="title home" @click="handelGoDetail('Home')" @mouseenter="handelMouseEnter('Home')" @mouseleave="handelMouseLeave('Home')">Home</div>
-        <div class="title project" @click="handelGoDetail('Project')" @mouseenter="handelMouseEnter('Project')" @mouseleave="handelMouseLeave('Project')">Projects</div>
-        <div class="title about" @click="handelGoDetail('About')" @mouseenter="handelMouseEnter('About')" @mouseleave="handelMouseLeave('About')">About</div>
-        <div class="title award" @click="handelGoDetail('Award')" @mouseenter="handelMouseEnter('Award')" @mouseleave="handelMouseLeave('Award')">Awards</div>
-        <div class="title contact" @click="handelGoDetail('Contact')" @mouseenter="handelMouseEnter('Contact')" @mouseleave="handelMouseLeave('Contact')">Contact</div>
+        <div :class="['title', item.title]" v-for="(item, index) in menusList" :key="index"
+          @click="handelGoDetail(item.title)"
+          @mouseenter="handelMouseEnter(item.title)"
+          @mouseleave="handelMouseLeave(item.title)">
+          {{item.title}}
+        </div>
       </div>
     </div>
 
     <div class="menuTitleWrapMobile">
-      <div class="title home" @click="handelGoDetail('Home')">Home</div>
-      <div class="title project" @click="handelGoDetail('Project')">Projects</div>
-      <div class="title about" @click="handelGoDetail('About')">About</div>
-      <div class="title award" @click="handelGoDetail('Award')">Awards</div>
-      <div class="title contact" @click="handelGoDetail('Contact')">Contact</div>
+      <div :class="['title', item.title]" v-for="(item, index) in menusList" :key="index" @click="handelGoDetail(item.title)">{{item.title}}</div>
     </div>
   </div>
 </template>
@@ -33,11 +30,22 @@ export default {
     return {
       mouseEnterTitle: '',
       mouseLeaveTitle: '',
+      menusList: [],
     }
   },
   mounted() {
+    this.render()
   },
   methods: {
+    render() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
+      if(maudeaInfor && maudeaInfor.menus && maudeaInfor.menus.length) {
+        this.menusList = maudeaInfor.menus;
+      }else {
+        this.menusList = [];
+        this.$router.push({name: 'Home'})
+      }
+    },
     handelGoDetail(name) {
       if(this.$router.history.current.name === name) {
         this.$emit('closeMenu');
@@ -192,19 +200,19 @@ export default {
     }
     .titleList{
       .title{
-        &.home{
+        &.Home{
           animation: upDownHome 0.6s;
         }
-        &.project{
+        &.Projects{
           animation: upDownProject 0.8s;
         }
-        &.about{
+        &.About{
           animation: upDownAbout 1.1s;
         }
-        &.award{
+        &.Awards{
           animation: upDownAward 1.4s;
         }
-        &.contact{
+        &.Contact{
           animation: upDownContact 1.7s;
         }
       }
@@ -244,19 +252,19 @@ export default {
         &:hover{
           opacity: 0.7;
         }
-        &.home{
+        &.Home{
           animation: opacityHome 0.5s;
         }
-        &.project{
+        &.Projects{
           animation: opacityProject 0.8s;
         }
-        &.about{
+        &.About{
           animation: opacityAbout 1.1s;
         }
-        &.award{
+        &.Awards{
           animation: opacityAward 1.4s;
         }
-        &.contact{
+        &.Contact{
           animation: opacityContact 1.7s;
         }
       }

@@ -1,0 +1,150 @@
+{
+  "menus": [{
+    "title": "Home",
+    "imgSrc": "./static/img/home.png"
+  }, {
+    "title": "Projects",
+    "imgSrc": "./static/img/home.png"
+  }, {
+    "title": "About",
+    "imgSrc": "./static/img/home.png"
+  }, {
+    "title": "Awards",
+    "imgSrc": "./static/img/home.png"
+  }, {
+    "title": "Contact",
+    "imgSrc": "./static/img/home.png"
+  }],
+  "projects": [{
+    "title": "Commercial",
+    "imgSrc": "./static/img/project1.png",
+    "childrens": [{
+      "title": "山东开元职业会所",
+      "imgSrc": "./static/img/project1.png",
+      "detail": {
+        "textInfor": {
+          "oneLine": "",
+          "twoLine": "",
+          "threeLine": ""
+        },
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "万科上海启宸销售中心",
+      "imgSrc": "require('@/img/project2.png')",
+      "detail": {
+        "textInfor": {
+          "oneLine": "",
+          "twoLine": "",
+          "threeLine": ""
+        },
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "仁恒上海丰利大楼办公",
+      "imgSrc": "require('@/img/project2.png')",
+      "detail": {
+        "textInfor": {
+          "oneLine": "",
+          "twoLine": "",
+          "threeLine": ""
+        },
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }]
+  }, {
+    "title": "Residential",
+    "imgSrc": "./static/img/project2.png",
+    "childrens": [{
+      "title": "山东开元职业会所",
+      "imgSrc": "./static/img/project3.png",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "万科上海启宸销售中心",
+      "imgSrc": "require('@/img/project1.png')",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "仁恒上海丰利大楼办公",
+      "imgSrc": "require('@/img/project2.png')",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }]
+  }, {
+    "title": "Deluxe",
+    "imgSrc": "./static/img/project3.png",
+    "childrens": [{
+      "title": "山东开元职业会所",
+      "imgSrc": "./static/img/project2.png",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "万科上海启宸销售中心",
+      "imgSrc": "require('@/img/project3.png')",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }, {
+      "title": "仁恒上海丰利大楼办公",
+      "imgSrc": "require('@/img/project1.png')",
+      "detail": {
+        "imgSrcOne": "./static/img/singleDetail1.png",
+        "imgSrcTwo": "./static/img/singleDetail2.png",
+        "imgSrcThree": "./static/img/singleDetail3.png",
+        "imgSrcFour": "./static/img/singleDetail4.png",
+        "imgSrcFive": "./static/img/singleDetail5.png",
+        "imgSrcSix": "./static/img/singleDetail6.png"
+      }
+    }]
+  }],
+  "contact": {
+    "Address": "",
+    "TeL": "",
+    "Web": ""
+  }
+}

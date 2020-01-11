@@ -10,11 +10,11 @@
 
           <div class="allProject" @click="goToProject"><div class="text">View all projects<div class="textLine"></div></div></div>
 
-          <div class="swiper-container" id="mainSwiper">
+          <div class="swiper-container" id="mainSwiper" v-show="homeSwiperList && homeSwiperList.length">
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="goToProject" @mouseover="handelImgEnter" @mouseout="handelImgLeave">
                 <div class="ani slideTitleWrap" :swiper-animate-effect="titleEffectRight ? 'bounceInRight' : 'bounceInLeft' " swiper-animate-duration="1s" swiper-animate-delay="0s">
-                  <span class="title" :style="{backgroundImage: 'url('+ item.imgSrc +')'}">{{item.title}}</span>
+                  <span class="title">{{item.title}}</span>
                 </div>
                 <div :class="handelImgClass()">
                   <img class="img" :src="item.imgSrc" alt="">
@@ -36,7 +36,7 @@
         <div class="mobileBlock">
           <MenuHeader colorType="black"></MenuHeader>
           <div class="mobileSwiper">
-            <div class="swiper-container" id="mobileSwiperHome">
+            <div class="swiper-container" id="mobileSwiperHome" v-show="homeSwiperList && homeSwiperList.length">
               <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="goToProject">
                   <div v-if="item.imgSrc" class="mobileFixedtext" :style="{backgroundImage: 'url('+ item.imgSrc +')'}">{{item.title}}</div>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import MenuHeader from '@/page/components/MenuHeader'
 
 export default {
@@ -77,25 +78,40 @@ export default {
       imageEnterScale: false,
       imageLeaveScale: false,
       titleEffectRight: true,
-      homeSwiperList: [{
-        imgSrc: require('@/img/home.png'),
-        title: 'Commercial'
-      }, {
-        imgSrc: require('@/img/home.png'),
-        title: 'Residential'
-      }, {
-        imgSrc: require('@/img/home.png'),
-        title: 'Deluxe'
-      }]
+      homeSwiperList: []
     }
   },
   mounted() {
-    setTimeout(()=>{
-      this.isWelcome = false;
-      this.render()
-    }, 5000)
+    this.query();
   },
   methods: {
+    query() {
+      let url= '../static/utils/response.json';
+      axios.get(url).then((res)=>{
+        console.log('axios res')
+        console.log(res)
+        if(res.status === 200) {
+          this.homeSwiperList = res.data.menus || [];
+          if(res.data.projects && res.data.projects.length) {
+            this.homeSwiperList = res.data.projects.map((item)=>{
+              return {
+                title: item.title,
+                imgSrc: item.imgSrc
+              }
+            });
+            localStorage.setItem('maudeaInfor', JSON.stringify(res.data));
+            setTimeout(()=>{
+              this.isWelcome = false;
+              this.render()
+            }, 5000)
+          }else {
+            this.homeSwiperList = [];
+          }
+        }else {
+          this.homeSwiperList = [];
+        }
+      })
+    },
     render() {
       this.renderPcSwiper();
       this.renderMobileSwiper();
@@ -146,7 +162,7 @@ export default {
     },
     goToProject() {
       this.$router.push({
-        name: 'Project'
+        name: 'Projects'
       })
     },
     handelNav(type) {
@@ -272,10 +288,6 @@ export default {
             letter-spacing: 3px;
             color: #FFFFFF;
             transition: all 0.8s;
-             background-position: center;
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            -webkit-animation:cliptext 10s linear infinite;
           }
         }
       }

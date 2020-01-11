@@ -13,7 +13,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <UploadFile></UploadFile>
+                  <UploadFile :parent.sync="item.imgInfor"></UploadFile>
                 </el-col>
                 <el-col :span="8">
                   <AdminImageSizeTip width="220" height="320"></AdminImageSizeTip>
@@ -144,13 +144,17 @@
             </el-main>
           </el-container>
         </el-collapse-item>
-
       </el-collapse>
+
+        <el-row class="btnAction">
+          <el-button type="primary" size="medium" @click="handelSubmit">确定上传详情配置信息</el-button>
+        </el-row>
     </el-form>
   </div>
 </template>
 
 <script>
+
 import UploadFile from '@/page/components/UploadFile'
 import AdminSingleDetail from '@/page/components/AdminSingleDetail'
 import AdminAwardsDetail from '@/page/components/AdminAwardsDetail'
@@ -170,22 +174,7 @@ export default {
       productDialogTitle: '详情页图片配置',
       awardDialogVisible: false,
       ruleForm: {
-        menus: [{
-          title: 'Home',
-          imgSrc: require('@/img/home.png'),
-        }, {
-          title: 'Projects',
-          imgSrc: require('@/img/home.png'),
-        }, {
-          title: 'About',
-          imgSrc: require('@/img/home.png'),
-        }, {
-          title: 'Awards',
-          imgSrc: require('@/img/home.png'),
-        }, {
-          title: 'Contact',
-          imgSrc: require('@/img/home.png'),
-        }],
+        menus: [],
         projects: [{
           title: 'Commercial',
           imgSrc: require('@/img/home.png'),
@@ -281,6 +270,11 @@ export default {
     },
     handelcancelAwardDiago(val) {
       this.awardDialogVisible = false;
+    },
+    handelSubmit() {
+      this.$refs.ruleForm.validate((valid) => {
+        console.log(this.ruleForm);
+      });
     }
   },
 }
@@ -333,5 +327,12 @@ export default {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px dashed #eeeeee;
+  }
+  .el-row{
+    display: flex;
+    align-items: center;
+    .el-form-item{
+      margin: 10px 0;
+    }
   }
 </style>

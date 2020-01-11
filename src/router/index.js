@@ -30,7 +30,7 @@ export default new Router({
     },
     {
       path: '/project',
-      name: 'Project',
+      name: 'Projects',
       component: Project
     },
     {
@@ -50,7 +50,7 @@ export default new Router({
     },
     {
       path: '/awardDetail',
-      name: 'Award',
+      name: 'Awards',
       component: AwardDetail
     },
     {

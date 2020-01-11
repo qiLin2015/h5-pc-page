@@ -73,22 +73,28 @@ export default {
     return {
       productSwiper: null,
       mobileSwiper: null,
-      homeSwiperList: [{
-        imgSrc: require('@/img/project1.png'),
-        title: 'Commercial'
-      }, {
-        imgSrc: require('@/img/project2.png'),
-        title: 'Residential'
-      }, {
-        imgSrc: require('@/img/project3.png'),
-        title: 'Deluxe'
-      }]
+      homeSwiperList: []
     }
   },
   mounted() {
-    this.render()
+    this.query()
   },
   methods: {
+    query() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
+      if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
+        this.homeSwiperList = maudeaInfor.projects.map((item)=>{
+          return {
+            title: item.title,
+            imgSrc: item.imgSrc
+          }
+        });
+        this.render()
+      }else {
+        this.homeSwiperList = [];
+        this.$router.push({name: 'Home'})
+      }
+    },
     render() {
       this.productSwiper = new Swiper ('#productSwiper', {
         loop: true, // 循环模式选项

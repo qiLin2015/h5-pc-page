@@ -5,9 +5,10 @@
   :on-preview="handlePreview"
   :on-remove="handleRemove"
   :before-remove="beforeRemove"
-  multiple
+  :on-success="onSuccess"
+  :on-error="onError"
+  :multiple="false"
   :limit="1"
-  :on-exceed="handleExceed"
   :file-list="fileList"
   list-type="picture">
   <el-button size="small" type="primary" v-if="!(fileList && fileList.length)">{{btnText}}</el-button>
@@ -19,29 +20,58 @@ import Vue from 'vue';
 export default {
   mame: 'UploadFile',
   props: {
+    parent: {
+      type: String,
+      default: ''
+    },
     btnText: {
       type: String,
       default: '点击上传'
     }
   },
+  computed: {
+    fileList () {
+      if(this.imgSrc) {
+        return [{name: this.imgName, url: this.imgSrc}]
+      }else {
+        return []
+      }
+    }
+  },
   data() {
     return {
-      fileList: []
+      imgSrc: '',
+      imgName: '',
     };
+  },
+  watch: {
+    parent: function() {
+      this.imgSrc = this.parent;
+    },
+    imgSrc: function(newVal) {
+      this.$emit('update:parent', newVal);
+    },
   },
   methods: {
     handleRemove(file, fileList) {
       console.log(file, fileList);
+      this.imgSrc = '';
+      this.imgName = '';
     },
     handlePreview(file) {
       console.log(file);
     },
-    handleExceed(files, fileList) {
-      this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-    },
     beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${ file.name }？`);
-    }
+      return this.$confirm(`确定移除${file.name ? file.name : '此图片嘛～'}?`);
+    },
+    onSuccess(data, file, fileList) {
+      console.log('file', file)
+      this.imgSrc = file.url;
+      this.imgName = file.name
+    },
+    onError(data) {
+      this.$message.error('文件上传失败');
+    },
   }
 };
 </script>
@@ -56,12 +86,16 @@ export default {
   .el-upload-list{
     display: flex;
     align-items: center;
+    padding: 5px 0;
     .el-upload-list__item{
       margin-top: 0 !important;
     }
   }
   .el-upload-list__item:first-child{
     margin-top: 0;
+  }
+  .el-upload-list__item-name{
+    margin-right: 10px;
   }
 }
 </style>

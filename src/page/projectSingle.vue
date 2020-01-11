@@ -11,7 +11,7 @@
       <div class="singleSwiper">
         <div class="swiper-container" id="singleSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+            <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
@@ -37,13 +37,13 @@
 
         <div class="swiper-container" id="mobileSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+            <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <div class="imgTop">{{projectType}}</div>
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
-                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(swiperList.length)}}</div>
                 </div>
               </div>
             </div>
@@ -70,23 +70,31 @@ export default {
     return {
       singleSwiper: null,
       mobileSwiper: null,
-      homeSwiperList: [{
-        imgSrc: require('@/img/project1.png'),
-        title: '山东开元置业会所'
-      }, {
-        imgSrc: require('@/img/project2.png'),
-        title: '万科上海启宸销售中心'
-      }, {
-        imgSrc: require('@/img/project3.png'),
-        title: '仁恒上海丰利大楼办公'
-      }],
-      projectType: this.$route.query.projectType || ''
+      projectType: this.$route.query.projectType || '',
+      swiperList: [],
     }
   },
   mounted() {
-    this.render()
+    this.query()
   },
   methods: {
+    query() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
+      if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
+        let itemProject = maudeaInfor.projects.filter((item)=> item.title === this.projectType);
+        if(itemProject && itemProject.length ) {
+          this.swiperList = itemProject[0].children;
+          debugger;
+          this.render()
+
+        }else {
+          this.swiperList = [];
+        }
+      }else {
+        this.swiperList = [];
+        this.$router.push({name: 'Home'})
+      }
+    },
     render() {
       this.singleSwiper = new Swiper ('#singleSwiper', {
         loop: true, // 循环模式选项
@@ -144,7 +152,7 @@ export default {
     },
     goToProject() {
       this.$router.push({
-        name: 'Project'
+        name: 'Projects'
       })
     },
   },
