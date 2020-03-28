@@ -16,6 +16,7 @@
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(swiperList.length)}}</div>
                 </div>
               </div>
             </div>
@@ -36,7 +37,7 @@
         </div>
 
         <div class="swiper-container" id="mobileSwiper">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper" v-show="swiperList && swiperList.length">
             <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <div class="imgTop">{{projectType}}</div>
@@ -72,6 +73,10 @@ export default {
       mobileSwiper: null,
       projectType: this.$route.query.projectType || '',
       swiperList: [],
+
+      imgSrc: require('@/img/project1.png'),
+      imgSrc: require('@/img/project2.png'),
+      imgSrc: require('@/img/project3.png'),
     }
   },
   mounted() {
@@ -84,9 +89,9 @@ export default {
         let itemProject = maudeaInfor.projects.filter((item)=> item.title === this.projectType);
         if(itemProject && itemProject.length ) {
           this.swiperList = itemProject[0].children;
-          debugger;
-          this.render()
-
+          setTimeout(()=>{
+            this.render()
+          }, 500)
         }else {
           this.swiperList = [];
         }
@@ -103,17 +108,13 @@ export default {
         },
         slidesPerView : 3,
         slidesPerGroup : 1,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
       });
 
       this.mobileSwiper = new Swiper ('#mobileSwiper', {
         loop: true, // 循环模式选项
-        // autoplay: {
-        //   delay: 3000,//1秒切换一次
-        // },
+        autoplay: {
+          delay: 3000,//1秒切换一次
+        },
       });
     },
     goToContact() {
@@ -146,7 +147,7 @@ export default {
         name: 'SingleDetail',
         query: {
           projectType: this.$route.query.projectType,
-          productId: item.id || 'id'
+          detailId: item.id || 'id'
         }
       })
     },
@@ -181,10 +182,11 @@ export default {
       letter-spacing: 2px;
       padding-bottom: 5px;
       font-family: CenturyGothic;
+      width: 100px;
       &:hover{
         color: #666666;
         .textLine{
-          width: 80px;
+          width: 90px;
           height: 2px;
           background: #999999;
           position: absolute;
@@ -241,8 +243,11 @@ export default {
       width: 100%;
       .swiper-wrapper{
         .swiper-slide{
-          width:100%;
-          padding: 0 20px;
+          width:33%;
+          display: flex;
+          padding: 0 15px;
+          justify-content: center;
+          align-items: center;
           box-sizing: border-box;
           cursor: pointer;
           .slideTitle{
@@ -281,7 +286,7 @@ export default {
 @keyframes projectLine
 {
   from {width: 0px;}
-  to {width: 80px;}
+  to {width: 90px;}
 }
 @media screen and (min-width: 480px) {
   .mobileBlock{

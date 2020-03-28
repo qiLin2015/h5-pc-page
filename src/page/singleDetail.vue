@@ -2,75 +2,75 @@
   <div class="singleDetailWrap">
     <MenuHeader></MenuHeader>
     <div class="detailWrap">
-      <div class="headerTitle fullWidth" v-if="detailType === 'Commercial'"><div class="aniTitle">Commercial</div></div>
-      <div class="headerTitle fullWidth" v-if="detailType === 'Residential'"><div class="aniTitle">Residential</div></div>
-      <div class="headerTitle fullWidth" v-if="detailType === 'Deluxe'"><div class="aniTitle">Deluxe</div></div>
+      <div class="headerTitle fullWidth" v-if="projectType === 'Commercial'"><div class="aniTitle">Commercial</div></div>
+      <div class="headerTitle fullWidth" v-if="projectType === 'Residential'"><div class="aniTitle">Residential</div></div>
+      <div class="headerTitle fullWidth" v-if="projectType === 'Deluxe'"><div class="aniTitle">Deluxe</div></div>
       <div class="detailText fullWidth">
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。</div>
+        <div v-if="detailInfor.textInfor && detailInfor.textInfor.oneLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.oneLine}}</div>
+        <div v-if="detailInfor.textInfor && detailInfor.textInfor.twoLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.twoLine}}</div>
+        <div v-if="detailInfor.textInfor && detailInfor.textInfor.threeLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.threeLine}}</div>
       </div>
 
       <div class="oneWrap fullWidth">
-        <div class="oneImgWrap">
-          <div class="animText oneText" v-if="detailType === 'Commercial'">C</div>
-          <div class="animText oneText" v-if="detailType === 'Residential'">R</div>
-          <div class="animText oneText" v-if="detailType === 'Deluxe'">D</div>
-          <img class="img" src="@/img/singleDetail1.png" alt="">
+        <div class="oneImgWrap" v-if="detailInfor.imgSrcOne">
+          <div class="animText oneText" v-if="projectType === 'Commercial'">C</div>
+          <div class="animText oneText" v-if="projectType === 'Residential'">R</div>
+          <div class="animText oneText" v-if="projectType === 'Deluxe'">D</div>
+          <img class="img" :src="detailInfor.imgSrcOne" alt="">
         </div>
       </div>
 
-      <div class="twoWrap fullWidth">
+      <div class="twoWrap fullWidth" v-if="detailInfor.imgSrcTwo">
         <div class="twoImgWrap">
-          <div class="animText twoText" v-if="detailType === 'Commercial'">O</div>
-          <div class="animText oneText" v-if="detailType === 'Residential'">E</div>
-          <div class="animText oneText" v-if="detailType === 'Deluxe'">E</div>
-          <img class="img" src="@/img/singleDetail2.png" alt="">
+          <div class="animText twoText" v-if="projectType === 'Commercial'">O</div>
+          <div class="animText twoText" v-if="projectType === 'Residential'">E</div>
+          <div class="animText twoText" v-if="projectType === 'Deluxe'">E</div>
+          <img class="img" :src="detailInfor.imgSrcTwo" alt="">
         </div>
       </div>
 
-      <div class="threeWrap fullWidth">
+      <div class="threeWrap fullWidth" v-if="detailInfor.imgSrcThree">
         <div class="threeImgWrap">
-          <div class="animText threeText" v-if="detailType === 'Commercial'">M</div>
-          <div class="animText oneText" v-if="detailType === 'Residential'">S</div>
-          <div class="animText oneText" v-if="detailType === 'Deluxe'">L</div>
-          <img class="img" src="@/img/singleDetail3.png" alt="">
+          <div class="animText threeText" v-if="projectType === 'Commercial'">M</div>
+          <div class="animText threeText" v-if="projectType === 'Residential'">S</div>
+          <div class="animText threeText" v-if="projectType === 'Deluxe'">L</div>
+          <img class="img" :src="detailInfor.imgSrcThree" alt="">
         </div>
       </div>
 
-      <div class="fourWrap fullWidth">
+      <div class="fourWrap fullWidth" v-if="detailInfor.imgSrcFour">
         <div class="fourImgWrap">
-          <img class="img" src="@/img/singleDetail4.png" alt="">
+          <img class="img" :src="detailInfor.imgSrcFour" alt="">
         </div>
       </div>
 
-      <div class="fiveWrap fullWidth">
+      <div class="fiveWrap fullWidth" v-if="detailInfor.imgSrcFive">
         <div class="fiveImgWrap">
-          <img class="img" src="@/img/singleDetail5.png" alt="">
+          <img class="img" :src="detailInfor.imgSrcFive" alt="">
         </div>
       </div>
 
-      <div class="sixWrap fullWidth">
+      <div class="sixWrap fullWidth"  v-if="detailInfor.imgSrcSix">
         <div class="sixImgWrap">
-          <div class="animText sixText" v-if="detailType === 'Commercial'">M</div>
-          <div class="animText oneText" v-if="detailType === 'Residential'">I</div>
-          <div class="animText oneText" v-if="detailType === 'Deluxe'">U</div>
-          <img class="img" src="@/img/singleDetail6.png" alt="">
+          <div class="animText sixText" v-if="projectType === 'Commercial'">M</div>
+          <div class="animText sixText" v-if="projectType === 'Residential'">I</div>
+          <div class="animText sixText" v-if="projectType === 'Deluxe'">U</div>
+          <img class="img" :src="detailInfor.imgSrcSix" alt="">
         </div>
       </div>
 
-      <div class="severnWrap fullWidth flexStart">
+      <div class="severnWrap fullWidth flexStart" v-if="detailInfor.imgSrcSevern">
         <div class="severnImgWrap" style="margin-top: 100px;">
-          <div class="animText severnText" v-if="detailType === 'Commercial'">E</div>
-          <div class="animText oneText" v-if="detailType === 'Residential'">D</div>
-          <div class="animText oneText" v-if="detailType === 'Deluxe'">X</div>
-          <img class="img" src="@/img/singleDetail6.png" alt="">
+          <div class="animText severnText" v-if="projectType === 'Commercial'">E</div>
+          <div class="animText severnText" v-if="projectType === 'Residential'">D</div>
+          <div class="animText severnText" v-if="projectType === 'Deluxe'">X</div>
+          <img class="img" :src="detailInfor.imgSrcSevern" alt="">
         </div>
       </div>
 
-      <div class="moretext fullWidth" v-if="detailType === 'Commercial'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="detailType === 'Residential'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="detailType === 'Deluxe'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
+      <div class="moretext fullWidth" v-if="projectType === 'Commercial'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="projectType === 'Residential'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
+      <div class="moretext fullWidth" v-if="projectType === 'Deluxe'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
     </div>
   </div>
 </template>
@@ -83,13 +83,37 @@ export default {
   },
     data () {
       return {
-        detailType: this.$route.query.projectType || 'Commercial', // 'com', 'res' , 'del'
+        projectType: this.$route.query.projectType || 'Commercial', // 'com', 'res' , 'del'
+        detailId: this.$route.query.detailId || '',
+        detailInfor: {},
+        imgSrc: require('@/img/singleDetail1.png'),
+        imgSrc: require('@/img/singleDetail2.png'),
+        imgSrc: require('@/img/singleDetail3.png'),
+        imgSrc: require('@/img/singleDetail4.png'),
+        imgSrc: require('@/img/singleDetail5.png'),
+        imgSrc: require('@/img/singleDetail6.png'),
+        imgSrc: require('@/img/singleDetail7.png'),
       }
   },
   mounted() {
-
+    this.query();
   },
   methods: {
+    query() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
+      if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
+        let itemProject = maudeaInfor.projects.filter((item)=> item.title.toUpperCase() === this.projectType.toUpperCase());
+        itemProject[0].children.forEach((item)=> {
+          if(item.id === this.detailId) {
+            this.detailInfor = item.detail
+            console.log('this.detailInfor', this.detailInfor)
+          }
+        })
+      }else {
+        this.detailInfor = {};
+        this.$router.push({name: 'Home'})
+      }
+    },
   },
 }
 </script>
@@ -103,12 +127,18 @@ export default {
   .detailWrap{
     .fullWidth{
       width: 100%;
+      box-sizing: border-box;
     }
     .animText{
       font-size: 150px;
       color: #cccccc;
       position: absolute;
       z-index: 10;
+      // background-position: center;
+      // -webkit-background-clip:text;
+      // -webkit-text-fill-color:transparent;
+      // -webkit-animation:cliptext 3s linear infinite;
+
     }
     .img{
       display: block;
@@ -121,7 +151,7 @@ export default {
       font-family: DidotBold;
       .aniTitle{
         display: inline-block;
-        animation: scaleRotateTitle 1s 0.8s linear;
+        // animation: scaleRotateTitle 1s 0.8s linear;
       }
 
     }
@@ -145,12 +175,14 @@ export default {
         .oneText{
           left: -5%;
           top: 20%;
-          animation: LeftTopText 3s 0.8s linear infinite;
+          font-size: 135px;
+          // animation: LeftTopText 3s 0.8s linear infinite;
         }
         .severnText{
-          right: -5%;
-          top: -7%;
-          animation: upDownFloat 3s 0.8s linear infinite;
+          right: 0%;
+          top: -3%;
+          font-size: 225px;
+          // animation: upDownFloat 3s 0.8s linear infinite;
         }
       }
     }
@@ -164,8 +196,9 @@ export default {
         position: relative;
         .twoText{
           right: -20%;
-          top: -25%;
-          animation: upDownFloat 3s 0.8s linear infinite;
+          top: -20%;
+          font-size: 150px;
+          // animation: upDownFloat 3s 0.8s linear infinite;
         }
       }
     }
@@ -181,12 +214,14 @@ export default {
         .threeText{
           left: -60%;
           bottom: -25%;
-          animation: scaleRotateText 3s 0.8s linear infinite;
+          font-size: 225px;
+          // animation: scaleRotateText 3s 0.8s linear infinite;
         }
         .sixText{
-          left: -30%;
-          top: -30%;
-           animation: LeftTopText 3s 0.8s linear infinite;
+          left: -25%;
+          top: -20%;
+          font-size: 150px;
+          // animation: LeftTopText 3s 0.8s linear infinite;
         }
       }
     }
@@ -215,7 +250,7 @@ export default {
         justify-content: center;
       }
       .animMoreText{
-        animation: scaleRotateText 5s 0.5s linear infinite;
+        // animation: scaleRotateText 5s 0.5s linear infinite;
       }
     }
   }
@@ -323,7 +358,7 @@ export default {
         font-size: 10px;
       }
       .animText{
-        font-size: 100px;
+        font-size: 100px !important;
       }
       .moretext{
         padding: 0;
@@ -349,5 +384,10 @@ export default {
       }
     }
   }
+}
+
+@keyframes cliptext{
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
 }
 </style>

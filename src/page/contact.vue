@@ -3,14 +3,14 @@
     <MenuHeader colorType="black"></MenuHeader>
     <div class="contentWrap">
       <div class="leftWrap">
-        <img class="imageCode" src="@/img/code.png" alt="">
+        <img class="imageCode" :src="contactInfor.codeImgSrc" alt />
       </div>
       <div class="rightWrap">
         <div class="text">
           <div class="contact">Contact</div>
-          <div class="address">20 / F, Block 17, 1333 Xinlong Road minhang District, Shanghai</div>
-          <div class="tel">TEL / 086- 13524446243</div>
-          <div class="web">WEB / www.modee- sh.com</div>
+          <div class="address">{{contactInfor.Address}}</div>
+          <div class="tel">{{contactInfor.TeL}}</div>
+          <div class="web">{{contactInfor.Web}}</div>
         </div>
       </div>
     </div>
@@ -18,43 +18,67 @@
 </template>
 
 <script>
-import MenuHeader from '@/page/components/MenuHeader'
+import MenuHeader from '@/page/components/MenuHeader';
 export default {
   components: {
-    MenuHeader
-  }
-}
+    MenuHeader,
+  },
+  data() {
+    return {
+      contactInfor: {
+        codeImgSrc: '',
+        Address: '',
+        TeL: '',
+        Web: '',
+      },
+    };
+  },
+  mounted() {
+    this.query();
+  },
+  methods: {
+    query() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor'));
+      if (maudeaInfor && maudeaInfor.contact) {
+        this.contactInfor = maudeaInfor.contact;
+      } else {
+        this.contactInfor = {};
+        this.$router.push({ name: 'Home' });
+      }
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.contactWrap{
+.contactWrap {
   width: 100%;
   background: #1b1818;
-  color: #FFFFFF;
-  .contentWrap{
+  color: #ffffff;
+  .contentWrap {
     display: flex;
     justify-content: center;
     align-items: center;
-    .leftWrap{
+    .leftWrap {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       flex: 1;
-      .imageCode{
+      .imageCode {
         width: 160px;
         height: 160px;
       }
     }
-    .rightWrap{
+    .rightWrap {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
       flex: 1;
-      .text{
-        height: 100px;
+      .text {
+        // height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -63,22 +87,22 @@ export default {
         font-size: 14px;
         line-height: 20px;
       }
-      .contact{
-        color: #FFFFFF;
+      .contact {
+        color: #ffffff;
         font-size: 40px;
-        margin-bottom: 30px;
-      }
-      .address{
-        color: #FFFFFF;
+        line-height: 50px;
         margin-bottom: 20px;
+      }
+      .address {
+        color: #ffffff;
+        margin-bottom: 15px;
         font-family: PingFangRegular;
       }
-      .tel{
-        margin-bottom: 20px;
+      .tel {
+        margin-bottom: 15px;
         font-family: PingFangRegular;
       }
-      .web{
-        margin-bottom: 20px;
+      .web {
         font-family: PingFangRegular;
       }
     }
@@ -86,36 +110,37 @@ export default {
 }
 
 @media screen and (min-width: 480px) {
-
 }
 @media screen and (max-width: 480px) {
-  .contactWrap{
+  .contactWrap {
     min-height: 100vh;
     padding-top: 80px;
     box-sizing: border-box;
-    .contentWrap{
+    .contentWrap {
       flex-direction: column;
-      .leftWrap{
+      .leftWrap {
         width: 100%;
         height: auto;
         padding: 30px 80px;
+        box-sizing: border-box;
       }
-      .rightWrap{
+      .rightWrap {
         padding: 100px 30px 50px;
         height: auto;
-        .contact{
+        box-sizing: border-box;
+        .contact {
           font-size: 30px;
           text-align: center;
         }
-        .address{
+        .address {
           font-size: 12px;
           text-align: center;
         }
-        .tel{
+        .tel {
           font-size: 12px;
           text-align: center;
         }
-        .web{
+        .web {
           font-size: 12px;
           text-align: center;
         }

@@ -7,25 +7,25 @@
               <el-col :span="10" :offset="2">
                 <div class="borderImg width60">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.leftOne"></UploadFile>
                     <AdminImageSizeTip width="195" height="290"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
                 <div class="borderImg width60">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.leftTwo"></UploadFile>
                     <AdminImageSizeTip width="180" height="270"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
                 <div class="borderImg width80">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.leftThree"></UploadFile>
                     <AdminImageSizeTip width="360" height="530"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
                 <div class="borderImg width60">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.leftFour"></UploadFile>
                     <AdminImageSizeTip width="220" height="330"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
@@ -33,19 +33,19 @@
               <el-col :span="10" :offset="2">
                 <div class="borderImg width80">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.rightOne"></UploadFile>
                     <AdminImageSizeTip width="295" height="435"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
                 <div class="borderImg width60">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.rightTwo"></UploadFile>
                     <AdminImageSizeTip width="165" height="245"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
                 <div class="borderImg width80">
                   <el-form-item label="">
-                    <UploadFile></UploadFile>
+                    <UploadFile :parent.sync="ruleForm.rightThree"></UploadFile>
                     <AdminImageSizeTip width="265" height="395"></AdminImageSizeTip>
                   </el-form-item>
                 </div>
@@ -74,7 +74,13 @@ export default {
   data () {
     return {
       ruleForm: {
-        left:''
+        leftOne: '',
+        leftTwo: '',
+        leftThree: '',
+        leftFour: '',
+        rightOne: '',
+        rightTwo: '',
+        rightThree: '',
       }
     }
   },
@@ -83,7 +89,7 @@ export default {
   },
   methods: {
     handelSubmit() {
-
+      this.$emit('onSuccessAwards', this.ruleForm);
     },
     handelCancel() {
       this.$emit('cancelAwardDiago')

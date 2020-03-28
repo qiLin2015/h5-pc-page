@@ -10,15 +10,14 @@
         </div>
       </div>
       <div class="productSwiper">
-        <div class="swiper-container" id="productSwiper">
+        <div class="swiper-container" id="productSwiper" v-show="productSwiperList && productSwiperList.length">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+            <div class="swiper-slide" v-for="(item, index) in productSwiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
-                <div class="imgTop">{{handelNum(index + 1)}}</div>
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
                   <div class="title">{{item.title}} space</div>
-                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(productSwiperList.length)}}</div>
                 </div>
               </div>
             </div>
@@ -26,7 +25,7 @@
         </div>
       </div>
       <div class="contactWrap" @click="goToContact">
-        <div class="text">contact <div class="textLine"></div></div>
+        <div class="text">contact us<div class="textLine"></div></div>
       </div>
     </div>
 
@@ -39,14 +38,14 @@
           </div>
         </div>
 
-        <div class="swiper-container" id="mobileSwiper">
+        <div class="swiper-container" id="mobileProjectSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="handelGoTo(item)">
+            <div class="swiper-slide" v-for="(item, index) in productSwiperList" :key="index" @click="handelGoTo(item)">
               <div class="imgWrap">
                 <img class="img" :src="item.imgSrc" alt="">
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
-                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(homeSwiperList.length)}}</div>
+                  <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(productSwiperList.length)}}</div>
                 </div>
               </div>
             </div>
@@ -72,8 +71,12 @@ export default {
     data () {
     return {
       productSwiper: null,
-      mobileSwiper: null,
-      homeSwiperList: []
+      mobileProjectSwiper: null,
+      productSwiperList: [],
+
+      imgSrc: require('@/img/project1.png'),
+      imgSrc: require('@/img/project2.png'),
+      imgSrc: require('@/img/project3.png'),
     }
   },
   mounted() {
@@ -83,15 +86,17 @@ export default {
     query() {
       let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
       if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
-        this.homeSwiperList = maudeaInfor.projects.map((item)=>{
+        this.productSwiperList = maudeaInfor.projects.map((item)=>{
           return {
             title: item.title,
             imgSrc: item.imgSrc
           }
         });
-        this.render()
+        setTimeout(()=>{
+          this.render()
+        }, 500)
       }else {
-        this.homeSwiperList = [];
+        this.productSwiperList = [];
         this.$router.push({name: 'Home'})
       }
     },
@@ -99,25 +104,14 @@ export default {
       this.productSwiper = new Swiper ('#productSwiper', {
         loop: true, // 循环模式选项
         autoplay: {
-          delay: 3000,//1秒切换一次
+          delay: 5000,//1秒切换一次
         },
-        effect : 'coverflow',
-        slidesPerView: 'auto',
-        centeredSlides: true,
-        coverflowEffect: {
-          rotate: 45,  // y轴旋转角度
-          stretch: -200, //
-          depth: 150,
-          modifier: 1,
-          slideShadows : false
-        },
+        slidesPerView : 3,
+        slidesPerGroup : 1,
       });
-
-      this.mobileSwiper = new Swiper ('#mobileSwiper', {
+      this.mobileProjectSwiper = new Swiper('#mobileProjectSwiper', {
         loop: true, // 循环模式选项
-        autoplay: {
-          delay: 3000,//1秒切换一次
-        },
+        autoplay: true,
       });
     },
     handelNav(type) {
@@ -134,9 +128,10 @@ export default {
     },
     handelNavMobile(type) {
       if(type === 'next') {
-        this.mobileSwiper.slideNext();
+        console.log(this.mobileProjectSwiper)
+        this.mobileProjectSwiper.slideNext();
       }else {
-        this.mobileSwiper.slidePrev();
+        this.mobileProjectSwiper.slidePrev();
       }
     },
     handelNum(val) {
@@ -171,7 +166,7 @@ export default {
     font-family: CenturyGothic;
     .preNext{
       position: relative;
-      font-size: 16px;
+      font-size: 12px;
       display: flex;
       justify-content: space-around;
       transform: rotate(-90deg);
@@ -183,7 +178,7 @@ export default {
         &:hover{
           color: #666666;
           .textLine{
-            width: 45px;
+            width: 35px;
             height: 2px;
             background: #898989;;
             position: absolute;
@@ -209,7 +204,8 @@ export default {
       text-align: center;
       color: #999999;
       font-family: CenturyGothic;
-      font-size: 16px;
+      font-size: 12px;
+      text-transform: capitalize;
       cursor: pointer;
       transform: rotate(90deg);
       &:hover{
@@ -227,7 +223,7 @@ export default {
     }
   }
   .productSwiper{
-    width: 75%;
+    width: 75vw;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -236,12 +232,18 @@ export default {
       width: 100%;
       .swiper-wrapper{
         .swiper-slide{
-          width: 200px;
+          width: 25vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           &:hover{
             cursor: pointer;
           }
           .imgWrap{
-            width: 280px;
+            width: 20vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             .imgTop{
               font-family: PingFangRegular;
               font-size: 16px;
@@ -257,15 +259,15 @@ export default {
             .imgBottom{
               .title{
                 font-family: CenturyGothic;
-                font-size: 28px;
-                color: #999999;
+                font-size: 20px;
+                color: #333333;
                 padding: 5px 0;
                 text-align: center;
                 text-transform: capitalize;
               }
               .index{
-                font-family: PingFangRegular;
-                font-size: 16px;
+                font-family: CenturyGothic;
+                font-size: 12px;
                 color: #999999;
                 text-align: center
               }
@@ -284,7 +286,7 @@ export default {
 @keyframes preNextLine
 {
   from {width: 0px;}
-  to {width: 45px;}
+  to {width: 35px;}
 }
 @media screen and (min-width: 480px) {
   .mobileBlock{

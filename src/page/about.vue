@@ -3,14 +3,16 @@
     <MenuHeader></MenuHeader>
     <div class="contentWrap">
       <div class="leftWrap">
-        <div class="text">Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,</div>
+        <div class="text">{{aboutInfor.textContent}}</div>
       </div>
       <div class="rightWrap">
-        <img class="img" src="@/img/about.png" alt="">
-        <div class="middleText">Wally Mau</div>
+        <img class="img" :src="aboutInfor.imgSrc" alt="">
+        <div class="middleText">{{aboutInfor.title}}</div>
       </div>
-      <div class="centerText">Wally Mau</div>
-      <div class="leftAbsolute" @click="handelGoTo('Project')">All Projects</div>
+
+
+      <div class="centerText">{{aboutInfor.title}}</div>
+      <div class="leftAbsolute" @click="handelGoTo('Projects')">All Projects</div>
       <div class="rightAbsolute" @click="handelGoTo('Contact')">Contact Us</div>
     </div>
   </div>
@@ -22,9 +24,13 @@ export default {
   components: {
     MenuHeader
   },
-    data () {
+  data () {
     return {
-
+      aboutInfor: {
+        textContent: "",
+        title: "",
+        imgSrc: ""
+      }
     }
   },
   mounted() {
@@ -58,8 +64,9 @@ export default {
       padding: 0 5% 0 10%;
       box-sizing: border-box;
       background: #FFFFFF;
+      font-family: CenturyGothic;
       .text{
-        font-family:Didot;
+        font-family: CenturyGothic;
         font-size: 12px;
         line-height: 20px;
         color: #D3D3D3;
@@ -83,11 +90,11 @@ export default {
       left: 50%;
       text-transform: capitalize;
       transform: rotateZ(90deg);
-      width: 200px;
+      width: 300px;
       height: 50px;
       margin-top: -30px;
-      margin-left: -100px;
-      font-size: 30px;
+      margin-left: -150px;
+      font-size: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -101,6 +108,7 @@ export default {
       color: #D3D3D3;
       margin-top: -25px;
       cursor: pointer;
+      font-family: CenturyGothic;
     }
     .rightAbsolute{
       position: absolute;
@@ -111,6 +119,7 @@ export default {
       color: #D3D3D3;
       margin-top: -25px;
       cursor: pointer;
+      font-family: CenturyGothic;
     }
   }
 }
@@ -126,12 +135,14 @@ export default {
       flex-direction: column;
       .leftWrap{
         width: 100%;
-        padding: 30px 40px;
+        padding: 10px 40px;
+        padding-top: 0;
+        box-sizing: border-box;
       }
       .rightWrap{
         width: 100%;
         position: relative;
-        margin-top: 30px;
+        margin-top: 15px;
         box-sizing: border-box;
         display: flex;
         flex: 1;
@@ -143,11 +154,11 @@ export default {
           top: 0;
           left: 50%;
           margin-left: -100px;
-          margin-top: -25px;
+          margin-top: -20px;
           text-transform: capitalize;
           width: 200px;
           height: 50px;
-          font-size: 30px;
+          font-size: 25px;
           display: flex;
           align-items: center;
           justify-content: center;

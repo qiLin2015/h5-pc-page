@@ -1,18 +1,19 @@
 <template>
   <el-upload
-  class="upload-file"
-  action="https://jsonplaceholder.typicode.com/posts/"
-  :on-preview="handlePreview"
-  :on-remove="handleRemove"
-  :before-remove="beforeRemove"
-  :on-success="onSuccess"
-  :on-error="onError"
-  :multiple="false"
-  :limit="1"
-  :file-list="fileList"
-  list-type="picture">
-  <el-button size="small" type="primary" v-if="!(fileList && fileList.length)">{{btnText}}</el-button>
-</el-upload>
+    class="upload-file"
+    action="http://139.224.13.0/api/upload"
+    :on-preview="handlePreview"
+    :on-remove="handleRemove"
+    :before-remove="beforeRemove"
+    :on-success="onSuccess"
+    :on-error="onError"
+    :multiple="false"
+    :limit="1"
+    :file-list="fileList"
+    list-type="picture"
+  >
+    <el-button size="small" type="primary" v-if="!(fileList && fileList.length)">{{btnText}}</el-button>
+  </el-upload>
 </template>
 
 <script>
@@ -22,21 +23,21 @@ export default {
   props: {
     parent: {
       type: String,
-      default: ''
+      default: '',
     },
     btnText: {
       type: String,
-      default: '点击上传'
-    }
+      default: '点击上传',
+    },
   },
   computed: {
-    fileList () {
-      if(this.imgSrc) {
-        return [{name: this.imgName, url: this.imgSrc}]
-      }else {
-        return []
+    fileList() {
+      if (this.imgSrc) {
+        return [{ name: this.imgName, url: this.imgSrc }];
+      } else {
+        return [];
       }
-    }
+    },
   },
   data() {
     return {
@@ -46,7 +47,7 @@ export default {
   },
   watch: {
     parent: function() {
-      this.imgSrc = this.parent;
+      this.imgSrc = `http://139.224.13.0/${this.parent}`;
     },
     imgSrc: function(newVal) {
       this.$emit('update:parent', newVal);
@@ -65,36 +66,42 @@ export default {
       return this.$confirm(`确定移除${file.name ? file.name : '此图片嘛～'}?`);
     },
     onSuccess(data, file, fileList) {
-      console.log('file', file)
-      this.imgSrc = file.url;
-      this.imgName = file.name
+      console.log('file', file);
+      console.log('data', data);
+      if (file.response) {
+        this.imgSrc = file.response.data.url || '';
+        this.imgName = file.name;
+      } else {
+        this.imgSrc = '';
+        this.imgName = '';
+      }
     },
     onError(data) {
       this.$message.error('文件上传失败');
     },
-  }
+  },
 };
 </script>
 
 <style scoped lang="scss" rel="stylesheet/scss">
-.upload-file /deep/{
+.upload-file /deep/ {
   display: flex;
   padding-left: 20px;
-  .el-upload__tip{
+  .el-upload__tip {
     padding-left: 30px;
   }
-  .el-upload-list{
+  .el-upload-list {
     display: flex;
     align-items: center;
     padding: 5px 0;
-    .el-upload-list__item{
+    .el-upload-list__item {
       margin-top: 0 !important;
     }
   }
-  .el-upload-list__item:first-child{
+  .el-upload-list__item:first-child {
     margin-top: 0;
   }
-  .el-upload-list__item-name{
+  .el-upload-list__item-name {
     margin-right: 10px;
   }
 }

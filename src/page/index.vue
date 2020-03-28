@@ -1,191 +1,217 @@
 <template>
   <div class="welcomeHome">
-      <div class="welcome" v-show="isWelcome">
-        <img class="logo welocomLogo" src="@/img/logoBgWhite.png" alt="">
-      </div>
+    <div class="welcome" v-show="isWelcome && !this.$route.query.isFromMenu">
+      <img class="logo welocomLogo" src="@/img/logoBgWhite.png" alt />
+    </div>
 
-      <div class="homeContent">
-        <div class="main-wrap pcBlock">
-          <MenuHeader colorType="black"></MenuHeader>
+    <div class="homeContent">
+      <div class="main-wrap">
+        <MenuHeader colorType="black"></MenuHeader>
 
-          <div class="allProject" @click="goToProject"><div class="text">View all projects<div class="textLine"></div></div></div>
+        <div class="allProject" @click="goToProject">
+          <div class="text">
+            View all projects
+            <div class="textLine"></div>
+          </div>
+        </div>
 
-          <div class="swiper-container" id="mainSwiper" v-show="homeSwiperList && homeSwiperList.length">
+        <div class="mobileSwiper">
+          <div
+            class="swiper-container"
+            id="mainSwiper"
+            v-show="homeSwiperList && homeSwiperList.length"
+          >
             <div class="swiper-wrapper">
-              <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="goToProject" @mouseover="handelImgEnter" @mouseout="handelImgLeave">
-                <div class="ani slideTitleWrap" :swiper-animate-effect="titleEffectRight ? 'bounceInRight' : 'bounceInLeft' " swiper-animate-duration="1s" swiper-animate-delay="0s">
-                  <span class="title">{{item.title}}</span>
+              <div
+                class="swiper-slide"
+                v-for="(item, index) in homeSwiperList"
+                :key="index"
+                @click="goToProject"
+                @mouseover="handelImgEnter"
+                @mouseout="handelImgLeave"
+              >
+                <div
+                  class="ani slideTitleWrap"
+                  :swiper-animate-effect="titleEffectRight ? 'bounceInUp' : 'bounceInDown' "
+                  swiper-animate-duration="1s"
+                  swiper-animate-delay="0s"
+                >
+                  <span class="title pcTitle">{{item.title}}</span>
+                  <span
+                    class="title mobileTitle"
+                    :style="{backgroundImage: 'url('+ item.imgSrc +')'}"
+                  >{{item.title}}</span>
                 </div>
-                <div :class="handelImgClass()">
-                  <img class="img" :src="item.imgSrc" alt="">
+                <div :class="handelImgClass()" v-if="item.imgSrc">
+                  <img class="img" :src="item.imgSrc" alt />
                 </div>
-                <div class="ani swiperCircle" v-if="swiperCircleIsShow" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.1s"></div>
+                <div
+                  class="ani swiperCircle"
+                  v-if="swiperCircleIsShow"
+                  swiper-animate-effect="fadeIn"
+                  swiper-animate-duration="1s"
+                  swiper-animate-delay="0.1s"
+                ></div>
               </div>
             </div>
           </div>
 
-          <div class="preNextWrap">
-            <div class="preNext">
-              <div class="pre" @click="handelNav('pre')">Pre<div class="textLine"></div></div>
+          <div class="swiperFooter">
+            <div class="left" @click="goToProject">View all projects</div>
+            <div class="right">
+              <div class="pre btn" @click="handelNav('pre')">pre</div>
               <div class="line">/</div>
-              <div class="next" @click="handelNav('next')">Next<div class="textLine"></div></div>
+              <div class="next btn" @click="handelNav('next')">next</div>
             </div>
           </div>
         </div>
 
-        <div class="mobileBlock">
-          <MenuHeader colorType="black"></MenuHeader>
-          <div class="mobileSwiper">
-            <div class="swiper-container" id="mobileSwiperHome" v-show="homeSwiperList && homeSwiperList.length">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item, index) in homeSwiperList" :key="index" @click="goToProject">
-                  <div v-if="item.imgSrc" class="mobileFixedtext" :style="{backgroundImage: 'url('+ item.imgSrc +')'}">{{item.title}}</div>
-                  <div class="imgWrap">
-                    <img class="img" :src="item.imgSrc" alt="">
-                  </div>
-                </div>
-              </div>
+        <div class="preNextWrap">
+          <div class="preNext">
+            <div class="pre" @click="handelNav('pre')">
+              Pre
+              <div class="textLine"></div>
             </div>
-            <div class="swiperFooter">
-              <div class="left" @click="goToProject">View all projects</div>
-              <div class="right">
-                <div class="pre btn" @click="handelNavMobile('pre')">pre</div>
-                <div class="line">/</div>
-                <div class="next btn" @click="handelNavMobile('next')">next</div>
-              </div>
+            <div class="line">/</div>
+            <div class="next" @click="handelNav('next')">
+              Next
+              <div class="textLine"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import MenuHeader from '@/page/components/MenuHeader'
+import axios from 'axios';
+import MenuHeader from '@/page/components/MenuHeader';
 
 export default {
   name: 'HelloWorld',
   components: {
-    MenuHeader
+    MenuHeader,
   },
-  data () {
+  data() {
     return {
       isWelcome: true,
+      isFromMenu: '',
       mainSwiper: null,
       mobileSwiperHome: null,
       swiperCircleIsShow: true,
       imageEnterScale: false,
       imageLeaveScale: false,
       titleEffectRight: true,
-      homeSwiperList: []
-    }
+      homeSwiperList: [],
+
+      imgSrc: require('@/img/project1.png'),
+      imgSrc: require('@/img/project2.png'),
+      imgSrc: require('@/img/project3.png'),
+    };
   },
   mounted() {
     this.query();
   },
   methods: {
     query() {
-      let url= '../static/utils/response.json';
-      axios.get(url).then((res)=>{
-        console.log('axios res')
-        console.log(res)
-        if(res.status === 200) {
+      let url = 'http://139.224.13.0/api/data';
+      axios.get(url).then(res => {
+        console.log('axios res');
+        console.log(res);
+        if (res.status === 200) {
           this.homeSwiperList = res.data.menus || [];
-          if(res.data.projects && res.data.projects.length) {
-            this.homeSwiperList = res.data.projects.map((item)=>{
+          if (res.data.projects && res.data.projects.length) {
+            this.homeSwiperList = res.data.projects.map(item => {
               return {
                 title: item.title,
-                imgSrc: item.imgSrc
-              }
+                imgSrc: item.imgSrc,
+              };
             });
             localStorage.setItem('maudeaInfor', JSON.stringify(res.data));
-            setTimeout(()=>{
-              this.isWelcome = false;
-              this.render()
-            }, 5000)
-          }else {
+            if (!this.$route.query.isFromMenu) {
+              setTimeout(() => {
+                this.isWelcome = false;
+                this.render();
+              }, 5000);
+            } else {
+              setTimeout(() => {
+                this.isWelcome = false;
+                this.render();
+              }, 100);
+            }
+          } else {
             this.homeSwiperList = [];
           }
-        }else {
+        } else {
           this.homeSwiperList = [];
-        }
-      })
-    },
-    render() {
-      this.renderPcSwiper();
-      this.renderMobileSwiper();
-    },
-    renderPcSwiper() {
-      let self = this;
-      this.mainSwiper = new Swiper ('#mainSwiper', {
-        speed: 1000,
-        direction: 'vertical', // 垂直切换选项
-        loop: true, // 循环模式选项
-        autoplay: {
-          delay: 5000,//1秒切换一次
-        },
-        on:{
-          slideChangeTransitionStart: function(){
-            self.swiperCircleIsShow = false;
-          },
-          slideChangeTransitionEnd: function(){
-            self.swiperCircleIsShow = true;
-          },
-          slidePrevTransitionStart: function(){
-            self.titleEffectRight = false;
-          },
-          slideNextTransitionStart: function(){
-            self.titleEffectRight = true;
-          },
-          init: function(){
-            swiperAnimateCache(this); //隐藏动画元素
-            swiperAnimate(this); //初始化完成开始动画
-          },
-          slideChangeTransitionEnd: function(){
-            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-            self.swiperCircleIsShow = true;
-            //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
-          }
         }
       });
     },
-    renderMobileSwiper() {
-      this.mobileSwiperHome = new Swiper ('#mobileSwiperHome', {
+    render() {
+      this.renderPcSwiper();
+    },
+    renderPcSwiper() {
+      let self = this;
+      this.mainSwiper = new Swiper('#mainSwiper', {
         speed: 1000,
-        loop: true, // 循环模式选项
         direction: 'vertical', // 垂直切换选项
+        mousewheel: true,
+        loop: true, // 循环模式选项
         autoplay: {
-          delay: 5000,//1秒切换一次
+          delay: 50000,
+          stopOnLastSlide: false,
+          disableOnInteraction: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        on: {
+          slideChangeTransitionStart: function() {
+            self.swiperCircleIsShow = false;
+          },
+          slideChangeTransitionEnd: function() {
+            self.swiperCircleIsShow = true;
+          },
+          slidePrevTransitionStart: function() {
+            self.titleEffectRight = false;
+          },
+          slideNextTransitionStart: function() {
+            self.titleEffectRight = true;
+          },
+          init: function() {
+            swiperAnimateCache(this); //隐藏动画元素
+            swiperAnimate(this); //初始化完成开始动画
+          },
+          slideChangeTransitionEnd: function() {
+            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+            self.swiperCircleIsShow = true;
+            //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+          },
         },
       });
     },
     goToProject() {
       this.$router.push({
-        name: 'Projects'
-      })
+        name: 'Projects',
+      });
     },
     handelNav(type) {
-      if(type === 'next') {
-        this.mainSwiper.slideNext();
-      }else {
-        this.mainSwiper.slidePrev();
-      }
-    },
-    handelNavMobile(type) {
-      if(type === 'next') {
-        this.mobileSwiperHome.slideNext();
-      }else {
-        this.mobileSwiperHome.slidePrev();
+      if (type === 'next') {
+        console.log(this.mainSwiper);
+        this.mainSwiper && this.mainSwiper.slideNext();
+      } else {
+        this.mainSwiper && this.mainSwiper.slidePrev();
       }
     },
     handelImgClass() {
-      if(this.imageEnterScale) {
-        return 'imgWrap imageEnter'
-      }else if(this.imageLeaveScale){
-        return 'imgWrap imageLeave'
-      }else {
-        return 'imgWrap'
+      if (this.imageEnterScale) {
+        return 'imgWrap imageEnter';
+      } else if (this.imageLeaveScale) {
+        return 'imgWrap imageLeave';
+      } else {
+        return 'imgWrap';
       }
     },
     handelImgEnter() {
@@ -195,31 +221,31 @@ export default {
     handelImgLeave() {
       this.imageEnterScale = false;
       this.imageLeaveScale = true;
-    }
+    },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.welcomeHome{
+.welcomeHome {
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
-.welcome{
+.welcome {
   width: 100%;
   height: 100vh;
-  background: #FFFFFF;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: welcomeUpDownHome 1s 4s linear;
-  .welocomLogo{
+  .welocomLogo {
     animation: welcomeLogoAni 3s linear;
   }
 }
-.main-wrap{
+.main-wrap {
   width: 100%;
   height: 100vh;
   background: #1b1818;
@@ -231,8 +257,8 @@ export default {
     position: relative;
     margin: 0;
     padding: 0 10vw;
-    .swiper-wrapper{
-      .swiper-slide{
+    .swiper-wrapper {
+      .swiper-slide {
         padding: 0 10%;
         box-sizing: border-box;
         display: flex;
@@ -240,36 +266,37 @@ export default {
         align-items: center;
         justify-content: center;
         position: relative;
-        &:hover{
+        margin-right: 20vw;
+        &:hover {
           cursor: pointer;
-          .slideTitleWrap{
-            .title{
+          .slideTitleWrap {
+            .title {
               letter-spacing: 10px;
             }
           }
         }
-        .imageEnter{
-          .img{
+        .imageEnter {
+          .img {
             transition: all 0.8s;
             transform: scale(1.1);
           }
         }
-        .imageLeave{
-          .img{
+        .imageLeave {
+          .img {
             transition: all 0.8s;
             transform: scale(1);
           }
         }
-        .imgWrap{
+        .imgWrap {
           width: 100%;
           transition: all 0.8s;
           overflow: hidden;
-          .img{
+          .img {
             width: 100%;
             max-height: 80vh;
           }
         }
-        .slideTitleWrap{
+        .slideTitleWrap {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -283,16 +310,16 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          .title{
+          .title {
             font-size: 100px;
             letter-spacing: 3px;
-            color: #FFFFFF;
+            color: #ffffff;
             transition: all 0.8s;
           }
         }
       }
     }
-    .swiperCircle{
+    .swiperCircle {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -311,13 +338,13 @@ export default {
       opacity: 0.5;
     }
   }
-  .allProject{
+  .allProject {
     width: 10%;
     position: relative;
     font-family: CenturyGothicBold;
-    .text{
+    .text {
       position: absolute;
-      left: 0;
+      right: -10vw;
       top: 25%;
       width: 130px;
       height: 40px;
@@ -330,9 +357,9 @@ export default {
       transform: rotate(-90deg);
       transition: all 0.8s;
       z-index: 50;
-      &:hover{
-        color: #FFFFFF;
-        .textLine{
+      &:hover {
+        color: #ffffff;
+        .textLine {
           width: 130px;
           height: 2px;
           transition: all 1s;
@@ -345,13 +372,13 @@ export default {
       }
     }
   }
-  .preNextWrap{
+  .preNextWrap {
     width: 10%;
     position: relative;
     font-family: CenturyGothicBold;
-    .preNext{
+    .preNext {
       position: absolute;
-      left: 0;
+      left: -10vw;
       bottom: 25%;
       width: 130px;
       height: 40px;
@@ -363,13 +390,14 @@ export default {
       cursor: pointer;
       transform: rotate(90deg);
       z-index: 50;
-      .pre, .next{
-        padding:10px 10px;
+      .pre,
+      .next {
+        padding: 10px 10px;
         position: relative;
         transition: all 0.8s;
-        &:hover{
-          color: #FFFFFF;
-          .textLine{
+        &:hover {
+          color: #ffffff;
+          .textLine {
             width: 45px;
             height: 2px;
             background: #898989;
@@ -380,7 +408,7 @@ export default {
           }
         }
       }
-      .line{
+      .line {
         padding: 10px 0;
         color: #898989;
       }
@@ -388,28 +416,45 @@ export default {
   }
 }
 
-@keyframes allProjectLine
-{
-  from {width: 0px;}
-  to {width: 130px;}
+@keyframes allProjectLine {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 130px;
+  }
 }
-@keyframes preNextLine
-{
-  from {width: 0px;}
-  to {width: 45px;}
+@keyframes preNextLine {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 45px;
+  }
 }
 @media screen and (min-width: 480px) {
-  .mobileBlock{
-    display: none;
+  .homeContent {
+    .main-wrap {
+      .swiperFooter {
+        display: none;
+      }
+      .mobileTitle {
+        display: none;
+      }
+    }
   }
 }
 @media screen and (max-width: 480px) {
-  .pcBlock{
-    display: none;
-  }
-  .mobileBlock{
-    width: 100%;
-    .mobileSwiper{
+  .homeContent {
+    .main-wrap {
+      .allProject {
+        display: none;
+      }
+      .preNextWrap {
+        display: none;
+      }
+    }
+    .mobileSwiper {
       position: relative;
       width: 100%;
       height: 100vh;
@@ -420,33 +465,53 @@ export default {
       padding: 0 10%;
       box-sizing: border-box;
       background: #1b1818;
-      .swiper-container{
+      .swiper-container {
         width: 100%;
         height: 100vh;
-        .swiper-slide{
+        padding: 0;
+        .swiper-slide {
           width: 100%;
           height: 100vh;
           padding: 80px 0;
           box-sizing: border-box;
-          .mobileFixedtext{
-            font-family: Didot;
+          .slideTitleWrap {
             position: absolute;
-            width: 100%;
-            text-align: center;
-            font-size: 45px;
             top: 50%;
-            margin-top: -40px;
+            left: 50%;
+            width: 50vw;
+            height: 50px;
+            margin-top: -25px;
+            margin-left: -25vw;
+            box-sizing: border-box;
+            overflow: visible;
             z-index: 10;
-            animation: mobileText 5s 0.5s linear infinite;
-            -webkit-text-stroke:1px #D3D3D3;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .title {
+              font-size: 45px;
+              letter-spacing: 3px;
+              color: #ffffff;
+              transition: all 0.8s;
+            }
+            .pcTitle {
+              display: none;
+            }
+            .mobileTitle {
+              background-position: center;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              -webkit-text-stroke: 1px #898989;
+              -webkit-animation: cliptext 3s linear infinite;
+            }
           }
-          .imgWrap{
+          .swiperCircle {
+            display: none;
+          }
+          .imgWrap {
             width: 100%;
             height: 100%;
-            .img{
+            .img {
               width: 100%;
               height: 100%;
               display: block;
@@ -454,12 +519,12 @@ export default {
           }
         }
       }
-      .swiperFooter{
+      .swiperFooter {
         position: absolute;
         left: 0;
         bottom: 30px;
         width: 100%;
-        color: #FFFFFF;
+        color: #898989;
         display: flex;
         justify-content: space-between;
         padding: 0 10%;
@@ -467,24 +532,25 @@ export default {
         font-size: 12px;
         height: 40px;
         z-index: 10;
-        .left{
+        font-family: CenturyGothicBold;
+        .left {
           line-height: 40px;
-          &:hover{
+          &:hover {
             cursor: pointer;
           }
         }
-        .right{
+        .right {
           display: flex;
           align-items: center;
-          .btn{
+          .btn {
             padding: 10px 0;
-            &:hover{
+            &:hover {
               cursor: pointer;
             }
-            &.pre{
+            &.pre {
               padding-right: 10px;
             }
-            &.next{
+            &.next {
               padding-left: 10px;
             }
           }
@@ -493,82 +559,63 @@ export default {
     }
   }
 }
-@keyframes mobileText{
-  0%{
-    -webkit-transform: translateY(0) scale(0);
-    transform: translateY(0) scale(0);
-  }
-  25%{
-    -webkit-transform: translateY(-50px) scale(0.5);
-    transform: translateY(-50px) scale(0.5);
-  }
-  50%{
-    -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
-    transform: translateY(0px) scale(0) rotateZ(180deg);
-  }
-  75%{
-    -webkit-transform: translateY(50px) scale(1.5);
-    transform: translateY(50px) scale(1.5);
-  }
-  100%{
-    -webkit-transform: translateY(0) scale(0);
-    transform: translateY(0) scale(0);
-  }
-}
 
 @keyframes swiperCircle {
-0% {
-  border-top: 1px solid #FFFFFF;
-  opacity: 0;
-  transform: rotate(0deg);
-}
-100% {
-  border-top: 1px solid #FFFFFF;
-  opacity: 1;
-  transform: rotate(180deg);
+  0% {
+    border-top: 1px solid #ffffff;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  100% {
+    border-top: 1px solid #ffffff;
+    opacity: 1;
+    transform: rotate(180deg);
   }
 }
 
-@keyframes welcomeUpDownHome{
-  0%{
-    height: 100vh
+@keyframes welcomeUpDownHome {
+  0% {
+    height: 100vh;
   }
-  100%{
+  100% {
     height: 0vh;
   }
 }
 
-@keyframes welcomeLogoAni{
-  0%{
+@keyframes welcomeLogoAni {
+  0% {
     -webkit-transform: scale(0.2) rotateZ(0deg);
     transform: scale(0.2) rotateZ(0deg);
     opacity: 0;
   }
-  25%{
+  25% {
     -webkit-transform: scale(0.4) rotateZ(90deg);
     transform: scale(0.4) rotateZ(90deg);
     opacity: 0.2;
   }
-  50%{
+  50% {
     -webkit-transform: scale(0.6) rotateZ(180deg);
     transform: scale(0.6) rotateZ(180deg);
     opacity: 0.5;
   }
-  75%{
+  75% {
     -webkit-transform: scale(0.8) rotateZ(270deg);
     transform: scale(0.8) rotateZ(270deg);
     opacity: 0.8;
   }
-  100%{
+  100% {
     -webkit-transform: scale(1) rotateZ(360deg);
     transform: scale(1) rotateZ(360deg);
     opacity: 1;
   }
 }
 
-
-@keyframes cliptext{
-  from { background-position: 0 0; }
-  to { background-position: 100% 0; }
+@keyframes cliptext {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
 }
 </style>

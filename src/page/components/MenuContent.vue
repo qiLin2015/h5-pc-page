@@ -50,7 +50,11 @@ export default {
       if(this.$router.history.current.name === name) {
         this.$emit('closeMenu');
       }else {
-        this.$router.push({name: name})
+        if(name === 'Home') {
+          this.$router.push({name: name, query: {isFromMenu: 'isFromMenu'}})
+        }else {
+          this.$router.push({name: name})
+        }
       }
     },
     handelMouseEnter(name) {

@@ -60,7 +60,8 @@ export default {
     },
     goToHome() {
       this.$router.push({
-        name: 'Home'
+        name: 'Home',
+        query: {isFromMenu: 'isFromLogo'}
       })
     }
   },
