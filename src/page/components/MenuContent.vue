@@ -2,101 +2,125 @@
   <div class="titleWrap">
     <div class="contentWrap">
       <div class="imgWrap" v-if="menusList && menusList.length">
-        <img v-for="(item, index) in menusList" :key="index" v-show="mouseEnterTitle === item.title || mouseLeaveTitle === item.title "
+        <img
+          v-for="(item, index) in menusList"
+          :key="index"
+          v-show="(mouseEnterTitle === item.title || mouseLeaveTitle === item.title ) && isShowImg"
           :class="mouseLeaveTitle === item.title ? 'image leave' : 'image'"
-          :src="item.imgSrc" alt=""
-          @click="handelGoDetail(item.title)">
+          :src="item.imgSrc"
+          alt
+          @click="handelGoDetail(item.title)"
+        />
       </div>
 
       <div class="titleList">
-        <div :class="['title', item.title]" v-for="(item, index) in menusList" :key="index"
+        <div
+          :class="['title', item.title]"
+          v-for="(item, index) in menusList"
+          :key="index"
           @click="handelGoDetail(item.title)"
           @mouseenter="handelMouseEnter(item.title)"
-          @mouseleave="handelMouseLeave(item.title)">
-          {{item.title}}
-        </div>
+          @mouseleave="handelMouseLeave(item.title)"
+        >{{item.title}}</div>
       </div>
     </div>
 
     <div class="menuTitleWrapMobile">
-      <div :class="['title', item.title]" v-for="(item, index) in menusList" :key="index" @click="handelGoDetail(item.title)">{{item.title}}</div>
+      <div
+        :class="['title', item.title]"
+        v-for="(item, index) in menusList"
+        :key="index"
+        @click="handelGoDetail(item.title)"
+      >{{item.title}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       mouseEnterTitle: '',
       mouseLeaveTitle: '',
       menusList: [],
-    }
+      isShowImg: false,
+      time: null,
+    };
   },
   mounted() {
-    this.render()
+    this.render();
   },
   methods: {
     render() {
-      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
-      if(maudeaInfor && maudeaInfor.menus && maudeaInfor.menus.length) {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor'));
+      if (maudeaInfor && maudeaInfor.menus && maudeaInfor.menus.length) {
         this.menusList = maudeaInfor.menus;
-      }else {
+      } else {
         this.menusList = [];
-        this.$router.push({name: 'Home'})
+        this.$router.push({ name: 'Home' });
       }
     },
     handelGoDetail(name) {
-      if(this.$router.history.current.name === name) {
+      if (this.$router.history.current.name === name) {
         this.$emit('closeMenu');
-      }else {
-        if(name === 'Home') {
-          this.$router.push({name: name, query: {isFromMenu: 'isFromMenu'}})
-        }else {
-          this.$router.push({name: name})
+      } else {
+        if (name === 'Home') {
+          this.$router.push({ name: name, query: { isFromMenu: 'isFromMenu' } });
+        } else {
+          this.$router.push({ name: name });
         }
       }
     },
     handelMouseEnter(name) {
+      if (this.time) {
+        clearTimeout(this.time);
+      }
+      this.isShowImg = true;
       this.mouseEnterTitle = name;
       this.mouseLeaveTitle = '';
     },
     handelMouseLeave(name) {
       this.mouseLeaveTitle = name;
-      this.mouseEnterTitle = ''
-    }
+      this.mouseEnterTitle = '';
+      if (this.time) {
+        clearTimeout(this.time);
+      }
+      this.time = setTimeout(() => {
+        this.isShowImg = false;
+      }, 1000);
+    },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.titleWrap{
+.titleWrap {
   display: flex;
   flex: 1;
   width: 100%;
   box-sizing: border-box;
-  .contentWrap{
+  .contentWrap {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    .imgWrap{
+    .imgWrap {
       width: 20%;
-      .image{
+      .image {
         width: 100%;
         height: auto;
         display: block;
         opacity: 1;
         animation: imgRotateEnter 1s;
-        &.leave{
+        &.leave {
           animation: imgRotateLeaver 1s;
         }
       }
     }
-    .titleList{
+    .titleList {
       position: absolute;
       left: 0;
       top: 50%;
@@ -109,11 +133,11 @@ export default {
       align-items: center;
       justify-content: space-around;
       font-size: 40px;
-      .title{
+      .title {
         width: 150px;
         text-align: center;
         color: #4e4e4e;
-        &:hover{
+        &:hover {
           cursor: pointer;
           color: #5c5348;
         }
@@ -121,11 +145,11 @@ export default {
     }
   }
 
-  .menuTitleWrap{
+  .menuTitleWrap {
     width: 100%;
     height: 40px;
     position: relative;
-    .contentAbsolute{
+    .contentAbsolute {
       position: absolute;
       left: 0;
       right: 0;
@@ -136,24 +160,24 @@ export default {
       justify-content: space-around;
       z-index: 1000;
       background: transparent;
-      color: #EEEEEE;
+      color: #eeeeee;
     }
-    .title{
+    .title {
       font-size: 40px;
       width: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
-      &:hover{
+      &:hover {
         cursor: pointer;
         color: red;
-        .itemBg{
+        .itemBg {
           opacity: 1;
           animation: imgRotate 1s;
         }
       }
     }
-    .itemBg{
+    .itemBg {
       position: fixed;
       left: 0;
       right: 0;
@@ -165,7 +189,7 @@ export default {
       justify-content: center;
       opacity: 0;
       transition: all 1s linear;
-      .image{
+      .image {
         width: 23%;
         height: auto;
         display: block;
@@ -174,49 +198,48 @@ export default {
   }
 }
 
-@keyframes imgRotateEnter{
-  0%{
+@keyframes imgRotateEnter {
+  0% {
     transform: rotateZ(-45deg) scale(0.3);
     opacity: 0;
   }
-  100%{
+  100% {
     transform: rotateZ(0deg) scale(1);
     opacity: 1;
   }
 }
 
-@keyframes imgRotateLeaver{
-  0%{
+@keyframes imgRotateLeaver {
+  0% {
     transform: rotateZ(0deg) scale(1);
     opacity: 1;
   }
-  100%{
+  100% {
     transform: rotateZ(45deg) scale(0);
     opacity: 0;
   }
 }
 
-
 @media screen and (min-width: 480px) {
-  .titleWrap{
-    .menuTitleWrapMobile{
+  .titleWrap {
+    .menuTitleWrapMobile {
       display: none;
     }
-    .titleList{
-      .title{
-        &.Home{
+    .titleList {
+      .title {
+        &.Home {
           animation: upDownHome 0.6s;
         }
-        &.Projects{
+        &.Projects {
           animation: upDownProject 0.8s;
         }
-        &.About{
+        &.About {
           animation: upDownAbout 1.1s;
         }
-        &.Awards{
+        &.Awards {
           animation: upDownAward 1.4s;
         }
-        &.Contact{
+        &.Contact {
           animation: upDownContact 1.7s;
         }
       }
@@ -224,158 +247,156 @@ export default {
   }
 }
 @media screen and (max-width: 480px) {
-  .titleWrap{
+  .titleWrap {
     display: flex;
     align-items: flex-start;
     flex: 1;
     width: 100%;
     padding: 0 8%;
     box-sizing: border-box;
-    .contentWrap{
+    .contentWrap {
       display: none;
     }
-    .menuTitleWrapMobile{
+    .menuTitleWrapMobile {
       padding-top: 30%;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      .title{
+      .title {
         font-size: 30px;
         margin-bottom: 20px;
         cursor: pointer;
         display: flex;
         align-items: center;
-        .small{
+        .small {
           font-size: 12px;
           transform: scale(0.8);
           color: #999999;
           margin-right: 10px;
           font-family: PingFangRegular;
         }
-        &:hover{
+        &:hover {
           opacity: 0.7;
         }
-        &.Home{
+        &.Home {
           animation: opacityHome 0.5s;
         }
-        &.Projects{
+        &.Projects {
           animation: opacityProject 0.8s;
         }
-        &.About{
+        &.About {
           animation: opacityAbout 1.1s;
         }
-        &.Awards{
+        &.Awards {
           animation: opacityAward 1.4s;
         }
-        &.Contact{
+        &.Contact {
           animation: opacityContact 1.7s;
         }
       }
     }
   }
 }
-@keyframes opacityHome{
-  0%{
+@keyframes opacityHome {
+  0% {
     opacity: 0;
     transform: translateX(500px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0px);
   }
 }
-@keyframes opacityProject{
-  0%{
+@keyframes opacityProject {
+  0% {
     opacity: 0;
     transform: translateX(500px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0px);
   }
 }
-@keyframes opacityAbout{
-  0%{
+@keyframes opacityAbout {
+  0% {
     opacity: 0;
     transform: translateX(500px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0px);
   }
 }
-@keyframes opacityAward{
-  0%{
+@keyframes opacityAward {
+  0% {
     opacity: 0;
     transform: translateX(500px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0px);
   }
 }
-@keyframes opacityContact{
-  0%{
+@keyframes opacityContact {
+  0% {
     opacity: 0;
     transform: translateX(500px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0px);
   }
 }
 
-
-@keyframes upDownHome{
-  0%{
+@keyframes upDownHome {
+  0% {
     opacity: 0;
     transform: translate(2000px, -2000px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translate(0px, 0px);
   }
 }
-@keyframes upDownProject{
-  0%{
+@keyframes upDownProject {
+  0% {
     opacity: 0;
     transform: translate(2000px, -2000px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translate(0px, 0px);
   }
 }
-@keyframes upDownAbout{
-  0%{
+@keyframes upDownAbout {
+  0% {
     opacity: 0;
     transform: translate(2000px, -2000px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translate(0px, 0px);
   }
 }
-@keyframes upDownAward{
-  0%{
+@keyframes upDownAward {
+  0% {
     opacity: 0;
     transform: translate(2000px, -2000px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translate(0px);
   }
 }
-@keyframes upDownContact{
-  0%{
+@keyframes upDownContact {
+  0% {
     opacity: 0;
     transform: translate(2000px, -2000px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translate(0px);
   }
 }
-
 </style>

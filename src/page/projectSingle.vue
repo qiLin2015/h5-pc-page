@@ -3,17 +3,27 @@
     <div class="projectSingleWrap pcBlock">
       <MenuHeader></MenuHeader>
       <div class="leftWrap">
-        <div class="project" @click="goToProject">All Project<div class="textLine"></div></div>
-        <div class="title">{{projectType}}</div>
-        <div @click="goToProject"><img class="closeImg" src="@/img/closeLine.png" alt=""></div>
+        <div class="project" @click="goToProject">
+          All Project
+          <div class="textLine"></div>
+        </div>
+        <div class="title">{{projectTitle}}</div>
+        <div @click="goToProject">
+          <img class="closeImg" src="@/img/closeLine.png" alt />
+        </div>
       </div>
 
       <div class="singleSwiper">
         <div class="swiper-container" id="singleSwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index" @click="handelGoTo(item)">
+            <div
+              class="swiper-slide"
+              v-for="(item, index) in swiperList"
+              :key="index"
+              @click="handelGoTo(item)"
+            >
               <div class="imgWrap">
-                <img class="img" :src="item.imgSrc" alt="">
+                <img class="img" :src="item.imgSrc" alt />
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
                   <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(swiperList.length)}}</div>
@@ -38,10 +48,15 @@
 
         <div class="swiper-container" id="mobileSwiper">
           <div class="swiper-wrapper" v-show="swiperList && swiperList.length">
-            <div class="swiper-slide" v-for="(item, index) in swiperList" :key="index" @click="handelGoTo(item)">
+            <div
+              class="swiper-slide"
+              v-for="(item, index) in swiperList"
+              :key="index"
+              @click="handelGoTo(item)"
+            >
               <div class="imgWrap">
-                <div class="imgTop">{{projectType}}</div>
-                <img class="img" :src="item.imgSrc" alt="">
+                <div class="imgTop">{{projectTitle}}</div>
+                <img class="img" :src="item.imgSrc" alt />
                 <div class="imgBottom">
                   <div class="title">{{item.title}}</div>
                   <div class="index">{{handelNum(index + 1) + ' / ' + handelNum(swiperList.length)}}</div>
@@ -62,117 +77,115 @@
 </template>
 
 <script>
-import MenuHeader from '@/page/components/MenuHeader'
+import MenuHeader from '@/page/components/MenuHeader';
 export default {
   components: {
-    MenuHeader
+    MenuHeader,
   },
-    data () {
+  data() {
     return {
       singleSwiper: null,
       mobileSwiper: null,
-      projectType: this.$route.query.projectType || '',
+      projectId: this.$route.query.projectId || '',
+      projectTitle: '',
       swiperList: [],
-
-      imgSrc: require('@/img/project1.png'),
-      imgSrc: require('@/img/project2.png'),
-      imgSrc: require('@/img/project3.png'),
-    }
+    };
   },
   mounted() {
-    this.query()
+    this.query();
   },
   methods: {
     query() {
-      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
-      if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
-        let itemProject = maudeaInfor.projects.filter((item)=> item.title === this.projectType);
-        if(itemProject && itemProject.length ) {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor'));
+      if (maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
+        let itemProject = maudeaInfor.projects.filter(item => item.projectId === this.projectId);
+        if (itemProject && itemProject.length) {
+          this.projectTitle = itemProject[0].title || '';
           this.swiperList = itemProject[0].children;
-          setTimeout(()=>{
-            this.render()
-          }, 500)
-        }else {
+          setTimeout(() => {
+            this.render();
+          }, 500);
+        } else {
           this.swiperList = [];
         }
-      }else {
+      } else {
         this.swiperList = [];
-        this.$router.push({name: 'Home'})
+        this.$router.push({ name: 'Home' });
       }
     },
     render() {
-      this.singleSwiper = new Swiper ('#singleSwiper', {
+      this.singleSwiper = new Swiper('#singleSwiper', {
         loop: true, // 循环模式选项
         autoplay: {
           delay: 3000,
         },
-        slidesPerView : 3,
-        slidesPerGroup : 1,
+        slidesPerView: 3,
+        slidesPerGroup: 1,
       });
 
-      this.mobileSwiper = new Swiper ('#mobileSwiper', {
+      this.mobileSwiper = new Swiper('#mobileSwiper', {
         loop: true, // 循环模式选项
         autoplay: {
-          delay: 3000,//1秒切换一次
+          delay: 3000, //1秒切换一次
         },
       });
     },
     goToContact() {
       this.$router.push({
-        name: 'Contact'
-      })
+        name: 'Contact',
+      });
     },
     handelNav(type) {
-      if(type === 'next') {
+      if (type === 'next') {
         this.singleSwiper.slideNext();
-      }else {
+      } else {
         this.singleSwiper.slidePrev();
       }
     },
     handelNavMobile(type) {
-      if(type === 'next') {
+      if (type === 'next') {
         this.mobileSwiper.slideNext();
-      }else {
+      } else {
         this.mobileSwiper.slidePrev();
       }
     },
     handelNum(val) {
-      if(val < 10) {
-        return `0${val}`
+      if (val < 10) {
+        return `0${val}`;
       }
-      return `${val}`
+      return `${val}`;
     },
     handelGoTo(item) {
       this.$router.push({
         name: 'SingleDetail',
         query: {
-          projectType: this.$route.query.projectType,
-          detailId: item.id || 'id'
-        }
-      })
+          projectId: this.$route.query.projectId,
+          singleId: item.singleId || 'singleId',
+        },
+      });
     },
     goToProject() {
       this.$router.push({
-        name: 'Projects'
-      })
+        name: 'Projects',
+      });
     },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.projectSingleWrap{
+.projectSingleWrap {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
-  .leftWrap{
+  .leftWrap {
     width: 40%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .project{
+    .project {
       color: #999999;
       font-size: 12px;
       cursor: pointer;
@@ -183,9 +196,9 @@ export default {
       padding-bottom: 5px;
       font-family: CenturyGothic;
       width: 100px;
-      &:hover{
+      &:hover {
         color: #666666;
-        .textLine{
+        .textLine {
           width: 90px;
           height: 2px;
           background: #999999;
@@ -196,72 +209,72 @@ export default {
         }
       }
     }
-    .title{
+    .title {
       font-size: 50px;
       text-transform: uppercase;
     }
-    .closeImg{
+    .closeImg {
       padding-right: 100px;
       cursor: pointer;
     }
   }
-  .singleSwiper{
+  .singleSwiper {
     width: 50%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     position: relative;
-    .btn{
+    .btn {
       position: absolute;
       top: 50%;
       margin-top: -20px;
       width: 40px;
       height: 40px;
-      border: 4px solid #EEEEEE;
+      border: 4px solid #eeeeee;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 10;
       box-sizing: border-box;
-      color: #EEEEEE;
+      color: #eeeeee;
       font-size: 24px;
       font-weight: 900;
-      &:hover{
+      &:hover {
         border: 4px solid #3ab1df;
-        color: #3ab1df
+        color: #3ab1df;
       }
     }
-    .prebtn{
+    .prebtn {
       left: -40px;
     }
-    .nextBtn{
+    .nextBtn {
       right: -40px;
     }
     .swiper-container {
       width: 100%;
-      .swiper-wrapper{
-        .swiper-slide{
-          width:33%;
+      .swiper-wrapper {
+        .swiper-slide {
+          width: 33%;
           display: flex;
           padding: 0 15px;
           justify-content: center;
           align-items: center;
           box-sizing: border-box;
           cursor: pointer;
-          .slideTitle{
+          .slideTitle {
             text-align: center;
             font-size: 65px;
             letter-spacing: 3px;
           }
-          .imgWrap{
-            img{
+          .imgWrap {
+            img {
               width: 100%;
               height: auto;
             }
-            .imgBottom{
-              .title{
+            .imgBottom {
+              .title {
                 font-family: CenturyGothic;
                 font-size: 12px;
                 color: #333333;
@@ -269,12 +282,12 @@ export default {
                 text-align: center;
                 text-transform: capitalize;
               }
-              .index{
+              .index {
                 font-family: PingFangRegular;
                 transform: scale(0.8);
                 font-size: 12px;
                 color: #999999;
-                text-align: center
+                text-align: center;
               }
             }
           }
@@ -283,50 +296,53 @@ export default {
     }
   }
 }
-@keyframes projectLine
-{
-  from {width: 0px;}
-  to {width: 90px;}
+@keyframes projectLine {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 90px;
+  }
 }
 @media screen and (min-width: 480px) {
-  .mobileBlock{
+  .mobileBlock {
     display: none;
   }
 }
 @media screen and (max-width: 480px) {
-  .pcBlock{
+  .pcBlock {
     display: none;
   }
-  .mobileBlock{
+  .mobileBlock {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    .mobileSwiper{
+    .mobileSwiper {
       width: 100%;
       display: flex;
       align-items: center;
-      .swiper-slide{
+      .swiper-slide {
         width: 100%;
         padding: 0 5px;
         box-sizing: border-box;
-        .imgWrap{
+        .imgWrap {
           width: 100%;
-          .imgTop{
+          .imgTop {
             font-size: 20px;
             color: #000000;
             padding: 25px 0 5px;
             text-align: center;
             text-transform: capitalize;
           }
-          .img{
+          .img {
             width: 100%;
             display: block;
           }
-          .imgBottom{
-            .title{
+          .imgBottom {
+            .title {
               font-family: PingFangRegular;
               font-size: 18px;
               color: #000000;
@@ -334,22 +350,22 @@ export default {
               text-align: center;
               text-transform: capitalize;
             }
-            .index{
+            .index {
               font-family: PingFangRegular;
               font-size: 12px;
               color: #999999;
-              text-align: center
+              text-align: center;
             }
           }
         }
       }
-      .preNext{
+      .preNext {
         width: 50px;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        .preNextContent{
+        .preNextContent {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -359,11 +375,11 @@ export default {
           font-size: 12px;
           color: #999999;
           font-family: CenturyGothic;
-          &:hover{
+          &:hover {
             cursor: pointer;
             color: #666666;
           }
-          &.nextContent{
+          &.nextContent {
             transform: rotateZ(90deg);
           }
         }

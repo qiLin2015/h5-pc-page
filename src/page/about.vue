@@ -6,10 +6,9 @@
         <div class="text">{{aboutInfor.textContent}}</div>
       </div>
       <div class="rightWrap">
-        <img class="img" :src="aboutInfor.imgSrc" alt="">
+        <img class="img" :src="aboutInfor.imgSrc" alt />
         <div class="middleText">{{aboutInfor.title}}</div>
       </div>
-
 
       <div class="centerText">{{aboutInfor.title}}</div>
       <div class="leftAbsolute" @click="handelGoTo('Projects')">All Projects</div>
@@ -19,72 +18,81 @@
 </template>
 
 <script>
-import MenuHeader from '@/page/components/MenuHeader'
+import MenuHeader from '@/page/components/MenuHeader';
 export default {
   components: {
-    MenuHeader
+    MenuHeader,
   },
-  data () {
+  data() {
     return {
       aboutInfor: {
-        textContent: "",
-        title: "",
-        imgSrc: ""
-      }
-    }
+        textContent: '',
+        title: '',
+        imgSrc: '',
+      },
+    };
   },
   mounted() {
-
+    this.query();
   },
   methods: {
+    query() {
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor'));
+      if (maudeaInfor && maudeaInfor.about) {
+        this.aboutInfor = maudeaInfor.about;
+      } else {
+        this.aboutInfor = { textContent: '', title: '', imgSrc: '' };
+        this.$router.push({ name: 'Home' });
+      }
+    },
     handelGoTo(name) {
       this.$router.push({
-        name: name
-      })
-    }
+        name: name,
+      });
+    },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.aboutWrap{
+.aboutWrap {
   width: 100%;
   height: 100vh;
-  .contentWrap{
+  .contentWrap {
     width: 100%;
     display: flex;
     height: 100vh;
     position: relative;
     box-sizing: border-box;
-    .leftWrap{
+    .leftWrap {
       display: flex;
       width: 50%;
       align-items: center;
       padding: 0 5% 0 10%;
       box-sizing: border-box;
-      background: #FFFFFF;
+      background: #ffffff;
       font-family: CenturyGothic;
-      .text{
+      .text {
         font-family: CenturyGothic;
         font-size: 12px;
         line-height: 20px;
-        color: #D3D3D3;
+        color: #d3d3d3;
       }
     }
-    .rightWrap{
+    .rightWrap {
       display: flex;
-      width:50%;
+      width: 50%;
       flex: 1;
       align-items: center;
       justify-content: center;
-      background: rgba(250,250,250, 1);
-      .img{
+      background: rgba(250, 250, 250, 1);
+      .img {
         width: 40%;
         height: auto;
       }
     }
-    .centerText{
+    .centerText {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -99,24 +107,24 @@ export default {
       align-items: center;
       justify-content: center;
     }
-    .leftAbsolute{
+    .leftAbsolute {
       position: absolute;
       top: 50%;
       left: 0%;
       transform: rotateZ(-90deg);
       padding: 10px;
-      color: #D3D3D3;
+      color: #d3d3d3;
       margin-top: -25px;
       cursor: pointer;
       font-family: CenturyGothic;
     }
-    .rightAbsolute{
+    .rightAbsolute {
       position: absolute;
       top: 50%;
       right: 0%;
       transform: rotateZ(90deg);
       padding: 10px;
-      color: #D3D3D3;
+      color: #d3d3d3;
       margin-top: -25px;
       cursor: pointer;
       font-family: CenturyGothic;
@@ -124,22 +132,22 @@ export default {
   }
 }
 @media screen and (min-width: 480px) {
-  .middleText{
+  .middleText {
     display: none;
   }
 }
 @media screen and (max-width: 480px) {
-  .aboutWrap{
-    .contentWrap{
+  .aboutWrap {
+    .contentWrap {
       padding-top: 80px;
       flex-direction: column;
-      .leftWrap{
+      .leftWrap {
         width: 100%;
         padding: 10px 40px;
         padding-top: 0;
         box-sizing: border-box;
       }
-      .rightWrap{
+      .rightWrap {
         width: 100%;
         position: relative;
         margin-top: 15px;
@@ -148,8 +156,8 @@ export default {
         flex: 1;
         align-items: center;
         justify-content: center;
-        background: rgba(250,250,250, 1);
-        .middleText{
+        background: rgba(250, 250, 250, 1);
+        .middleText {
           position: absolute;
           top: 0;
           left: 50%;
@@ -163,21 +171,21 @@ export default {
           align-items: center;
           justify-content: center;
         }
-        .img{
+        .img {
           width: 60%;
           height: auto;
         }
       }
-      .centerText{
+      .centerText {
         display: none;
       }
-      .leftAbsolute{
+      .leftAbsolute {
         font-size: 12px;
         left: -8%;
         margin-top: -50px;
         text-transform: uppercase;
       }
-      .rightAbsolute{
+      .rightAbsolute {
         font-size: 12px;
         right: -8%;
         margin-top: -50px;

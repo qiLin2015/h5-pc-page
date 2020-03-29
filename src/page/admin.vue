@@ -45,9 +45,8 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <UploadFile :parent.sync="item.imgInfor"></UploadFile>
+                  <UploadFile :parent.sync="item.imgSrc"></UploadFile>
                 </el-col>
-                图片路径：{{item.imgInfor}}
                 <el-col :span="8">
                   <AdminImageSizeTip width="220" height="320"></AdminImageSizeTip>
                 </el-col>
@@ -92,16 +91,13 @@
                 </el-row>
 
                 <div
-                  v-for="(child, childIndex) in project.childrens"
+                  v-for="(child, childIndex) in project.children"
                   :key="childIndex"
                   class="singleItem"
                 >
                   <el-row>
                     <el-col :span="9">
-                      <el-form-item
-                        :label="project.title + ' 项目案例 ' + (childIndex +1) + ''"
-                        label-width="160px"
-                      >
+                      <el-form-item :label="'项目案例 ' + (childIndex +1) + ''">
                         <el-input v-model.trim="child.title"></el-input>
                       </el-form-item>
                     </el-col>
@@ -118,7 +114,7 @@
                     <el-col :span="2">
                       <div class="addProject">
                         <el-button
-                          v-if="project.childrens.length > 1"
+                          v-if="project.children.length > 1"
                           @click="handelDeleteSingle(project, child)"
                           type="danger"
                           size="small"
@@ -185,7 +181,35 @@
           </div>
         </el-collapse-item>
 
-        <el-collapse-item title="四、Contact配置" name="menus">
+        <el-collapse-item title="四、about配置" name="menus">
+          <el-container>
+            <el-main>
+              <el-row>
+                <el-col :span="20">
+                  <el-form-item label="描述">
+                    <el-input v-model="ruleForm.about.textContent"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="20">
+                  <el-form-item label="标题">
+                    <el-input v-model="ruleForm.about.title"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="20">
+                  <el-form-item label="图片：">
+                    <UploadFile :parent.sync="ruleForm.about.imgSrc"></UploadFile>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-main>
+          </el-container>
+        </el-collapse-item>
+
+        <el-collapse-item title="五、Contact配置" name="menus">
           <el-container>
             <el-main>
               <el-row>
@@ -238,7 +262,7 @@ import AdminImageSizeTip from '@/page/components/AdminImageSizeTip';
 const projectItem = {
   title: '',
   imgSrc: '',
-  childrens: [
+  children: [
     {
       title: '',
       imgSrc: '',
@@ -301,29 +325,19 @@ export default {
       singleDetail: {}, // 项目详情
       ruleForm: {
         menus: [
-          {
-            title: 'Home',
-            imgSrc: '',
-          },
-          {
-            title: 'Projects',
-            imgSrc: '',
-          },
-          {
-            title: 'About',
-            imgSrc: '',
-          },
-          {
-            title: 'Awards',
-            imgSrc: '',
-          },
-          {
-            title: 'Contact',
-            imgSrc: '',
-          },
+          { title: 'Home', imgSrc: '' },
+          { title: 'Projects', imgSrc: '' },
+          { title: 'About', imgSrc: '' },
+          { title: 'Awards', imgSrc: '' },
+          { title: 'Contact', imgSrc: '' },
         ],
         projects: [],
         awards: {},
+        about: {
+          textContent: '',
+          title: '',
+          imgSrc: '',
+        },
         contact: {
           codeImgSrc: '',
           Address: '',
@@ -333,7 +347,42 @@ export default {
       },
     };
   },
+  mounted() {
+    this.query();
+  },
   methods: {
+    query() {
+      let url = 'http://139.224.13.0/api/data';
+      axios.get(url).then(res => {
+        if (res.status === 200) {
+          const adminData = {
+            menus: [
+              { title: 'Home', imgSrc: '' },
+              { title: 'Projects', imgSrc: '' },
+              { title: 'About', imgSrc: '' },
+              { title: 'Awards', imgSrc: '' },
+              { title: 'Contact', imgSrc: '' },
+            ],
+            projects: [],
+            awards: {},
+            about: {
+              textContent: '',
+              title: '',
+              imgSrc: '',
+            },
+            contact: {
+              codeImgSrc: '',
+              Address: '',
+              TeL: '',
+              Web: '',
+            },
+          };
+          const dataInfor = res.data.data[0];
+          this.ruleForm = Object.assign(adminData, dataInfor);
+          console.log(this.ruleForm);
+        }
+      });
+    },
     // 登录
     handelLogin() {
       if (!this.name) {
@@ -362,7 +411,7 @@ export default {
       let item = JSON.parse(JSON.stringify(projectItem));
       this.ruleForm.projects.push(item);
       this.ruleForm.projects = this.ruleForm.projects.map((item, index) => {
-        item.childrens = item.childrens.map((child, childIndex) => {
+        item.children = item.children.map((child, childIndex) => {
           child = { ...child, singleId: `${childIndex + 1}` };
           return child;
         });
@@ -390,8 +439,8 @@ export default {
       this.ruleForm.projects.forEach((item, index) => {
         if (project.projectId === item.projectId) {
           let singleItem = JSON.parse(JSON.stringify(singleProject));
-          item.childrens.push(singleItem);
-          item.childrens = item.childrens.map((single, singleIndex) => {
+          item.children.push(singleItem);
+          item.children = item.children.map((single, singleIndex) => {
             single.singleId = `${singleIndex + 1}`;
             return single;
           });
@@ -408,11 +457,11 @@ export default {
             type: 'warning',
             center: true,
           }).then(() => {
-            console.log('itemProject before', itemProject.childrens);
-            itemProject.childrens = itemProject.childrens.filter(
+            console.log('itemProject before', itemProject.children);
+            itemProject.children = itemProject.children.filter(
               single => single.singleId !== child.singleId,
             );
-            console.log('itemProject after', itemProject.childrens);
+            console.log('itemProject after', itemProject.children);
             this.$message({ type: 'success', message: '删除成功!' });
           });
         }

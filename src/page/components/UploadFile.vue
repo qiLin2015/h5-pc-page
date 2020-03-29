@@ -47,10 +47,12 @@ export default {
   },
   watch: {
     parent: function() {
-      this.imgSrc = `http://139.224.13.0/${this.parent}`;
+      this.imgSrc = this.parent;
     },
     imgSrc: function(newVal) {
-      this.$emit('update:parent', newVal);
+      let url =
+        'http://139.224.13.0/static/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png';
+      this.$emit('update:parent', url);
     },
   },
   methods: {

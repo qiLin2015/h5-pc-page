@@ -2,134 +2,189 @@
   <div class="singleDetailWrap">
     <MenuHeader></MenuHeader>
     <div class="detailWrap">
-      <div class="headerTitle fullWidth" v-if="projectType === 'Commercial'"><div class="aniTitle">Commercial</div></div>
-      <div class="headerTitle fullWidth" v-if="projectType === 'Residential'"><div class="aniTitle">Residential</div></div>
-      <div class="headerTitle fullWidth" v-if="projectType === 'Deluxe'"><div class="aniTitle">Deluxe</div></div>
+      <div class="preNextWrap">
+        <div class="preNext">
+          <div class="pre" @click="handelNav('pre')">
+            PRE PROJECT
+            <div class="textLine"></div>
+          </div>
+          <div class="line" @click="handelNav('return')">
+            RETURN
+            <div class="textLine"></div>
+          </div>
+          <div class="next" @click="handelNav('next')">
+            NEXT PROJECT
+            <div class="textLine"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="headerTitle fullWidth">
+        <div class="aniTitle">{{itemProject.title}}</div>
+      </div>
       <div class="detailText fullWidth">
-        <div v-if="detailInfor.textInfor && detailInfor.textInfor.oneLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.oneLine}}</div>
-        <div v-if="detailInfor.textInfor && detailInfor.textInfor.twoLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.twoLine}}</div>
-        <div v-if="detailInfor.textInfor && detailInfor.textInfor.threeLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.threeLine}}</div>
+        <div
+          v-if="detailInfor.textInfor && detailInfor.textInfor.oneLine"
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.oneLine}}</div>
+        <div
+          v-if="detailInfor.textInfor && detailInfor.textInfor.twoLine"
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.twoLine}}</div>
+        <div
+          v-if="detailInfor.textInfor && detailInfor.textInfor.threeLine"
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detailInfor.textInfor.threeLine}}</div>
       </div>
 
       <div class="oneWrap fullWidth">
         <div class="oneImgWrap" v-if="detailInfor.imgSrcOne">
-          <div class="animText oneText" v-if="projectType === 'Commercial'">C</div>
-          <div class="animText oneText" v-if="projectType === 'Residential'">R</div>
-          <div class="animText oneText" v-if="projectType === 'Deluxe'">D</div>
-          <img class="img" :src="detailInfor.imgSrcOne" alt="">
+          <div class="animText oneText">{{itemProject.title.slice(0, 1)}}</div>
+          <img class="img" :src="detailInfor.imgSrcOne" alt />
         </div>
       </div>
 
       <div class="twoWrap fullWidth" v-if="detailInfor.imgSrcTwo">
         <div class="twoImgWrap">
-          <div class="animText twoText" v-if="projectType === 'Commercial'">O</div>
-          <div class="animText twoText" v-if="projectType === 'Residential'">E</div>
-          <div class="animText twoText" v-if="projectType === 'Deluxe'">E</div>
-          <img class="img" :src="detailInfor.imgSrcTwo" alt="">
+          <div class="animText twoText">{{itemProject.title.slice(1, 2)}}</div>
+          <img class="img" :src="detailInfor.imgSrcTwo" alt />
         </div>
       </div>
 
       <div class="threeWrap fullWidth" v-if="detailInfor.imgSrcThree">
         <div class="threeImgWrap">
-          <div class="animText threeText" v-if="projectType === 'Commercial'">M</div>
-          <div class="animText threeText" v-if="projectType === 'Residential'">S</div>
-          <div class="animText threeText" v-if="projectType === 'Deluxe'">L</div>
-          <img class="img" :src="detailInfor.imgSrcThree" alt="">
+          <div class="animText threeText">{{itemProject.title.slice(2, 3)}}</div>
+          <img class="img" :src="detailInfor.imgSrcThree" alt />
         </div>
       </div>
 
       <div class="fourWrap fullWidth" v-if="detailInfor.imgSrcFour">
         <div class="fourImgWrap">
-          <img class="img" :src="detailInfor.imgSrcFour" alt="">
+          <img class="img" :src="detailInfor.imgSrcFour" alt />
         </div>
       </div>
 
       <div class="fiveWrap fullWidth" v-if="detailInfor.imgSrcFive">
         <div class="fiveImgWrap">
-          <img class="img" :src="detailInfor.imgSrcFive" alt="">
+          <img class="img" :src="detailInfor.imgSrcFive" alt />
         </div>
       </div>
 
-      <div class="sixWrap fullWidth"  v-if="detailInfor.imgSrcSix">
+      <div class="sixWrap fullWidth" v-if="detailInfor.imgSrcSix">
         <div class="sixImgWrap">
-          <div class="animText sixText" v-if="projectType === 'Commercial'">M</div>
-          <div class="animText sixText" v-if="projectType === 'Residential'">I</div>
-          <div class="animText sixText" v-if="projectType === 'Deluxe'">U</div>
-          <img class="img" :src="detailInfor.imgSrcSix" alt="">
+          <div class="animText sixText">{{itemProject.title.slice(3, 4)}}</div>
+          <img class="img" :src="detailInfor.imgSrcSix" alt />
         </div>
       </div>
 
       <div class="severnWrap fullWidth flexStart" v-if="detailInfor.imgSrcSevern">
         <div class="severnImgWrap" style="margin-top: 100px;">
-          <div class="animText severnText" v-if="projectType === 'Commercial'">E</div>
-          <div class="animText severnText" v-if="projectType === 'Residential'">D</div>
-          <div class="animText severnText" v-if="projectType === 'Deluxe'">X</div>
-          <img class="img" :src="detailInfor.imgSrcSevern" alt="">
+          <div class="animText severnText">{{itemProject.title.slice(4, 5)}}</div>
+          <img class="img" :src="detailInfor.imgSrcSevern" alt />
         </div>
       </div>
 
-      <div class="moretext fullWidth" v-if="projectType === 'Commercial'"><div class="moreTextAbsolute"><span class="animMoreText">RIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="projectType === 'Residential'"><div class="moreTextAbsolute"><span class="animMoreText">ENTIAL</span></div></div>
-      <div class="moretext fullWidth" v-if="projectType === 'Deluxe'"><div class="moreTextAbsolute"><span class="animMoreText">E</span></div></div>
+      <div class="moretext fullWidth">
+        <div class="moreTextAbsolute">
+          <span class="animMoreText">{{itemProject.title.slice(5, itemProject.title.length)}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import MenuHeader from '@/page/components/MenuHeader'
+import MenuHeader from '@/page/components/MenuHeader';
 export default {
   components: {
-    MenuHeader
+    MenuHeader,
   },
-    data () {
-      return {
-        projectType: this.$route.query.projectType || 'Commercial', // 'com', 'res' , 'del'
-        detailId: this.$route.query.detailId || '',
-        detailInfor: {},
-        imgSrc: require('@/img/singleDetail1.png'),
-        imgSrc: require('@/img/singleDetail2.png'),
-        imgSrc: require('@/img/singleDetail3.png'),
-        imgSrc: require('@/img/singleDetail4.png'),
-        imgSrc: require('@/img/singleDetail5.png'),
-        imgSrc: require('@/img/singleDetail6.png'),
-        imgSrc: require('@/img/singleDetail7.png'),
-      }
+  data() {
+    return {
+      projectId: this.$route.query.projectId || '',
+      singleId: this.$route.query.singleId || '',
+      itemProject: { title: '' },
+      detailInfor: {},
+    };
   },
   mounted() {
     this.query();
   },
   methods: {
     query() {
-      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor')) ;
-      if(maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
-        let itemProject = maudeaInfor.projects.filter((item)=> item.title.toUpperCase() === this.projectType.toUpperCase());
-        itemProject[0].children.forEach((item)=> {
-          if(item.id === this.detailId) {
-            this.detailInfor = item.detail
-            console.log('this.detailInfor', this.detailInfor)
+      let maudeaInfor = JSON.parse(localStorage.getItem('maudeaInfor'));
+      if (maudeaInfor && maudeaInfor.projects && maudeaInfor.projects.length) {
+        this.itemProject = maudeaInfor.projects.filter(
+          item => item.projectId === this.projectId,
+        )[0];
+        this.itemProject.children.forEach(item => {
+          if (item.singleId === this.singleId) {
+            this.detailInfor = item.detail;
+            console.log('this.detailInfor', this.detailInfor);
           }
-        })
-      }else {
+        });
+      } else {
         this.detailInfor = {};
-        this.$router.push({name: 'Home'})
+        this.$router.push({ name: 'Home' });
+      }
+    },
+    handelNav(type) {
+      if (type === 'return') {
+        this.$router.push({
+          name: 'ProjectSingle',
+          query: {
+            projectId: this.projectId,
+          },
+        });
+      } else {
+        let currentIndex = null;
+        let preNextIndex = null;
+        let singleId = null;
+
+        this.itemProject.children.forEach((item, index) => {
+          if (item.singleId === this.singleId) {
+            currentIndex = index;
+          }
+        });
+
+        if (type === 'pre') {
+          preNextIndex =
+            currentIndex <= 0 ? this.itemProject.children.length - 1 : currentIndex - 1;
+        } else {
+          preNextIndex = currentIndex >= this.itemProject.children.length ? 0 : currentIndex + 1;
+        }
+
+        this.itemProject.children.forEach((item, index) => {
+          if (index === preNextIndex) {
+            singleId = item.singleId;
+          }
+        });
+
+        this.singleId = singleId;
+        this.query();
+        // this.$router.replace({
+        //   name: 'SingleDetail',
+        //   query: {
+        //     projectId: this.projectId,
+        //     singleId: singleId,
+        //   },
+        // });
       }
     },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
-.singleDetailWrap{
+.singleDetailWrap {
   width: 100%;
   height: 100%;
   padding-top: 80px;
-  .detailWrap{
-    .fullWidth{
+  .detailWrap {
+    position: relative;
+    .fullWidth {
       width: 100%;
       box-sizing: border-box;
     }
-    .animText{
+    .animText {
       font-size: 150px;
       color: #cccccc;
       position: absolute;
@@ -138,24 +193,22 @@ export default {
       // -webkit-background-clip:text;
       // -webkit-text-fill-color:transparent;
       // -webkit-animation:cliptext 3s linear infinite;
-
     }
-    .img{
+    .img {
       display: block;
       width: 100%;
     }
-    .headerTitle{
+    .headerTitle {
       padding: 2% 0 2% 20%;
       font-size: 60px;
       color: #333333;
       font-family: DidotBold;
-      .aniTitle{
+      .aniTitle {
         display: inline-block;
         // animation: scaleRotateTitle 1s 0.8s linear;
       }
-
     }
-    .detailText{
+    .detailText {
       font-family: PingFangRegular;
       padding: 0 22% 2%;
       box-sizing: border-box;
@@ -163,22 +216,24 @@ export default {
       color: #333333;
       line-height: 30px;
     }
-    .oneWrap, .severnWrap{
+    .oneWrap,
+    .severnWrap {
       display: flex;
       justify-content: flex-end;
-      &.flexStart{
+      &.flexStart {
         justify-content: flex-start;
       }
-      .oneImgWrap, .severnImgWrap{
+      .oneImgWrap,
+      .severnImgWrap {
         width: 80%;
         position: relative;
-        .oneText{
+        .oneText {
           left: -5%;
           top: 20%;
           font-size: 135px;
           // animation: LeftTopText 3s 0.8s linear infinite;
         }
-        .severnText{
+        .severnText {
           right: 0%;
           top: -3%;
           font-size: 225px;
@@ -187,14 +242,16 @@ export default {
       }
     }
 
-    .twoWrap, .fiveWrap{
+    .twoWrap,
+    .fiveWrap {
       display: flex;
       margin-top: 100px;
       padding-left: 20%;
-      .twoImgWrap, .fiveImgWrap{
+      .twoImgWrap,
+      .fiveImgWrap {
         width: 30%;
         position: relative;
-        .twoText{
+        .twoText {
           right: -20%;
           top: -20%;
           font-size: 150px;
@@ -203,21 +260,23 @@ export default {
       }
     }
 
-    .threeWrap, .sixWrap{
+    .threeWrap,
+    .sixWrap {
       display: flex;
       justify-content: flex-end;
       margin-top: -20px;
       padding-right: 20%;
-      .threeImgWrap, .sixImgWrap{
+      .threeImgWrap,
+      .sixImgWrap {
         width: 30%;
         position: relative;
-        .threeText{
+        .threeText {
           left: -60%;
           bottom: -25%;
           font-size: 225px;
           // animation: scaleRotateText 3s 0.8s linear infinite;
         }
-        .sixText{
+        .sixText {
           left: -25%;
           top: -20%;
           font-size: 150px;
@@ -226,20 +285,20 @@ export default {
       }
     }
 
-    .fourWrap{
+    .fourWrap {
       display: flex;
       margin-top: 100px;
-      .fourImgWrap{
+      .fourImgWrap {
         width: 100%;
       }
     }
 
-    .moretext{
+    .moretext {
       font-size: 60px;
       color: #333333;
       position: relative;
       height: 200px;
-      .moreTextAbsolute{
+      .moreTextAbsolute {
         position: absolute;
         top: 0;
         left: 0;
@@ -249,136 +308,214 @@ export default {
         align-items: center;
         justify-content: center;
       }
-      .animMoreText{
+      .animMoreText {
         // animation: scaleRotateText 5s 0.5s linear infinite;
       }
     }
   }
 }
-@keyframes LeftTopText{
-  0%{
+
+.preNextWrap {
+  position: absolute;
+  top: 200px;
+  left: -90px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  font-family: CenturyGothic;
+  .preNext {
+    position: relative;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-around;
+    transform: rotate(-90deg);
+    .pre,
+    .next {
+      padding: 10px 0px;
+      color: #999999;
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        color: #666666;
+        .textLine {
+          width: 80px;
+          height: 2px;
+          background: #898989;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          animation: preNextLine 0.8s;
+        }
+      }
+    }
+    .line {
+      padding: 10px 0px;
+      margin: 0 20px;
+      color: #999999;
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        color: #666666;
+        .textLine {
+          width: 45px;
+          height: 2px;
+          background: #898989;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          animation: Line 0.8s;
+        }
+      }
+    }
+  }
+}
+@keyframes preNextLine {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 80px;
+  }
+}
+@keyframes Line {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 45px;
+  }
+}
+
+@keyframes LeftTopText {
+  0% {
     left: -5%;
     top: 20%;
   }
-  25%{
+  25% {
     left: -8%;
     top: 15%;
   }
-  50%{
+  50% {
     left: -5%;
     top: 20%;
   }
-  75%{
+  75% {
     left: -2%;
     top: 25%;
   }
-  100%{
+  100% {
     left: -5%;
     top: 20%;
   }
 }
-@keyframes scaleRotateText{
-  0%{
+@keyframes scaleRotateText {
+  0% {
     -webkit-transform: translateY(0) scale(0);
     transform: translateY(0) scale(0);
   }
-  25%{
+  25% {
     -webkit-transform: translateY(-50px) scale(0.5);
     transform: translateY(-50px) scale(0.5);
   }
-  50%{
+  50% {
     -webkit-transform: translateY(0px) scale(0) rotateZ(180deg);
     transform: translateY(0px) scale(0) rotateZ(180deg);
   }
-  75%{
+  75% {
     -webkit-transform: translateY(50px) scale(1.5);
     transform: translateY(50px) scale(1.5);
   }
-  100%{
+  100% {
     -webkit-transform: translateY(0) scale(0);
     transform: translateY(0) scale(0);
   }
 }
 
-@keyframes scaleRotateTitle{
-  0%{
+@keyframes scaleRotateTitle {
+  0% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
-   50%{
+  50% {
     -webkit-transform: scale(0);
     transform: scale(0);
   }
-  100%{
+  100% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
 
-@keyframes upDownFloat{
-  0%{
+@keyframes upDownFloat {
+  0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
-  25%{
+  25% {
     -webkit-transform: translateY(-50px);
     transform: translateY(-50px);
   }
-  50%{
+  50% {
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
   }
-  75%{
+  75% {
     -webkit-transform: translateY(50px);
     transform: translateY(50px);
   }
-  100%{
+  100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
 }
 
 @media screen and (min-width: 480px) {
-  .singleDetailWrap{
-
+  .singleDetailWrap {
   }
 }
 @media screen and (max-width: 480px) {
-  .singleDetailWrap{
-    .detailWrap{
-      .headerTitle{
+  .singleDetailWrap {
+    .detailWrap {
+      .preNextWrap {
+        display: none;
+      }
+      .headerTitle {
         padding: 10px 30px 20px;
         font-size: 30px;
         font-family: DidotBold;
       }
-      .detailText{
+      .detailText {
         font-family: PingFangRegular;
         padding: 0 30px 40px;
         line-height: 24px;
         font-size: 10px;
       }
-      .animText{
+      .animText {
         font-size: 100px !important;
       }
-      .moretext{
+      .moretext {
         padding: 0;
         height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .twoWrap, .fiveWrap{
-        .twoImgWrap, .fiveImgWrap{
+      .twoWrap,
+      .fiveWrap {
+        .twoImgWrap,
+        .fiveImgWrap {
           width: 60%;
           position: relative;
         }
       }
-      .threeWrap, .sixWrap{
+      .threeWrap,
+      .sixWrap {
         display: flex;
         justify-content: flex-end;
         margin-top: 80px;
         padding-right: 20%;
-        .threeImgWrap, .sixImgWrap{
+        .threeImgWrap,
+        .sixImgWrap {
           width: 60%;
         }
       }
@@ -386,8 +523,12 @@ export default {
   }
 }
 
-@keyframes cliptext{
-  from { background-position: 0 0; }
-  to { background-position: 100% 0; }
+@keyframes cliptext {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
 }
 </style>

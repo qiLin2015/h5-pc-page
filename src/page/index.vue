@@ -120,15 +120,16 @@ export default {
         console.log('axios res');
         console.log(res);
         if (res.status === 200) {
-          this.homeSwiperList = res.data.menus || [];
-          if (res.data.projects && res.data.projects.length) {
-            this.homeSwiperList = res.data.projects.map(item => {
+          const dataInfor = res.data.data[0];
+          this.homeSwiperList = dataInfor.menus || [];
+          if (dataInfor.projects && dataInfor.projects.length) {
+            this.homeSwiperList = dataInfor.projects.map(item => {
               return {
                 title: item.title,
                 imgSrc: item.imgSrc,
               };
             });
-            localStorage.setItem('maudeaInfor', JSON.stringify(res.data));
+            localStorage.setItem('maudeaInfor', JSON.stringify(dataInfor));
             if (!this.$route.query.isFromMenu) {
               setTimeout(() => {
                 this.isWelcome = false;
