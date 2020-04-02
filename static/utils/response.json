@@ -1,213 +1,256 @@
 {
-  "menus": [{
-    "title": "Home",
-    "imgSrc": "./static/img/home.png"
-  }, {
-    "title": "Projects",
-    "imgSrc": "./static/img/home.png"
-  }, {
-    "title": "About",
-    "imgSrc": "./static/img/home.png"
-  }, {
-    "title": "Awards",
-    "imgSrc": "./static/img/home.png"
-  }, {
-    "title": "Contact",
-    "imgSrc": "./static/img/home.png"
-  }],
-  "projects": [{
-    "title": "Commercial",
-    "imgSrc": "./static/img/project1.png",
-    "children": [{
-      "id": "1",
-      "title": "山东开元职业会所",
-      "imgSrc": "./static/img/project1.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+  "menus": [
+    {
+      "title": "Home",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+    },
+    {
+      "title": "Projects",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+    },
+    {
+      "title": "About",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+    },
+    {
+      "title": "Awards",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+    },
+    {
+      "title": "Contact",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Commercial",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+      "projectId": "1",
+      "children": [
+        {
+          "singleId": "1",
+          "title": "山东开元职业会所",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "1由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "2",
-      "title": "万科上海启宸销售中心",
-      "imgSrc": "./static/img/project2.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+        {
+          "singleId": "2",
+          "title": "万科上海启宸销售中心",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "2由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "3",
-      "title": "仁恒上海丰利大楼办公",
-      "imgSrc": "./static/img/project3.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+        {
+          "singleId": "3",
+          "title": "仁恒上海丰利大楼办公",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "3由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Residential",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+      "projectId": "2",
+      "children": [
+        {
+          "singleId": "1",
+          "title": "山东开元职业会所",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "1由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }]
-  }, {
-    "title": "Residential",
-    "imgSrc": "./static/img/project2.png",
-    "children": [{
-      "id": "1",
-      "title": "山东开元职业会所",
-      "imgSrc": "./static/img/project3.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+        {
+          "singleId": "2",
+          "title": "万科上海启宸销售中心",
+          "imgSrc": "./static/img/project1.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "2由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "2",
-      "title": "万科上海启宸销售中心",
-      "imgSrc": "./static/img/project1.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+        {
+          "singleId": "3",
+          "title": "仁恒上海丰利大楼办公",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "3由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Deluxe",
+      "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+      "projectId": "3",
+      "children": [
+        {
+          "singleId": "1",
+          "title": "山东开元职业会所",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "1由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "3",
-      "title": "仁恒上海丰利大楼办公",
-      "imgSrc": "./static/img/project2.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+        {
+          "singleId": "2",
+          "title": "万科上海启宸销售中心",
+          "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "2由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
         },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }]
-  }, {
-    "title": "Deluxe",
-    "imgSrc": "./static/img/project3.png",
-    "children": [{
-      "id": "1",
-      "title": "山东开元职业会所",
-      "imgSrc": "./static/img/project2.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
-        },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "2",
-      "title": "万科上海启宸销售中心",
-      "imgSrc": "./static/img/project3.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
-        },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }, {
-      "id": "3",
-      "title": "仁恒上海丰利大楼办公",
-      "imgSrc": "./static/img/project1.png",
-      "detail": {
-        "textInfor": {
-          "oneLine": "由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
-          "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
-          "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
-        },
-        "imgSrcOne": "./static/img/singleDetail1.png",
-        "imgSrcTwo": "./static/img/singleDetail2.png",
-        "imgSrcThree": "./static/img/singleDetail3.png",
-        "imgSrcFour": "./static/img/singleDetail4.png",
-        "imgSrcFive": "./static/img/singleDetail5.png",
-        "imgSrcSix": "./static/img/singleDetail6.png",
-        "imgSrcSevern": "./static/img/singleDetail7.png"
-      }
-    }]
-  }],
+        {
+          "singleId": "3",
+          "title": "仁恒上海丰利大楼办公",
+          "imgSrc": "./static/img/project1.png",
+          "detail": {
+            "textInfor": {
+              "oneLine": "3由毛明镜先生创立的MAUDEADesign（牧笛设计）成立于2011年，坐落于中国上海。致力于为国内不同行业的一流企业提供国际化的建筑、景观、室内、平面以及产品设计服务。公司项目遍布全国，并获得诸多国内外权威设计奖项，是一家具备多元化设计经验的合伙人制设计师事务所。",
+              "twoLine": "MAUDEADesign秉承严谨的设计态度，打造充满深厚文化底蕴与丰富情感的内涵空间。结合全球化的设计理念，力求设计不是表象而是呼应心境的写照，从而细致丰富的将美学表达。",
+              "threeLine": "MAUDEADesign经过短短几年的迅速发展，现有团队成员近 120 名，先后为 50 多家地产集团提供了室内设计及顾问服务，充分得到了万科、世茂、龙湖、华润置地、融信、金地、远洋、新城、旭辉、路劲、正荣、建发、中粮等国内百强地产商的高度认可。在亚太地区，事务所还与世界著名的建筑师合作，共同打造极具高水平及挑战性的尖端专案。"
+            },
+            "imageInfor": {
+              "imgSrcOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcFive": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSix": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+              "imgSrcSevern": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "awards": {
+    "leftOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "leftTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "leftThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "leftFour": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "rightOne": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "rightTwo": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "rightThree": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
+  },
   "about": {
     "textContent": "Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,Wally Mau has more than 20 years of interior design experience,",
-    "title": "",
-    "imgSrc": ""
-  },
-  "awards": {
-    "leftOne": "./static/img/leftOne.png",
-    "leftTwo": "./static/img/leftTwo.png",
-    "leftThree": "./static/img/leftThree.png",
-    "leftFour": "./static/img/leftFour.png",
-    "rightOne": "./static/img/rightOne.png",
-    "rightTwo": "./static/img/rightTwo.png",
-    "rightThree": "./static/img/rightThree.png"
+    "title": "wally mau",
+    "imgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png"
   },
   "contact": {
-    "codeImgSrc": "",
-    "Address": "",
-    "TeL": "",
-    "Web": ""
+    "codeImgSrc": "http://139.224.13.0/stc/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png",
+    "Address": "20 / F, Block 17, 1333 Xinlong Roadminhang District, Shanghai",
+    "TeL": "TEL / 086- 13524446243",
+    "Web": "WEB / www.modee- sh.com"
   }
 }

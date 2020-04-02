@@ -48,14 +48,20 @@ export default {
   watch: {
     parent: function() {
       this.imgSrc = this.parent;
+      console.log('this.imgSrc', this.imgSrc);
     },
     imgSrc: function(newVal) {
-      let url =
-        'http://139.224.13.0/static/20200329191609-b0c79720-71ae-11ea-b8ef-ef80d3429f7a.png';
-      this.$emit('update:parent', url);
+      console.log('newVal', newVal);
+      this.$emit('update:parent', newVal);
     },
   },
+  mounted() {
+    this.render();
+  },
   methods: {
+    render() {
+      this.imgSrc = this.parent;
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
       this.imgSrc = '';
@@ -71,7 +77,8 @@ export default {
       console.log('file', file);
       console.log('data', data);
       if (file.response) {
-        this.imgSrc = file.response.data.url || '';
+        let imgUrl = `http://139.224.13.0${file.response.data.url}`;
+        this.imgSrc = file.response.data.url ? imgUrl : '';
         this.imgName = file.name;
       } else {
         this.imgSrc = '';

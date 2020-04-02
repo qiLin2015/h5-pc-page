@@ -35,49 +35,49 @@
       </div>
 
       <div class="oneWrap fullWidth">
-        <div class="oneImgWrap" v-if="detailInfor.imgSrcOne">
+        <div class="oneImgWrap" v-if="detailInfor.imageInfor.imgSrcOne">
           <div class="animText oneText">{{itemProject.title.slice(0, 1)}}</div>
-          <img class="img" :src="detailInfor.imgSrcOne" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcOne" alt />
         </div>
       </div>
 
-      <div class="twoWrap fullWidth" v-if="detailInfor.imgSrcTwo">
+      <div class="twoWrap fullWidth" v-if="detailInfor.imageInfor.imgSrcTwo">
         <div class="twoImgWrap">
           <div class="animText twoText">{{itemProject.title.slice(1, 2)}}</div>
-          <img class="img" :src="detailInfor.imgSrcTwo" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcTwo" alt />
         </div>
       </div>
 
-      <div class="threeWrap fullWidth" v-if="detailInfor.imgSrcThree">
+      <div class="threeWrap fullWidth" v-if="detailInfor.imageInfor.imgSrcThree">
         <div class="threeImgWrap">
           <div class="animText threeText">{{itemProject.title.slice(2, 3)}}</div>
-          <img class="img" :src="detailInfor.imgSrcThree" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcThree" alt />
         </div>
       </div>
 
-      <div class="fourWrap fullWidth" v-if="detailInfor.imgSrcFour">
+      <div class="fourWrap fullWidth" v-if="detailInfor.imageInfor.imgSrcFour">
         <div class="fourImgWrap">
-          <img class="img" :src="detailInfor.imgSrcFour" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcFour" alt />
         </div>
       </div>
 
-      <div class="fiveWrap fullWidth" v-if="detailInfor.imgSrcFive">
+      <div class="fiveWrap fullWidth" v-if="detailInfor.imageInfor.imgSrcFive">
         <div class="fiveImgWrap">
-          <img class="img" :src="detailInfor.imgSrcFive" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcFive" alt />
         </div>
       </div>
 
-      <div class="sixWrap fullWidth" v-if="detailInfor.imgSrcSix">
+      <div class="sixWrap fullWidth" v-if="detailInfor.imageInfor.imgSrcSix">
         <div class="sixImgWrap">
           <div class="animText sixText">{{itemProject.title.slice(3, 4)}}</div>
-          <img class="img" :src="detailInfor.imgSrcSix" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcSix" alt />
         </div>
       </div>
 
-      <div class="severnWrap fullWidth flexStart" v-if="detailInfor.imgSrcSevern">
+      <div class="severnWrap fullWidth flexStart" v-if="detailInfor.imageInfor.imgSrcSevern">
         <div class="severnImgWrap" style="margin-top: 100px;">
           <div class="animText severnText">{{itemProject.title.slice(4, 5)}}</div>
-          <img class="img" :src="detailInfor.imgSrcSevern" alt />
+          <img class="img" :src="detailInfor.imageInfor.imgSrcSevern" alt />
         </div>
       </div>
 
@@ -101,7 +101,10 @@ export default {
       projectId: this.$route.query.projectId || '',
       singleId: this.$route.query.singleId || '',
       itemProject: { title: '' },
-      detailInfor: {},
+      detailInfor: {
+        textInfor: {},
+        imageInfor: {},
+      },
     };
   },
   mounted() {

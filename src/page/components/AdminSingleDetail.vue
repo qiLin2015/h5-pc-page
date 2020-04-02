@@ -154,7 +154,7 @@ export default {
     },
     handelSubmit() {
       console.log('this.projectItemInfor', this.projectItemInfor);
-      let itemUpdate = this.projectItemInfor.childrens.map(child => {
+      let itemUpdate = this.projectItemInfor.children.map(child => {
         if (child.singleId === this.singleDetail.singleId) {
           child = this.ruleForm;
         }

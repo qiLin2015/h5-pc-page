@@ -156,13 +156,17 @@ export default {
       return `${val}`;
     },
     handelGoTo(item) {
-      this.$router.push({
-        name: 'SingleDetail',
-        query: {
-          projectId: this.$route.query.projectId,
-          singleId: item.singleId || 'singleId',
-        },
-      });
+      if (item.singleId) {
+        this.$router.push({
+          name: 'SingleDetail',
+          query: {
+            projectId: this.$route.query.projectId,
+            singleId: item.singleId || 'singleId',
+          },
+        });
+      } else {
+        this.$message({ type: 'warn', message: '暂无详情信息，请联系管理员进行配置～' });
+      }
     },
     goToProject() {
       this.$router.push({

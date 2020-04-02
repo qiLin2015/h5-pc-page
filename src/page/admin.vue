@@ -55,14 +55,14 @@
           </el-container>
         </el-collapse-item>
 
-        <el-collapse-item title="二、Projects项目配置(项目、项目案例、案例-详情等)" name="menus">
+        <el-collapse-item title="二、Projects类型配置(类型、类型案例、案例-详情等)" name="projects">
           <el-container>
             <el-main>
               <div v-for="(project, index) in ruleForm.projects" :key="index" class="projectItem">
                 <el-row>
                   <el-col :span="8">
-                    <el-form-item :label="'项目' + (index+1)">
-                      <el-input v-model.trim="project.title" placeholder="请输入项目名称"></el-input>
+                    <el-form-item :label="'类型' + (index+1)">
+                      <el-input v-model.trim="project.title" placeholder="请输入类型名称"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
@@ -78,7 +78,7 @@
                       type="danger"
                       size="small"
                       icon="el-icon-delete"
-                    >删除项目</el-button>
+                    >删除类型</el-button>
                   </el-col>
                 </el-row>
 
@@ -97,12 +97,12 @@
                 >
                   <el-row>
                     <el-col :span="9">
-                      <el-form-item :label="'项目案例 ' + (childIndex +1) + ''">
+                      <el-form-item :label="'类型案例 ' + (childIndex +1) + ''">
                         <el-input v-model.trim="child.title"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="8">
-                      <UploadFile></UploadFile>
+                      <UploadFile :parent.sync="child.imgSrc"></UploadFile>
                     </el-col>
                     <el-col :span="4">
                       <el-button
@@ -131,7 +131,7 @@
                     type="primary"
                     size="small"
                     icon="el-icon-plus"
-                  >增加项目案例</el-button>
+                  >增加类型案例</el-button>
                 </div>
               </div>
               <el-button
@@ -139,7 +139,7 @@
                 type="primary"
                 size="small"
                 icon="el-icon-plus"
-              >增加项目</el-button>
+              >增加类型</el-button>
             </el-main>
           </el-container>
 
@@ -158,7 +158,7 @@
           </div>
         </el-collapse-item>
 
-        <el-collapse-item title="三、Awards奖项图片配置" name="menus">
+        <el-collapse-item title="三、Awards奖项图片配置" name="awards">
           <el-container>
             <el-main>
               <el-row>
@@ -173,6 +173,7 @@
               <span slot="footer" class="dialog-footer">
                 <AdminAwardsDetail
                   v-if="awardDialogVisible"
+                  :awardInfor="ruleForm.awards"
                   @onSuccessAwards="handelSuccessAwards"
                   @cancelAwardDiago="handelcancelAwardDiago"
                 ></AdminAwardsDetail>
@@ -181,7 +182,7 @@
           </div>
         </el-collapse-item>
 
-        <el-collapse-item title="四、about配置" name="menus">
+        <el-collapse-item title="四、about配置" name="about">
           <el-container>
             <el-main>
               <el-row>
@@ -209,7 +210,7 @@
           </el-container>
         </el-collapse-item>
 
-        <el-collapse-item title="五、Contact配置" name="menus">
+        <el-collapse-item title="五、Contact配置" name="contact">
           <el-container>
             <el-main>
               <el-row>
@@ -316,13 +317,13 @@ export default {
     return {
       name: '',
       pwd: '',
-      isShowAdmin: true,
+      isShowAdmin: false,
       activeCollapse: ['menus'],
       productDialogVisible: false,
       productDialogTitle: '详情页图片配置',
       awardDialogVisible: false,
-      projectItemInfor: {}, // 增加项目
-      singleDetail: {}, // 项目详情
+      projectItemInfor: {}, // 增加类型
+      singleDetail: {}, // 类型详情
       ruleForm: {
         menus: [
           { title: 'Home', imgSrc: '' },
@@ -332,7 +333,15 @@ export default {
           { title: 'Contact', imgSrc: '' },
         ],
         projects: [],
-        awards: {},
+        awards: {
+          leftOne: '',
+          leftTwo: '',
+          leftThree: '',
+          leftFour: '',
+          rightOne: '',
+          rightTwo: '',
+          rightThree: '',
+        },
         about: {
           textContent: '',
           title: '',
@@ -352,35 +361,45 @@ export default {
   },
   methods: {
     query() {
-      let url = 'http://139.224.13.0/api/data';
-      axios.get(url).then(res => {
-        if (res.status === 200) {
-          const adminData = {
-            menus: [
-              { title: 'Home', imgSrc: '' },
-              { title: 'Projects', imgSrc: '' },
-              { title: 'About', imgSrc: '' },
-              { title: 'Awards', imgSrc: '' },
-              { title: 'Contact', imgSrc: '' },
-            ],
-            projects: [],
-            awards: {},
-            about: {
-              textContent: '',
-              title: '',
-              imgSrc: '',
-            },
-            contact: {
-              codeImgSrc: '',
-              Address: '',
-              TeL: '',
-              Web: '',
-            },
-          };
-          const dataInfor = res.data.data[0];
-          this.ruleForm = Object.assign(adminData, dataInfor);
-          console.log(this.ruleForm);
-        }
+      this.$nextTick(() => {
+        let url = 'http://139.224.13.0/api/data';
+        axios.get(url).then(res => {
+          if (res.status === 200) {
+            const adminData = {
+              menus: [
+                { title: 'Home', imgSrc: '' },
+                { title: 'Projects', imgSrc: '' },
+                { title: 'About', imgSrc: '' },
+                { title: 'Awards', imgSrc: '' },
+                { title: 'Contact', imgSrc: '' },
+              ],
+              projects: [],
+              awards: {
+                leftOne: '',
+                leftTwo: '',
+                leftThree: '',
+                leftFour: '',
+                rightOne: '',
+                rightTwo: '',
+                rightThree: '',
+              },
+              about: {
+                textContent: '',
+                title: '',
+                imgSrc: '',
+              },
+              contact: {
+                codeImgSrc: '',
+                Address: '',
+                TeL: '',
+                Web: '',
+              },
+            };
+            const dataInfor = res.data.data[0];
+            this.ruleForm = Object.assign(adminData, dataInfor);
+            console.log(this.ruleForm);
+          }
+        });
       });
     },
     // 登录
@@ -406,7 +425,7 @@ export default {
         this.isShowAdmin = true;
       }, 2000);
     },
-    // 增加项目
+    // 增加类型
     handelAddProject() {
       let item = JSON.parse(JSON.stringify(projectItem));
       this.ruleForm.projects.push(item);
@@ -418,11 +437,11 @@ export default {
         item = { ...item, projectId: `${index + 1}` };
         return item;
       });
-      console.log('this.ruleForm.projects 增加项目', this.ruleForm.projects);
+      console.log('this.ruleForm.projects 增加类型', this.ruleForm.projects);
     },
-    // 删除项目
+    // 删除类型
     handelDeleteProject(project, index) {
-      this.$confirm(`确定删除项目:${project.title}`, '提示', {
+      this.$confirm(`确定删除类型:${project.title}`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -434,7 +453,7 @@ export default {
         this.$message({ type: 'success', message: '删除成功!' });
       });
     },
-    // 添加项目案例
+    // 添加类型案例
     handelAddSingle(project) {
       this.ruleForm.projects.forEach((item, index) => {
         if (project.projectId === item.projectId) {
@@ -447,7 +466,7 @@ export default {
         }
       });
     },
-    // 删除项目案例
+    // 删除类型案例
     handelDeleteSingle(project, child) {
       this.ruleForm.projects.forEach((itemProject, index) => {
         if (project.projectId === itemProject.projectId) {
